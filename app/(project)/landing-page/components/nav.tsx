@@ -4,8 +4,8 @@ import Link from "next/link";
 
 export default function Nav() {
   return (
-    <nav className="absolute w-full z-10 mt-4 md:mt-0 pt-1 md:pt-5">
-      <div className="flex items-center justify-center text-white gap-3 md:gap-6 mx-4 md:mx-[10vw]">
+    <nav className="absolute w-full z-10 mt-4 md:mt-0 pt-1 md:py-5 bg-white">
+      <div className="flex items-center justify-center text-[#223645] gap-3 md:gap-6 mx-4 md:mx-[10vw]">
         <div className="relative">
           <Link href={"/landing-page"} className="flex items-center gap-2">
             <div className="relative size-7 md:size-9">
@@ -17,12 +17,12 @@ export default function Nav() {
                 priority
               />
             </div>
-            <span className="hidden md:block font-bold text-lg">
-              Template SaaS
+            <span className="hidden md:block text-lg">
+              Você é <span className={"text-[#EF5DA8]"}>Especial</span>
             </span>
           </Link>
         </div>
-        <div className="hidden md:block">
+        {/* <div className="hidden md:block">
           <a href="#vantagens">Vantagens</a>
         </div>
         <div className="hidden md:block">
@@ -30,7 +30,7 @@ export default function Nav() {
         </div>
         <div className="hidden md:block">
           <a href="#faq">FAQ</a>
-        </div>
+        </div> */}
         <div className="ml-auto hidden md:block">
           <Link href={"https://google.com"} passHref target="_blank">
             <button className="flex gap-2 items-center">

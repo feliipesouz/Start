@@ -1,102 +1,82 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
+import { useState } from "react";
 
 export default function Hero() {
+  const [selectedPlan, setSelectedPlan] = useState("basic");
+
+  const handleSelectPlan = (plan: string) => {
+    setSelectedPlan(plan);
+  };
+
   return (
-    <div className="relative text-white px-4 md:px-0 h-[700px] md:h-[75vh] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#574b79] to-[#433763]">
-      <div className="md:max-w-[1200px] mx-auto flex flex-col justify-center items-center text-center h-full">
-        <h1 className="text-3xl md:text-5xl font-medium mb-4 mt-[20%] md:mt-[7%]">
-          Você usa o Bling? Então venha aprender{" "}
-          <br className="hidden md:block" />
-          com seus dados a vender mais!
-        </h1>
-        <h2>
-          Turbine o seu Bling com os dashboards do Template e obtenha os
-          insights necessários <br className="hidden md:block" />
-          para entender o seu desempenho e tomar as melhores decisões
-        </h2>
-        <div className="flex flex-col md:flex-row gap-6 my-6">
-          <Link href="https://google.com" passHref target="_blank">
-            <button className="w-full bg-[#FAD054] text-black font-bold rounded-full py-4 md:py-5 md:px-10">
-              Teste grátis
-            </button>
-          </Link>
-          <Link href={"https://google.com"} passHref target="_blank">
-            <button className="flex gap-2 items-center h-full">
-              <div className="relative w-6 h-6">
-                <Image
-                  src="/landing-page/whatsapp.svg"
-                  fill
-                  alt="Whatsapp Logo"
-                  className="object-cover object-left"
-                />
-              </div>
-              <span>Falar com especialista</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-5 h-5"
+    <div className="relative text-white px-4 md:px-0 h-[700px] md:h-[75vh] bg-[#FCEEFD]">
+      <div className="md:max-w-full md:px-[74px] mx-auto flex flex-col md:flex-row justify-between items-center h-full">
+        <div className="flex flex-col justify-center items-start md:items-start text-left md:w-2/3">
+          <h1 className="text-3xl md:text-5xl text-[#223645] font-bold mb-4 mt-[20%] md:mt-[7%]">
+            Surpreenda aquela <span className={"text-[#EF5DA8]"}>pessoa</span> que é
+            <br className="hidden md:block" />
+            <span className={"text-[#EF5DA8]"}>especial para você!</span>
+          </h1>
+          <p className="text-[#223645] mt-4 mb-8">
+            Selecione o tipo de serviço desejado para este presente:
+          </p>
+
+          <div className="flex gap-6 text-sm md:text-base">
+            {/* Acesso Básico */}
+            <div
+              className={`bg-white p-6 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "basic" ? "border-2 border-pink-400 scale-110" : "scale-100"} w-48 md:w-52`}
+              onClick={() => handleSelectPlan("basic")}
+            >
+              <h3 className="text-xl font-medium text-[#223645]">Acesso Básico</h3>
+              <p className="font-bold mt-5 mb-2 text-sm text-[#1C1C1C]">R$ 19,90</p>
+              <p className="text-[#6F6F6F] text-xs w-2/3">Acesso por 30 dias sem música</p>
+              <button
+                className={`mt-4 px-4 py-2 rounded-full text-xs ${selectedPlan === "basic" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"}`}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                />
-              </svg>
-            </button>
-          </Link>
-        </div>
-        <div className="flex gap-6 text-sm md:text-base text-[#F2D4B0]">
-          <div className="flex flex-col md:flex-row gap-2 items-center">
-            <div className="relative w-[20px] h-[17px]">
-              <Image
-                src="/landing-page/ic-heart.svg"
-                fill
-                alt="Ícone de Coração"
-                className="object-cover object-left"
-              />
+                {selectedPlan === "basic" ? "Escolhido!" : "Escolher"}
+              </button>
             </div>
-            <span>Isso mesmo, teste Grátis</span>
-          </div>
-          <div className="flex flex-col md:flex-row gap-2 items-center">
-            <div className="relative w-[20px] h-[18px]">
-              <Image
-                src="/landing-page/ic-card.svg"
-                fill
-                alt="Ícone de Cartão"
-                className="object-cover object-left"
-              />
+
+            {/* Acesso Médio */}
+            <div
+              className={`bg-white p-6 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "medium" ? "border-2 border-pink-400 scale-110" : "scale-100"} w-48 md:w-52`}
+              onClick={() => handleSelectPlan("medium")}
+            >
+              <h3 className="text-xl font-medium text-[#223645]">Acesso Médio</h3>
+              <p className="font-bold mt-5 mb-2 text-sm text-[#1C1C1C]">R$ 29,90</p>
+              <p className="text-[#6F6F6F] text-xs w-2/3">Acesso por 60 dias sem música</p>
+              <button
+                className={`mt-4 px-4 py-2 rounded-full text-xs ${selectedPlan === "medium" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"}`}
+              >
+                {selectedPlan === "medium" ? "Escolhido!" : "Escolher"}
+              </button>
             </div>
-            <span>Não pedimos cartão de crédito</span>
-          </div>
-          <div className="flex flex-col md:flex-row gap-2 items-center">
-            <div className="relative w-[25px] h-[18px]">
-              <Image
-                src="/landing-page/ic-integration.svg"
-                fill
-                alt="Ícone de Integração"
-                className="object-cover object-left"
-              />
+
+            {/* Acesso Vitalício */}
+            <div
+              className={`bg-white p-6 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "lifetime" ? "border-2 border-pink-400 scale-110" : "scale-100"} w-48 md:w-52`}
+              onClick={() => handleSelectPlan("lifetime")}
+            >
+              <h3 className="text-xl font-medium text-[#223645]">Acesso Vitalício</h3>
+              <p className="font-bold mt-5 mb-2 text-sm text-[#1C1C1C]">R$ 39,90</p>
+              <p className="text-[#6F6F6F] text-xs w-2/3">Acesso vitalício com música</p>
+              <button
+                className={`mt-4 px-4 py-2 rounded-full text-xs ${selectedPlan === "lifetime" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"}`}
+              >
+                {selectedPlan === "lifetime" ? "Escolhido!" : "Escolher"}
+              </button>
             </div>
-            <span>Configuração rápida com Bling</span>
           </div>
         </div>
-        <div className="absolute right-0 left-0 mx-auto -bottom-[50px] md:left-auto md:right-10 md:-bottom-14 w-[100px] h-[100px] md:w-[17%] md:h-[50%]">
+
+        {/* Imagem ao lado direito */}
+        <div className="absolute flex right-24 left-0 mx-auto md:left-auto md:w-[442px] md:h-[451px]">
           <Image
-            src="/landing-page/graph-right.svg"
+            src="/landing-page/layer.png"
             fill
             alt="Ilustração Gráfico 1"
-            className="object-fit object-center"
-          />
-        </div>
-        <div className="absolute hidden md:block left-10 bottom-[10vh] w-[17%] h-[50%]">
-          <Image
-            src="/landing-page/graph-left.svg"
-            fill
-            alt="Ilustração Gráfico 2"
             className="object-fit object-center"
           />
         </div>
