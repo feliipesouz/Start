@@ -1,211 +1,86 @@
-import Image from "next/image";
-import Link from "next/link";
+"use client";
+import { useState } from "react";
+import { FiUpload, FiLink } from "react-icons/fi"; // Ícones para upload e link
 
 export default function Features() {
+  const [fileName, setFileName] = useState("");
+
+  const handleFileChange = (e: any) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFileName(file.name);
+    }
+  };
+
   return (
-    <div
-      id="recursos"
-      className="text-center md:text-left max-w-[90%] md:max-w-[1200px] mx-auto flex flex-col gap-4 md:gap-[100px] mt-[100px] md:mb-[100px] mb-[50px]"
-    >
-      <div className="h-[750px] md:h-[400px] w-full flex flex-col-reverse md:flex-row gap-4 md:gap-0">
-        <div className="w-full h-full">
-          <div className="flex flex-col gap-4 md:pt-8 md:pr-8">
-            <h2 className="text-2xl md:text-4xl font-medium">
-              Visualização dos principais indicadores de vendas
-            </h2>
-            <p>
-              Diga adeus à adivinhação e abrace o conhecimento: Com nossa
-              plataforma, integrada ao seu Bling, você terá um Dashboard
-              completo para analisar seus dados em um único lugar, como
-              faturamento, número de vendas, ticket médio e desempenho por canal
-            </p>
-            <div className="flex flex-col md:flex-row items-center">
-              <div className="relative w-[50px] h-[50px] md:w-[110px] md:h-[60px] mr-5">
-                <Image
-                  src="/landing-page/fernando.jpg"
-                  fill
-                  alt="Fernando cliente"
-                  className="object-fit object-center"
-                />
+    <div className="w-full flex flex-col items-center mx-auto py-16 bg-[#FCEEFD] rounded-lg shadow-lg">
+      <div className="w-[80%] flex flex-col items-center">
+        <h2 className="text-center text-2xl md:text-3xl font-bold mb-20 text-[#223645]">
+          <span className="text-[#EF5DA8]">Personalize o presente:</span> adicione músicas, fotos
+          <br className="hidden md:block" />
+          e finalize sua surpresa
+        </h2>
+
+        <div className="flex flex-col justify-between gap-8 px-4">
+          <div className="w-full flex gap-6 mb-16">
+            <label className="block text-[#223645] font-bold mb-2">
+              Upload de arquivos:
+            </label>
+            <div className="border border-dashed border-[#00000040] p-4 rounded-lg flex items-center justify-between gap-12">
+              <div className="flex items-center gap-3">
+                <FiUpload className="text-[#EF5DA8] text-4xl mr-2" />
+                <div className="flex flex-col">
+                  <p className="text-sm text-[#6F6F6F]">
+                    {fileName || "Escolher arquivo para personalizar seu presente"}
+                  </p>
+                  <p className="text-[11px] text-[#6F6F6F]">
+                    {!fileName && "Nenhum arquivo selecionado"}
+                  </p>
+                </div>
               </div>
-              <div className="flex flex-col gap-2 my-2">
-                <p className="text-xs">
-                  Com o Dashboard do Template eu deixo minhas análises de dados
-                  no piloto automático e tenho mais tempo para focar na
-                  estratégia do meu negócio
-                </p>
-                <span className="text-xs font-bold">
-                  Fernando Torquetti, dono de e-commerce
-                </span>
-              </div>
+              <input
+                type="file"
+                id="file-upload"
+                onChange={handleFileChange}
+                className="hidden"
+              />
+              <label
+                htmlFor="file-upload"
+                className="cursor-pointer text-xs text-[#EF5DA8] bg-white py-2 px-4 border border-[#EF5DA8] rounded-md inline-block"
+              >
+                SELECIONAR
+              </label>
             </div>
-            <div className="flex gap-2 md:gap-6">
-              <Link
-                href="https://google.com"
-                passHref
-                target="_blank"
-                className="w-full"
-              >
-                <button className="bg-[#FAD054] text-black font-bold rounded-full py-3 md:py-4 md:px-10 w-full">
-                  Quero testar grátis
-                </button>
-              </Link>
-              <Link
-                href="https://google.com"
-                passHref
-                target="_blank"
-                className="w-full"
-              >
-                <button className="text-xs md:text-base w-full border-2 border-[#433763] text-black font-bold rounded-full py-[14px] md:py-4 md:px-10">
-                  Falar com especialista
-                </button>
-              </Link>
+          </div>
+
+          <div className="w-full flex gap-6 mb-24">
+            <label className="block text-[#223645] font-bold mb-2">
+              Selecione a trilha
+              <br className="hidden md:block" />
+              sonora do presente:
+            </label>
+            <div className="border border-dashed border-[#00000040] p-4 rounded-lg flex items-center">
+              <FiLink className="text-[#EF5DA8] text-4xl mr-2" />
+              <input
+                type="text"
+                placeholder="Cole o Link do vídeo da música desejada do YouTube"
+                className="w-full p-3 border-none outline-none bg-transparent text-[#6F6F6F]"
+              />
             </div>
           </div>
         </div>
-        <div className="w-full h-[45%] md:h-full">
-          <div className="relative w-full h-full">
-            <Image
-              src="/landing-page/feature-1.png"
-              fill
-              alt="Dashboard Template"
-              className="object-fit object-center"
-            />
-          </div>
-        </div>
-      </div>
-      <div className="h-[800px] md:h-[400px] w-full flex flex-col md:flex-row gap-4 md:gap-0">
-        <div className="w-full h-[55%] md:h-full">
-          <div className="relative w-full h-full md:w-[80%] md:h-full mx-auto my-auto">
-            <Image
-              src="/landing-page/feature-2.png"
-              fill
-              alt="Dashboard Template"
-              className="object-cover object-center"
-            />
-          </div>
-        </div>
-        <div className="w-full h-full">
-          <div className="flex flex-col gap-4 md:pt-8 md:pr-8">
-            <h2 className="text-2xl md:text-4xl font-medium">
-              Utilização de IA para gerar insights personalizados
-            </h2>
-            <p>
-              Temos uma equipe de Cientistas de Dados trabalhando para criar o
-              melhor a melhor plataforma para você. Hoje, trazemos o poder da
-              Inteligência Artificial para te ajudar a vender mais, errar menos
-              e entender cada vez mais do seu negócio
-            </p>
-            <div className="flex flex-col md:flex-row items-center">
-              <div className="relative w-[50px] h-[50px] md:w-[110px] md:h-[60px] mr-5">
-                <Image
-                  src="/landing-page/caroline.jpg"
-                  fill
-                  alt="Caroline cliente"
-                  className="object-fit object-center"
-                />
-              </div>
-              <div className="flex flex-col gap-2 my-2">
-                <p className="text-xs">
-                  Os insights me ajudam diariamente a vender mais e o melhor de
-                  tudo: A errar menos. Tenho o que há de mais moderno a favor
-                  das minhas vendas
-                </p>
-                <span className="text-xs font-bold">
-                  Caroline Nunes, social media
-                </span>
-              </div>
-            </div>
-            <div className="flex gap-2 md:gap-6 ">
-              <Link
-                href="https://google.com?utm_source=website&utm_medium=features2"
-                passHref
-                target="_blank"
-                className="w-full"
-              >
-                <button className="w-full bg-[#FAD054] text-black font-bold rounded-full py-3 md:py-4 md:px-10">
-                  Quero testar grátis
-                </button>
-              </Link>
-              <Link
-                href="https://google.com"
-                passHref
-                target="_blank"
-                className="w-full"
-              >
-                <button className="text-xs md:text-base w-full border-2 border-[#433763] text-black font-bold rounded-full py-[14px] md:py-4 md:px-10">
-                  Falar com especialista
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="h-[700px] md:h-[400px] w-full flex flex-col-reverse md:flex-row gap-4 md:gap-0">
-        <div className="w-full h-full">
-          <div className="flex flex-col gap-4 md:pt-8 md:pr-8">
-            <h2 className="text-2xl md:text-4xl font-medium">
-              Análise avançada de segmentação de clientes
-            </h2>
-            <p>
-              Desvende o segredo do sucesso das grandes empresas: Nossa
-              plataforma identifica seus melhores clientes e quais quais merecem
-              um cuidado e atenção extra. Uma estratégia usada por grandes
-              empresas e que agora está acessível para você
-            </p>
-            <div className="flex flex-col md:flex-row items-center">
-              <div className="relative w-[50px] h-[50px] md:w-[110px] md:h-[60px] mr-5">
-                <Image
-                  src="/landing-page/solange.jpg"
-                  fill
-                  alt="Solange cliente"
-                  className="object-fit object-center"
-                />
-              </div>
-              <div className="flex flex-col gap-2 my-2">
-                <p className="text-xs">
-                  Agora meus clientes compram mais porque consigo montar
-                  estratégias mais corretas para seus perfis e também consegui
-                  abandonar as velhas planilhas no Excell
-                </p>
-                <span className="text-xs font-bold">
-                  Solange Gomes, empresária
-                </span>
-              </div>
-            </div>
-            <div className="flex gap-2 md:gap-6">
-              <Link
-                href="https://google.com?utm_source=website&utm_medium=features3"
-                passHref
-                target="_blank"
-                className="w-full"
-              >
-                <button className="w-full bg-[#FAD054] text-black font-bold rounded-full py-3 md:py-4 md:px-10">
-                  Quero testar grátis
-                </button>
-              </Link>
-              <Link
-                href="https://google.com"
-                passHref
-                target="_blank"
-                className="w-full"
-              >
-                <button className="text-xs md:text-base w-full border-2 border-[#433763] text-black font-bold rounded-full py-[14px] md:py-4 md:px-10">
-                  Falar com especialista
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="w-full h-full md:h-full">
-          <div className="relative w-full h-full">
-            <Image
-              src="/landing-page/feature-3.png"
-              fill
-              alt="Dashboard Template"
-              className="object-cover object-center"
-            />
-          </div>
+
+        {/* Botões de ação */}
+        <div className="flex flex-col md:flex-row justify-center items-center gap-4 mt-8">
+          <button className="text-[#EF5DA8] border border-[#EF5DA8] px-6 py-3 rounded-full font-medium hover:bg-[#f8e6ef] transition">
+            Ver como ficou
+          </button>
+          <button className="bg-[#EF5DA8] text-white px-6 py-3 rounded-full font-medium hover:bg-[#e94d96] transition flex items-center">
+            Criar meu presente
+            <span className="ml-2">
+              <FiUpload />
+            </span>
+          </button>
         </div>
       </div>
     </div>
