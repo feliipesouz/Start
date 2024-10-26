@@ -1,5 +1,12 @@
 "use client"
+import Image from "next/image";
 import { useForm } from "react-hook-form";
+
+import React, { useState } from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
+
 export default function SubHero() {
   const {
     register,
@@ -7,22 +14,46 @@ export default function SubHero() {
     formState: { errors },
   } = useForm();
 
+  const [value, setValue] = useState('');
+
   const onSubmit = (data: any) => {
     console.log(data);
   };
 
+  const modules = {
+    toolbar: [
+      [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
+      [{ 'size': [] }],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+      [{ 'script': 'sub' }, { 'script': 'super' }],
+      [{ 'indent': '-1' }, { 'indent': '+1' }, { 'direction': 'rtl' }],
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'align': [] }],
+      ['link', 'image', 'video'],
+      ['clean']
+    ]
+  };
+
+  const formats = [
+    'header', 'font', 'size',
+    'bold', 'italic', 'underline', 'strike', 'blockquote',
+    'list', 'bullet', 'indent',
+    'link', 'image', 'video', 'color', 'background', 'align'
+  ];
+
   return (
     <div
       id="vantagens"
-      className="max-w-[90%] flex flex-col items-center md:max-w-[1200px] mx-auto pt-10 md:pt-0"
+      className="max-w-[90%] flex flex-col items-center md:max-w-[1200px] mx-auto mt-10 mb-4 md:pt-0"
     >
-      <div className="relative text-center mt-10 w-full md:w-[800px] mx-auto">
-        <h2 className="block md:hidden text-[#223645] font-bold relative text-3xl md:text-4xl  mb-4">
+      <div className="relative text-center w-full md:w-[800px] mb-20">
+        {/* <h2 className="block md:hidden text-[#223645] font-bold relative text-3xl md:text-4xl mb-4">
           Agora, vamos criar o <span className={"text-[#EF5DA8]"}>presente perfeito</span>
           <br className="hidden md:block" />
           que você deseja oferecer!
-        </h2>
-        <h2 className="hidden md:block text-[#223645] font-bold relative text-3xl md:text-4xl  mb-4">
+        </h2> */}
+        <h2 className="hidden md:block text-[#223645] font-bold relative text-[27px] md:text-4xl mb-4">
           Agora, vamos criar o <span className={"text-[#EF5DA8]"}>presente perfeito</span>
           <br className="hidden md:block" />
           que você deseja oferecer!
@@ -31,11 +62,11 @@ export default function SubHero() {
 
       <div className="w-full md:w-3/4 bg-white p-6 md:p-10 ">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex mb-6">
-            <label className="block text-[#223645] font-bold mb-2">
+          <div className="flex mb-[69px] gap-8 items-center">
+            <label className="text-[#223645] font-bold whitespace-nowrap">
               Escolha o grau de proximidade:
             </label>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-10 text-xs text-[#223645B2]">
               <label className="inline-flex items-center">
                 <input
                   {...register("proximidade", { required: true })}
@@ -43,7 +74,7 @@ export default function SubHero() {
                   value="familia"
                   className="form-radio"
                 />
-                <span className="ml-2">Família (pai/mãe)</span>
+                <span className="ml-2">Pais</span>
               </label>
               <label className="inline-flex items-center">
                 <input
@@ -54,24 +85,7 @@ export default function SubHero() {
                 />
                 <span className="ml-2">Namorado(a)</span>
               </label>
-              <label className="inline-flex items-center">
-                <input
-                  {...register("proximidade", { required: true })}
-                  type="radio"
-                  value="conjuge"
-                  className="form-radio"
-                />
-                <span className="ml-2">Cônjuge</span>
-              </label>
-              <label className="inline-flex items-center">
-                <input
-                  {...register("proximidade", { required: true })}
-                  type="radio"
-                  value="pet"
-                  className="form-radio"
-                />
-                <span className="ml-2">Pet</span>
-              </label>
+
               <label className="inline-flex items-center">
                 <input
                   {...register("proximidade", { required: true })}
@@ -79,16 +93,7 @@ export default function SubHero() {
                   value="avo"
                   className="form-radio"
                 />
-                <span className="ml-2">Avô/Avó</span>
-              </label>
-              <label className="inline-flex items-center">
-                <input
-                  {...register("proximidade", { required: true })}
-                  type="radio"
-                  value="parceiro"
-                  className="form-radio"
-                />
-                <span className="ml-2">Parceiro(a)</span>
+                <span className="ml-2">Avós</span>
               </label>
               <label className="inline-flex items-center">
                 <input
@@ -99,6 +104,7 @@ export default function SubHero() {
                 />
                 <span className="ml-2">Amigo(a)</span>
               </label>
+
               <label className="inline-flex items-center">
                 <input
                   {...register("proximidade", { required: true })}
@@ -106,7 +112,7 @@ export default function SubHero() {
                   value="outros"
                   className="form-radio"
                 />
-                <span className="ml-2">Outros</span>
+                <span className="ml-2">Pet</span>
               </label>
             </div>
             {errors.proximidade && (
@@ -117,34 +123,66 @@ export default function SubHero() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <div>
+            <div >
               <label className="block text-[#223645] font-bold mb-2">
                 Seu nome <span className="text-[#EF5DA8]">*</span>
               </label>
-              <input
-                {...register("nome", { required: "Nome é obrigatório" })}
-                type="text"
-                placeholder="Digite aqui seu nome"
-                className="w-full p-3 border border-[#E4E4E4] rounded-full"
-              />
+              <div className="relative flex justify-between border gap-2 border-[#0000008C] rounded-full py-[10px] px-[21px]">
+                <input
+                  {...register("nome", { required: "Nome é obrigatório" })}
+                  type="text"
+                  placeholder="Digite aqui seu nome"
+                  className="w-full text-xs outline-none"
+                >
+                </input>
+                <Image src="/landing-page/vector.png"
+                  width={10}
+                  height={6}
+                  objectFit="contain"
+                  priority={true}
+                  alt="Icone de um usuário"
+                />
+
+              </div>
               {errors.nome && (
                 <p className="text-red-500 text-sm mt-1">
                   {errors.nome.message?.toString()}
                 </p>
               )}
+
             </div>
             <div>
               <label className="block text-[#223645] font-bold mb-2">
                 Nome do destinatário <span className="text-[#EF5DA8]">*</span>
               </label>
-              <input
-                {...register("destinatario", {
-                  required: "Nome do destinatário é obrigatório",
-                })}
-                type="text"
-                placeholder="Digite aqui o nome do destinatário"
-                className="w-full p-3 border border-[#E4E4E4] rounded-full"
-              />
+              <div className="relative flex justify-between border gap-2 border-[#0000008C] rounded-full py-[10px] px-[21px]">
+
+                <input
+                  {...register("destinatario", {
+                    required: "Nome do destinatário é obrigatório",
+                  })}
+                  type="text"
+                  placeholder="Digite aqui o nome do destinatário"
+                  className="w-full text-xs outline-none"
+                >
+                </input>
+                <div className="flex">
+                  <Image src="/landing-page/icone-user.png"
+                    width={10}
+                    height={6}
+                    priority={true}
+                    alt="Icone de um usuário"
+                    className="w-auto h-auto"
+                  />
+                  <Image src="/landing-page/icone-presente.png"
+                    width={0}
+                    height={0}
+                    priority={true}
+                    alt="Icone de um usuário"
+                    className="w-auto h-auto"
+                  />
+                </div>
+              </div>
               {errors.destinatario && (
                 <p className="text-red-500 text-sm mt-1">
                   {errors.destinatario.message?.toString()}
@@ -155,29 +193,29 @@ export default function SubHero() {
 
           <div className="mb-6">
             <label className="block text-[#223645] font-bold mb-2" >
-              Data comemorativa
+              Data comemorativa <span className="text-[#EF5DA8]">*</span>
             </label>
             <input
               {...register("data")}
               type="date"
-              className="w-full p-3 border border-[#E4E4E4] rounded-full"
+              className="w-full text-xs py-[10px] px-[21px] border border-[#0000008C] rounded-full"
             />
           </div>
 
-          <div className="mb-6">
-            <label className="block text-[#223645] font-bold mb-2">
-              Escreva sua mensagem personalizada
-            </label>
-            <textarea
-              {...register("mensagem")}
-              className="w-full p-3 border border-[#E4E4E4] rounded-lg"
-              rows={6}
+          <div>
+            <label className="block text-[#223645] font-bold mb-2">Escreva sua mensagem personalizada <span className="text-[#EF5DA8]">*</span></label>
+            {/* <ReactQuill
+              theme="snow"
+              value={value}
+              onChange={setValue}
+              modules={modules}
+              formats={formats}
               placeholder="Use esse campo para expressar tudo que quiser!"
-            ></textarea>
+              style={{ height: '160px' }}
+            /> */}
           </div>
         </form>
       </div>
-
     </div>
   );
 }

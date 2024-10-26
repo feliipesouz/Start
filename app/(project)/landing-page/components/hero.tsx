@@ -11,76 +11,103 @@ export default function Hero() {
   };
 
   return (
-    <div className="relative text-white px-4 md:px-0 h-[700px] md:h-[75vh] bg-[#FCEEFD]">
-      <div className="md:max-w-full md:px-[74px] mx-auto flex flex-col md:flex-row justify-between items-center h-full">
-        <div className="flex flex-col justify-center items-start md:items-start text-left md:w-2/3">
-          <h1 className="text-3xl md:text-5xl text-[#223645] font-bold mb-4 mt-[20%] md:mt-[7%]">
-            Surpreenda aquela <span className={"text-[#EF5DA8]"}>pessoa</span> que é
-            <br className="hidden md:block" />
-            <span className={"text-[#EF5DA8]"}>especial para você!</span>
-          </h1>
-          <p className="text-[#223645] mt-4 mb-8">
-            Selecione o tipo de serviço desejado para este presente:
-          </p>
+    <>
 
-          <div className="flex gap-6 text-sm md:text-base">
-            {/* Acesso Básico */}
-            <div
-              className={`bg-white p-6 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "basic" ? "border-2 border-pink-400 scale-110" : "scale-100"} w-48 md:w-52`}
-              onClick={() => handleSelectPlan("basic")}
-            >
-              <h3 className="text-xl font-medium text-[#223645]">Acesso Básico</h3>
-              <p className="font-bold mt-5 mb-2 text-sm text-[#1C1C1C]">R$ 19,90</p>
-              <p className="text-[#6F6F6F] text-xs w-2/3">Acesso por 30 dias sem música</p>
-              <button
-                className={`mt-4 px-4 py-2 rounded-full text-xs ${selectedPlan === "basic" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"}`}
-              >
-                {selectedPlan === "basic" ? "Escolhido!" : "Escolher"}
-              </button>
-            </div>
+      <div className="relative text-white h-auto bg-[#FCEEFD]">
+        <div className="w-full md:px-[74px] flex flex-col md:flex-row justify-between items-center py-9">
+          <div className="flex flex-col justify-start md:w-1/2">
+            <h1 className="text-3xl md:text-5xl text-[#223645] font-bold mb-[85px]">
+              Surpreenda aquela <span className={"text-[#EF5DA8]"}>pessoa</span> que é
+              <br className="hidden md:block" />
+              <span className={"text-[#EF5DA8]"}>especial para você!</span>
+            </h1>
+            <p className="text-[#223645] mb-8">
+              Selecione o tipo de serviço desejado para este presente:
+            </p>
 
-            {/* Acesso Médio */}
-            <div
-              className={`bg-white p-6 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "medium" ? "border-2 border-pink-400 scale-110" : "scale-100"} w-48 md:w-52`}
-              onClick={() => handleSelectPlan("medium")}
-            >
-              <h3 className="text-xl font-medium text-[#223645]">Acesso Médio</h3>
-              <p className="font-bold mt-5 mb-2 text-sm text-[#1C1C1C]">R$ 29,90</p>
-              <p className="text-[#6F6F6F] text-xs w-2/3">Acesso por 60 dias sem música</p>
-              <button
-                className={`mt-4 px-4 py-2 rounded-full text-xs ${selectedPlan === "medium" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"}`}
+            <div className="flex gap-6">
+              <div
+                className={`relative bg-white p-4 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "basic" ? "border-2 border-pink-400 scale-110" : "scale-100"}`}
+                onClick={() => handleSelectPlan("basic")}
               >
-                {selectedPlan === "medium" ? "Escolhido!" : "Escolher"}
-              </button>
-            </div>
+                {selectedPlan === "basic" && (
+                  <div className="absolute bottom-[5px] right-5 z-[-10]">
+                    <Image src="/landing-page/before.png" alt="Background circle" width={50} height={50} />
+                  </div>
+                )}
+                <h3 className="text-base font-medium text-[#223645] mb-5">Acesso Básico</h3>
+                <p className="font-bold mb-[7px] text-base text-[#1C1C1C]">R$ 19,90</p>
+                <p className="text-[#6F6F6F] text-sm text-center mb-5">Acesso por 30 dias sem música</p>
+                <button
+                  className={`px-4 py-2 rounded-full text-xs ${selectedPlan === "basic" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"}`}
+                >
+                  {selectedPlan === "basic" ? "Escolhido!" : "Escolher"}
+                </button>
+              </div>
 
-            {/* Acesso Vitalício */}
-            <div
-              className={`bg-white p-6 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "lifetime" ? "border-2 border-pink-400 scale-110" : "scale-100"} w-48 md:w-52`}
-              onClick={() => handleSelectPlan("lifetime")}
-            >
-              <h3 className="text-xl font-medium text-[#223645]">Acesso Vitalício</h3>
-              <p className="font-bold mt-5 mb-2 text-sm text-[#1C1C1C]">R$ 39,90</p>
-              <p className="text-[#6F6F6F] text-xs w-2/3">Acesso vitalício com música</p>
-              <button
-                className={`mt-4 px-4 py-2 rounded-full text-xs ${selectedPlan === "lifetime" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"}`}
+              <div
+                className={`relative bg-white p-4 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "medium" ? "border-2 border-pink-400 scale-110" : "scale-100"}`}
+                onClick={() => handleSelectPlan("medium")}
               >
-                {selectedPlan === "lifetime" ? "Escolhido!" : "Escolher"}
-              </button>
+                {selectedPlan === "medium" && (
+                   <div className="absolute bottom-[5px] right-5 z-[-10]">
+                    <Image src="/landing-page/before.png" alt="Background circle" width={50} height={50} />
+                  </div>
+                )}
+                <h3 className="text-base font-medium text-[#223645] mb-5">Acesso Médio</h3>
+                <p className="font-bold mb-[7px] text-base text-[#1C1C1C]">R$ 29,90</p>
+                <p className="text-[#6F6F6F] text-sm text-center mb-5">Acesso por 60 dias sem música</p>
+                <button
+                  className={`px-4 py-2 rounded-full text-xs ${selectedPlan === "medium" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"}`}
+                >
+                  {selectedPlan === "medium" ? "Escolhido!" : "Escolher"}
+                </button>
+              </div>
+
+              <div
+                className={`relative bg-white p-4 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "lifetime" ? "border-2 border-pink-400 scale-110" : "scale-100"}`}
+                onClick={() => handleSelectPlan("lifetime")}
+              >
+                {selectedPlan === "lifetime" && (
+                  <div className="absolute bottom-[5px] right-5 z-[-10]">
+                    <Image src="/landing-page/before.png" alt="Background circle" width={50} height={50} />
+                  </div>
+                )}
+                <h3 className="text-base font-medium text-[#223645] mb-5">Acesso Vitalício</h3>
+                <p className="font-bold mb-[7px] text-base text-[#1C1C1C]">R$ 39,90</p>
+                <p className="text-[#6F6F6F] text-sm text-center mb-5">Acesso vitalício com música</p>
+                <button
+                  className={`px-4 py-2 rounded-full text-xs ${selectedPlan === "lifetime" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"}`}
+                >
+                  {selectedPlan === "lifetime" ? "Escolhido!" : "Escolher"}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Imagem ao lado direito */}
-        <div className="absolute flex right-24 left-0 mx-auto md:left-auto md:w-[442px] md:h-[451px]">
-          <Image
-            src="/landing-page/layer.png"
-            fill
-            alt="Ilustração Gráfico 1"
-            className="object-fit object-center"
-          />
+          <div className="flex justify-end mx-auto md:left-auto">
+            <Image
+              src="/landing-page/layer.png"
+              layout="intrinsic"
+              objectFit="contain"
+              priority={true}
+              width={442}
+              height={451}
+              alt="Imagem de um casal em um encontro."
+              className="w-auto h-auto"
+            />
+          </div>
         </div>
       </div>
-    </div>
+      <div className="relative z-10 w-full opacity-100 h-[30px] bottom-3 md:bottom-2 rotate-180">
+        <Image
+          src="/landing-page/divisor.png"
+          alt="Divisor de topo"
+          layout="fill"
+          objectFit="contain"
+          priority={true}
+        />
+      </div>
+    </>
   );
 }

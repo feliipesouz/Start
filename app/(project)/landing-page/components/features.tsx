@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { FiUpload, FiLink } from "react-icons/fi"; // Ícones para upload e link
+import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import Image from "next/image"; // Importando o componente Image do Next.js
 
@@ -18,10 +19,10 @@ export default function Features() {
     <>
       <div className="relative z-10 w-full opacity-100 h-[30px] -bottom-3 md:-bottom-2">
         <Image
-          src="/landing-page/divisor.png" // caminho da imagem de transição
+          src="/landing-page/divisor.png"
           alt="Divisor de topo"
           layout="fill"
-          objectFit="contain" // Garante que a imagem mantenha a proporção dentro do contêiner
+          objectFit="contain"
           priority={true}
         />
       </div>
@@ -54,17 +55,17 @@ export default function Features() {
 
           <div className="flex flex-col w-[56%] justify-between items-center gap-8 px-4">
             <div className="w-full flex gap-6 mb-16">
-              <label className="block text-[#223645] font-bold mb-2">
+              <label className="block text-[#223645] font-bold mb-2 whitespace-nowrap">
                 Upload de arquivos:
               </label>
               <div className="w-full border border-dashed border-[#00000040] p-4 rounded-lg flex items-center justify-between gap-12">
                 <div className="flex items-center gap-3">
                   <FiUpload className="text-[#EF5DA8] text-4xl mr-2" />
-                  <div className="flex flex-col">
-                    <p className="text-sm text-[#6F6F6F]">
+                  <div className="flex flex-col gap-2">
+                    <p className="text-sm text-black">
                       {fileName || "Escolher arquivo para personalizar seu presente"}
                     </p>
-                    <p className="text-[11px] text-[#6F6F6F]">
+                    <p className="text-xs text-[#6F6F6F]">
                       {!fileName && "Nenhum arquivo selecionado"}
                     </p>
                   </div>
@@ -85,7 +86,7 @@ export default function Features() {
             </div>
 
             <div className="w-full flex gap-6 mb-24">
-              <label className="block text-[#223645] font-bold mb-2">
+              <label className="block text-[#223645] font-bold mb-2 whitespace-nowrap">
                 Selecione a trilha
                 <br className="hidden md:block" />
                 sonora do presente:
@@ -95,7 +96,7 @@ export default function Features() {
                 <input
                   type="text"
                   placeholder="Cole o Link do vídeo da música desejada do YouTube"
-                  className="w-full p-3 border-none outline-none bg-transparent text-[#6F6F6F]"
+                  className="w-full p-3 text-sm border-none outline-none bg-transparent text-[#6F6F6F]"
                 />
               </div>
             </div>
@@ -108,12 +109,30 @@ export default function Features() {
                 <MdKeyboardArrowRight />
               </span>
             </button>
-            <button className="bg-[#EF5DA8] text-white px-6 py-3 rounded-full font-bold hover:bg-[#e94d96] transition flex items-center">
-              Criar meu presente
-              <span className="ml-2">
-                <FiUpload />
-              </span>
-            </button>
+
+            <div className="relative">
+              <div className="absolute -right-6 top-1/2 transform -translate-y-1/2 z-[-1] w-[60px] h-[60px]">
+                <Image
+                  src="/landing-page/before.png"
+                  alt="Decorator"
+                  layout="fill"
+                  objectFit="contain"
+                  className="opacity-100"
+                />
+              </div>
+
+              <button className="bg-[#EF5DA8] z-10 text-white px-6 py-3 rounded-full font-bold hover:bg-[#e94d96] transition flex items-center">
+                Criar meu presente
+                <span className="ml-2">
+                  <Image
+                    src="/landing-page/arrow-right.png"
+                    alt="Arrow Right"
+                    width={18}
+                    height={18}
+                  />
+                </span>
+              </button>
+            </div>
           </div>
         </div>
       </div>

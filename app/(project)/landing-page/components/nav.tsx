@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Nav() {
   return (
-    <nav className="absolute w-full z-10 mt-4 md:mt-0 pt-1 md:py-5 bg-white">
+    <nav className="relative w-full z-10 mt-4 md:mt-0 pt-1 md:py-5 bg-white">
       <div className="flex items-center justify-center text-[#223645] gap-3 md:gap-6 mx-4 md:mx-[10vw]">
         <div className="relative">
           <Link href={"/landing-page"} className="flex items-center gap-2">
