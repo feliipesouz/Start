@@ -14,7 +14,7 @@ export default function SubHero() {
   return (
     <div
       id="vantagens"
-      className="max-w-[90%] md:max-w-[1200px] mx-auto pt-10 md:pt-0"
+      className="max-w-[90%] flex flex-col items-center md:max-w-[1200px] mx-auto pt-10 md:pt-0"
     >
       <div className="relative text-center mt-10 w-full md:w-[800px] mx-auto">
         <h2 className="block md:hidden text-[#223645] font-bold relative text-3xl md:text-4xl  mb-4">
@@ -175,13 +175,6 @@ export default function SubHero() {
               placeholder="Use esse campo para expressar tudo que quiser!"
             ></textarea>
           </div>
-
-          <button
-            type="submit"
-            className="w-full bg-[#EF5DA8] text-white p-3 rounded-lg font-medium"
-          >
-            Enviar Presente
-          </button>
         </form>
       </div>
 

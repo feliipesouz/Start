@@ -1,98 +1,127 @@
-import Image from "next/image";
-import Link from "next/link";
+import { FiTwitter, FiInstagram, FiFacebook, FiGlobe } from "react-icons/fi";
 
 export default function Footer() {
   return (
-    <div className="w-full bg-[#433763] py-[20px] md:py-[70px] text-center md:text-left">
-      <div className="flex flex-col md:flex-row text-white items-center justify-between max-w-[90%] md:max-w-[1200px] mx-auto">
-        <div className="flex flex-col items-center md:items-start gap-2 md:gap-3">
-          <div className="flex items-center gap-2">
-            <div className="relative size-7">
-              <Image
-                src="/template-icon.webp"
-                fill
-                alt="Template Logo"
-                className="object-fit object-center"
-              />
-            </div>
-            <span className="text-lg font-bold">Template SaaS</span>
+    <footer className="bg-[#0D0D0D] text-white py-10 px-4 md:px-16">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+        {/* Logo e Descrição */}
+        <div className="flex flex-col">
+          <div className="flex items-center mb-4">
+            <img src="/logo.png" alt="Logo" className="h-10 mr-2" />
+            <h2 className="text-2xl font-bold text-white">
+              Você é <span className="text-[#EF5DA8]">Especial</span>
+            </h2>
           </div>
-          <div className="flex gap-2">
-            <Link href={"https://instagram.com/"} passHref target="_blank">
-              <div className="bg-white rounded-full p-1 hover:opacity-80">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 448 512"
-                  className="w-6 h-6 fill-[#6F46E3]"
-                >
-                  <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path>
-                </svg>
-              </div>
-            </Link>
-            <Link href={"https://www.linkedin.com"} passHref target="_blank">
-              <div className="h-full bg-white rounded-full py-1 px-[6px] hover:opacity-80">
-                <div className="relative w-5 h-5">
-                  <Image
-                    src="/landing-page/linkedin.svg"
-                    fill
-                    alt="Linkedin Logo"
-                    className="object-cover object-center"
-                  />
-                </div>
-              </div>
-            </Link>
-            <Link href={"https://www.youtube.com/"} passHref target="_blank">
-              <div className="bg-white rounded-full p-1 hover:opacity-80">
-                <div className="relative w-6 h-6">
-                  <Image
-                    src="/landing-page/youtube.svg"
-                    fill
-                    alt="Youtube Logo"
-                    className="object-cover object-center"
-                  />
-                </div>
-              </div>
-            </Link>
-          </div>
-          <span className="hidden md:block text-xs">
-            <strong>© {new Date().getFullYear()} Template SaaS</strong> - Todos
-            os direitos reservados. Política de privacidade
-          </span>
-        </div>
-        <div className="flex flex-col gap-4 mt-3 md:mt-0">
-          <p>
-            O Template é especialista em soluções para empresas{" "}
-            <br className="hidden md:block" />
-            que usam o Bling e que querem vender mais
+          <p className="text-sm text-gray-400 mb-4">
+            A perfect place for perfect food, all kinds of parties and any other
+            gathering as well, for our guests to simply unwind and relax in complete
+            serenity.
           </p>
-          <div className="flex gap-2 md:gap-4">
-            <Link
-              href="https://google.com"
-              passHref
-              target="_blank"
-              className="w-full"
+          {/* Ícones de redes sociais */}
+          <div className="flex space-x-4">
+            <a
+              href="#"
+              className="p-2 bg-gray-700 rounded-full hover:bg-[#EF5DA8] transition"
             >
-              <button className="bg-[#FAD054] text-black font-bold rounded-full py-2 md:py-4 md:px-0 w-full">
-                Quero testar grátis
-              </button>
-            </Link>
-            <Link
-              href={"https://google.com"}
-              passHref
-              target="_blank"
-              className="w-full"
+              <FiGlobe className="text-xl" />
+            </a>
+            <a
+              href="#"
+              className="p-2 bg-gray-700 rounded-full hover:bg-[#EF5DA8] transition"
             >
-              <button className="text-xs md:text-base border-2 border-white font-bold rounded-full py-[10px] md:py-4 md:px-0 w-full">
-                Falar com especialista
-              </button>
-            </Link>
+              <FiTwitter className="text-xl" />
+            </a>
+            <a
+              href="#"
+              className="p-2 bg-gray-700 rounded-full hover:bg-[#EF5DA8] transition"
+            >
+              <FiInstagram className="text-xl" />
+            </a>
+            <a
+              href="#"
+              className="p-2 bg-gray-700 rounded-full hover:bg-[#EF5DA8] transition"
+            >
+              <FiFacebook className="text-xl" />
+            </a>
           </div>
         </div>
-        <span className="block md:hidden text-xs">
-          <strong>© {new Date().getFullYear()} Template SaaS</strong> - Todos os
-          direitos reservados. Política de privacidade
-        </span>
+
+        {/* Quick Links */}
+        <div className="flex flex-col">
+          <h3 className="font-bold text-lg text-white mb-4">Quick Links</h3>
+          <ul className="space-y-2">
+            <li>
+              <a href="#" className="text-gray-400 hover:text-white">
+                Menu
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-gray-400 hover:text-white">
+                Gallery
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-gray-400 hover:text-white">
+                Contact
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-gray-400 hover:text-white">
+                Order Now
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Company */}
+        <div className="flex flex-col">
+          <h3 className="font-bold text-lg text-white mb-4">Company</h3>
+          <ul className="space-y-2">
+            <li>
+              <a href="#" className="text-gray-400 hover:text-white">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-gray-400 hover:text-white">
+                Terms
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-gray-400 hover:text-white">
+                Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-gray-400 hover:text-white">
+                Refund Policy
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Contact */}
+        <div className="flex flex-col">
+          <h3 className="font-bold text-lg text-white mb-4">Contact</h3>
+          <p className="text-gray-400 mb-2">
+            <strong>Call:</strong> +00 0000000000
+          </p>
+          <p className="text-gray-400 mb-2">
+            <strong>Email:</strong> semnomeail@gmail.com
+          </p>
+          <p className="text-gray-400">
+            <strong>Address:</strong> LoveSafe, Lorem Ipsum, Lorem lorem, 252, Lorem -
+            cidade
+          </p>
+        </div>
       </div>
-    </div>
+
+      {/* Copyright */}
+      <div className="text-center text-gray-400 text-sm mt-10">
+        <p>
+          Copyright © 2024 LoveSafe. All Rights Reserved. Designed by Izabely Almeida
+        </p>
+      </div>
+    </footer>
   );
 }
