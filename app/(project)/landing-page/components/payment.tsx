@@ -7,13 +7,13 @@ interface Props {
 }
 
 export default function PaymentModal({ isOpen, onClose }: Props) {
-    const [payment, setPaymenyt] = useState<'pix' | 'cartão'>('pix')
+    const [payment, setPayment] = useState<'pix' | 'cartão'>('pix')
 
     if (!isOpen) return null;
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-            <div className="bg-white rounded-xl w-full max-w-md py-6 px-9 shadow-lg relative">
+            <div className="bg-white rounded-xl w-full max-w-md py-6 px-8 shadow-lg relative">
                 <button
                     onClick={onClose}
                     className="absolute top-4 right-4 text-gray-600 hover:text-black"
@@ -28,23 +28,50 @@ export default function PaymentModal({ isOpen, onClose }: Props) {
 
                 <h3 className="mb-4 text-sx text-[#111729]">Método de Pagamento</h3>
 
-                {/* Payment Options */}
                 <div className="flex justify-around mt-6 mb-8 gap-5">
-                    <div onClick={() => setPaymenyt('pix')} className={`flex items-center justify-center w-1/2 ${payment === 'pix' ? "border-2 border-pink-400" : "border"} justify-between rounded-lg p-3 cursor-pointer hover:shadow-lg transition-all`}>
-                        <div className="gap-2 text-xs">
-                            <input type="radio" name="payment" className="mr-2" />
+                    <label
+                        onClick={() => setPayment('pix')}
+                        className={`flex items-center justify-center w-1/2 ${payment === 'pix' ? "border-2 border-pink-400 bg-pink-100" : "border border-gray-300"} justify-between rounded-lg p-3 cursor-pointer hover:shadow-lg transition-all`}
+                    >
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="pix"
+                            className="hidden"
+                            checked={payment === 'pix'}
+                            onChange={() => setPayment('pix')}
+                        />
+                        <div className="flex items-center gap-2 text-xs">
+                            <span className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${payment === 'pix' ? "border-pink-500" : "border-gray-300"}`}>
+                                {payment === 'pix' && <span className="w-2 h-2 bg-pink-500 rounded-full"></span>}
+                            </span>
                             <span>PIX</span>
                         </div>
                         <Image src="/landing-page/pix.png" alt="Pix" width={22} height={22} />
-                    </div>
-                    <div onClick={() => setPaymenyt('cartão')} className={`flex items-center justify-center w-1/2 ${payment === 'cartão' ? "border-2 border-pink-400" : "border"} rounded-lg p-3 cursor-pointer hover:shadow-lg transition-all items-start`}>
-                        <div className="gap-2 text-xs">
-                            <input type="radio" name="payment" className="mr-2" />
+                    </label>
+
+                    <label
+                        onClick={() => setPayment('cartão')}
+                        className={`flex items-center justify-center w-1/2 ${payment === 'cartão' ? "border-2 border-pink-400 bg-pink-100" : "border border-gray-300"} justify-between rounded-lg p-3 cursor-pointer hover:shadow-lg transition-all`}
+                    >
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="cartão"
+                            className="hidden"
+                            checked={payment === 'cartão'}
+                            onChange={() => setPayment('cartão')}
+                        />
+                        <div className="flex items-center gap-2 text-xs">
+                            <span className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${payment === 'cartão' ? "border-pink-500" : "border-gray-300"}`}>
+                                {payment === 'cartão' && <span className="w-2 h-2 bg-pink-500 rounded-full"></span>}
+                            </span>
                             <span>Cartão de Crédito</span>
                         </div>
-                        <Image src="/landing-page/cartao.png" alt="Cartão" width={29} height={29} />
-                    </div>
+                        <Image src="/landing-page/cartao.png" alt="Cartão" width={26} height={26} />
+                    </label>
                 </div>
+
 
                 <hr className="w-full my-6" />
 
