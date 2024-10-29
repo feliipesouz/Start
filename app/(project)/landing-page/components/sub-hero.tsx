@@ -2,9 +2,13 @@
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 
+import { AiOutlineGift } from "react-icons/ai";
+
+
 import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { LuUser2 } from "react-icons/lu";
 
 
 export default function SubHero() {
@@ -135,13 +139,7 @@ export default function SubHero() {
                   className="w-full text-xs outline-none"
                 >
                 </input>
-                <Image src="/landing-page/vector.png"
-                  width={10}
-                  height={6}
-                  objectFit="contain"
-                  priority={true}
-                  alt="Icone de um usuário"
-                />
+                <LuUser2 />
 
               </div>
               {errors.nome && (
@@ -167,20 +165,10 @@ export default function SubHero() {
                 >
                 </input>
                 <div className="flex">
-                  <Image src="/landing-page/icone-user.png"
-                    width={10}
-                    height={6}
-                    priority={true}
-                    alt="Icone de um usuário"
-                    className="w-auto h-auto"
-                  />
-                  <Image src="/landing-page/icone-presente.png"
-                    width={0}
-                    height={0}
-                    priority={true}
-                    alt="Icone de um usuário"
-                    className="w-auto h-auto"
-                  />
+                  <LuUser2 />
+
+                  <AiOutlineGift />
+
                 </div>
               </div>
               {errors.destinatario && (
@@ -191,7 +179,7 @@ export default function SubHero() {
             </div>
           </div>
 
-          <div className="mb-6">
+          <div className="mb-6 w-1/2 pr-3">
             <label className="block text-[#223645] font-bold mb-2" >
               Data comemorativa <span className="text-[#EF5DA8]">*</span>
             </label>

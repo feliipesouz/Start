@@ -27,7 +27,7 @@ export default function Hero() {
 
             <div className="flex gap-6">
               <div
-                className={`relative bg-white p-4 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "basic" ? "border-2 border-pink-400 scale-110" : "scale-100"}`}
+                className={`relative max-w-[168px] bg-white p-4 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "basic" ? "border-2 border-pink-400 scale-110" : "scale-100"}`}
                 onClick={() => handleSelectPlan("basic")}
               >
                 {selectedPlan === "basic" && (
@@ -46,7 +46,7 @@ export default function Hero() {
               </div>
 
               <div
-                className={`relative bg-white p-4 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "medium" ? "border-2 border-pink-400 scale-110" : "scale-100"}`}
+                className={`relative max-w-[168px] bg-white p-4 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "medium" ? "border-2 border-pink-400 scale-110" : "scale-100"}`}
                 onClick={() => handleSelectPlan("medium")}
               >
                 {selectedPlan === "medium" && (
@@ -65,7 +65,7 @@ export default function Hero() {
               </div>
 
               <div
-                className={`relative bg-white p-4 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "lifetime" ? "border-2 border-pink-400 scale-110" : "scale-100"}`}
+                className={`relative max-w-[168px] bg-white p-4 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "lifetime" ? "border-2 border-pink-400 scale-110" : "scale-100"}`}
                 onClick={() => handleSelectPlan("lifetime")}
               >
                 {selectedPlan === "lifetime" && (

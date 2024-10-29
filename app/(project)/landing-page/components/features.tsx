@@ -4,9 +4,11 @@ import { FiUpload, FiLink } from "react-icons/fi"; // Ícones para upload e link
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import Image from "next/image"; // Importando o componente Image do Next.js
+import PaymentModal from "./payment";
 
 export default function Features() {
   const [fileName, setFileName] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleFileChange = (e: any) => {
     const file = e.target.files[0];
@@ -121,7 +123,7 @@ export default function Features() {
                 />
               </div>
 
-              <button className="bg-[#EF5DA8] z-10 text-white px-6 py-3 rounded-full font-bold hover:bg-[#e94d96] transition flex items-center">
+              <button onClick={() => setIsModalOpen(true)} className="bg-[#EF5DA8] z-10 text-white px-6 py-3 rounded-full font-bold hover:bg-[#e94d96] transition flex items-center">
                 Criar meu presente
                 <span className="ml-2">
                   <Image
@@ -132,6 +134,8 @@ export default function Features() {
                   />
                 </span>
               </button>
+
+              <PaymentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
             </div>
           </div>
         </div>

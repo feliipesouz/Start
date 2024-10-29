@@ -19,3 +19,28 @@ h2,
 h3, button {
   font-family: 'Poppins', sans-serif;
 }
+
+
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #fff;
+  border: 2px solid #EF5DA8; /* Cor da borda rosa */
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+
+input[type="radio"]:checked::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: #EF5DA8; /* Cor interna rosa */
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
