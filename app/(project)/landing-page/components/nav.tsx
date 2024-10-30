@@ -10,7 +10,7 @@ export default function Nav() {
           <Link href={"/landing-page"} className="flex items-center gap-2">
             <div className="relative size-7 md:size-9">
               <Image
-                src="/template-icon.webp"
+                src="/landing-page/logo.png"
                 fill
                 alt="Template Logo"
                 className="object-fit object-center"
