@@ -1,13 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
 
-export default function Hero() {
-  const [selectedPlan, setSelectedPlan] = useState("basic");
+interface HeroProps {
+  onSelectPlan: (plan: string) => void;
+  selectedPlan: string;
+}
+
+export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
 
   const handleSelectPlan = (plan: string) => {
-    setSelectedPlan(plan);
+    onSelectPlan(plan);
   };
 
   return (
@@ -50,7 +53,7 @@ export default function Hero() {
                 onClick={() => handleSelectPlan("medium")}
               >
                 {selectedPlan === "medium" && (
-                   <div className="absolute bottom-[5px] right-5 z-[-10]">
+                  <div className="absolute bottom-[5px] right-5 z-[-10]">
                     <Image src="/landing-page/before.png" alt="Background circle" width={50} height={50} />
                   </div>
                 )}

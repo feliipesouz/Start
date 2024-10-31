@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { AlertIcon, CheckIcon } from "../components/icons";
-import { Header } from "../components/header";
 
 export default function Home() {
   return (
     <div className="max-w-7xl mx-auto h-screen flex flex-col">
-      <Header />
+      {/* <Header /> */}
       <main className="h-full">
         <div className="h-full flex flex-col items-center justify-center gap-10">
           <div className="flex flex-col items-center gap-2">

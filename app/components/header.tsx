@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LoginButton } from "./login-button";
+// import { LoginButton } from "./login-button";
 
 export function Header() {
   return (
@@ -11,7 +11,7 @@ export function Header() {
           <span className="text-sm">by André Dev</span>
         </div>
       </Link>
-      <LoginButton />
+      {/* <LoginButton /> */}
     </header>
   );
 }

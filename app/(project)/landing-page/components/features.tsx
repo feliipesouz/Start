@@ -1,14 +1,20 @@
 "use client";
 import { useState } from "react";
-import { FiUpload, FiLink } from "react-icons/fi"; // Ícones para upload e link
-import { IoIosArrowDroprightCircle } from "react-icons/io";
+import { FiUpload, FiLink } from "react-icons/fi";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import Image from "next/image"; // Importando o componente Image do Next.js
+import Image from "next/image";
 import PaymentModal from "./payment";
 
-export default function Features() {
+interface FeaturesProps {
+  isModalOpen: boolean;
+  onCloseModal: () => void;
+  formData: FormData | null;
+  selectedPlan: string;
+  setIsModalOpen: (isOpen: boolean) => void
+}
+
+export default function Features({ isModalOpen, onCloseModal, formData, selectedPlan, setIsModalOpen }: FeaturesProps) {
   const [fileName, setFileName] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleFileChange = (e: any) => {
     const file = e.target.files[0];
@@ -135,7 +141,12 @@ export default function Features() {
                 </span>
               </button>
 
-              <PaymentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+              <PaymentModal
+                isOpen={isModalOpen}
+                onClose={onCloseModal}
+                formData={formData}
+                selectedPlan={selectedPlan}
+              />
             </div>
           </div>
         </div>

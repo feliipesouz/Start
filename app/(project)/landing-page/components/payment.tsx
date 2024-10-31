@@ -1,13 +1,37 @@
 import Image from "next/image";
 import { useState } from "react";
 
-interface Props {
-    isOpen: boolean,
-    onClose: () => void
+interface PaymentModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    formData: FormData | null;
+    selectedPlan: string;
 }
 
-export default function PaymentModal({ isOpen, onClose }: Props) {
+export default function PaymentModal({ isOpen, onClose, formData, selectedPlan, }: PaymentModalProps) {
     const [payment, setPayment] = useState<'pix' | 'cartão'>('pix')
+
+    console.log(selectedPlan)    
+    console.log(formData)
+
+    const handleStripeCheckout = async () => {
+        try {
+            const response = await fetch("/api/stripe/create-pay-checkout", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    email: formData?.email, // Aqui estamos acessando o email do formData
+                    plan: selectedPlan,
+                }),
+            });
+            const { sessionId } = await response.json();
+            const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUB_KEY!);
+            await stripe!.redirectToCheckout({ sessionId });
+        } catch (error) {
+            console.error("Erro ao iniciar o checkout do Stripe", error);
+        }
+    };
+
 
     if (!isOpen) return null;
 
@@ -51,7 +75,7 @@ export default function PaymentModal({ isOpen, onClose }: Props) {
                     </label>
 
                     <label
-                        onClick={() => setPayment('cartão')}
+                        onClick={handleStripeCheckout}
                         className={`flex items-center justify-center w-1/2 ${payment === 'cartão' ? "border-2 border-pink-400 bg-pink-100" : "border border-gray-300"} justify-between rounded-lg p-3 cursor-pointer hover:shadow-lg transition-all`}
                     >
                         <input

@@ -1,4 +1,4 @@
-import { auth, signIn } from "@/app/lib/auth";
+// import { auth, } from "@/app/lib/auth";
 import stripe from "@/app/lib/stripe";
 import { db } from "@/app/lib/firebase"; // Added import for database operations
 import { NextRequest, NextResponse } from "next/server";
@@ -13,13 +13,13 @@ export async function POST(req: NextRequest) {
     throw new Error("No STRIPE_PRODUCT_PRICE_ID");
   }
 
-  const session = await auth();
-  const userId = session?.user?.id;
-  const userEmail = session?.user?.email;
+  // const session = await auth();
+  // const userId = session?.user?.id;
+  // const userEmail = session?.user?.email;
 
-  if (!userId || !userEmail) {
-    throw new Error("User not authenticated");
-  }
+  // if (!userId || !userEmail) {
+  //   throw new Error("User not authenticated");
+  // }
 
   const customerId = await getCustomerId(userId, userEmail);
 

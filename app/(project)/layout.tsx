@@ -1,7 +1,6 @@
 import type { Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import AuthProvider from "../components/auth-provider";
 import { Toaster } from "react-hot-toast";
 import { getSEOTags } from "../lib/seo";
 
@@ -35,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${inter.className} antialiased`}>
-        <AuthProvider>{children}</AuthProvider>
+        {children}
         <Toaster position="bottom-right" />
       </body>
     </html>
