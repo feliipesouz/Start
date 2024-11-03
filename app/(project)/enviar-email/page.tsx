@@ -1,7 +1,6 @@
 "use client";
 
 import { sendEmail } from "@/app/actions/send-email";
-import { Header } from "@/app/components/header";
 import { FormEvent, useState } from "react";
 
 export default function EnviarEmail() {
@@ -23,7 +22,6 @@ export default function EnviarEmail() {
 
   return (
     <div className="max-w-7xl mx-auto h-screen flex flex-col">
-      <Header />
       <div className="flex flex-col items-center justify-center h-screen">
         <h1 className="text-2xl font-bold mb-4">Envio de Emails</h1>
         <p className="text-gray-500 mb-4">

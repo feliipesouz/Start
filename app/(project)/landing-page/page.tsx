@@ -15,6 +15,9 @@ export default function LandingPage() {
   const [selectedPlan, setSelectedPlan] = useState("basic");
   const [formData, setFormData] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalTutorialOpen, setIsModalTutorialOpen] = useState(false)
+
+  console.log(isModalTutorialOpen)
 
   const handlePlanSelect = (plan: string) => {
     setSelectedPlan(plan);
@@ -23,17 +26,21 @@ export default function LandingPage() {
   const handleFormSubmit = (data: any) => {
     console.log(data)
     setFormData(data);
-    setIsModalOpen(true); // Abre o modal de pagamento após o envio do formulário
+    setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
+  const closeTutorialModal = () => {
+    setIsModalTutorialOpen(false)
+  }
+
   return (
     <>
       <header>
-        <Nav />
+        <Nav setIsModalTutorialOpen={setIsModalTutorialOpen} isModalTutorialOpen={isModalTutorialOpen} onCloseModal={closeTutorialModal} />
       </header>
       <main>
         <Hero onSelectPlan={handlePlanSelect} selectedPlan={selectedPlan} />

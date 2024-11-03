@@ -1,3 +1,4 @@
+import { loadStripe } from "@stripe/stripe-js";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -11,17 +12,18 @@ interface PaymentModalProps {
 export default function PaymentModal({ isOpen, onClose, formData, selectedPlan, }: PaymentModalProps) {
     const [payment, setPayment] = useState<'pix' | 'cartão'>('pix')
 
-    console.log(selectedPlan)    
+    console.log(selectedPlan)
     console.log(formData)
 
     const handleStripeCheckout = async () => {
+        console.log('entrou')
         try {
             const response = await fetch("/api/stripe/create-pay-checkout", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     email: formData?.email, // Aqui estamos acessando o email do formData
-                    plan: selectedPlan,
+                    selectedPlan
                 }),
             });
             const { sessionId } = await response.json();
@@ -75,7 +77,6 @@ export default function PaymentModal({ isOpen, onClose, formData, selectedPlan, 
                     </label>
 
                     <label
-                        onClick={handleStripeCheckout}
                         className={`flex items-center justify-center w-1/2 ${payment === 'cartão' ? "border-2 border-pink-400 bg-pink-100" : "border border-gray-300"} justify-between rounded-lg p-3 cursor-pointer hover:shadow-lg transition-all`}
                     >
                         <input
@@ -132,7 +133,9 @@ export default function PaymentModal({ isOpen, onClose, formData, selectedPlan, 
                     >
                         Cancelar
                     </button>
-                    <button className="bg-[#EF5DA8] text-white rounded-full px-6 py-2 text-xs font-bold hover:bg-[#e94d96]">
+                    <button
+                        onClick={() => payment === 'cartão' && handleStripeCheckout()}
+                        className="bg-[#EF5DA8] text-white rounded-full px-6 py-2 text-xs font-bold hover:bg-[#e94d96]">
                         Continuar
                     </button>
                 </div>

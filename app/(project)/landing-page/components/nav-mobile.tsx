@@ -69,28 +69,6 @@ export default function NavMobile() {
                 <li onClick={handleClose}>
                   <a href="#faq">FAQ</a>
                 </li>
-                <li>
-                  <Link href={"/"} passHref target="_blank">
-                    <button className="flex gap-2 items-center">
-                      <div className="relative w-5 h-5">
-                        <Image
-                          src="/landing-page/ic-login.svg"
-                          fill
-                          alt="Ícone de Login"
-                          className="object-cover object-left"
-                        />
-                      </div>
-                      <span>Entrar</span>
-                    </button>
-                  </Link>
-                </li>
-                <li className="w-full">
-                  <Link href={"https://google.com"} passHref target="_blank">
-                    <button className="w-full text-[#433763] font-medium bg-white rounded-full px-4 py-4">
-                      Teste grátis
-                    </button>
-                  </Link>
-                </li>
               </ul>
             </nav>
           </div>

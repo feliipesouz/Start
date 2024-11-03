@@ -2,9 +2,17 @@ import stripe from "@/app/lib/stripe";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
-  const { testeId, userEmail } = await req.json();
+  const { testeId, userEmail, selectedPlan } = await req.json();
 
-  const price = process.env.STRIPE_PRODUCT_PRICE_ID;
+  console.log(selectedPlan)
+
+  const price =
+    selectedPlan === "basic" ? process.env.STRIPE_PRODUCT_PRICE_ID_BASIC :
+      selectedPlan === "pro" ? process.env.STRIPE_PRODUCT_PRICE_ID_PRO :
+        selectedPlan === "lifetime" ? process.env.STRIPE_PRODUCT_PRICE_ID_PREMIUM :
+          null;
+
+  console.log(price)
 
   if (!price)
     throw new Error(

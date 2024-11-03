@@ -1,7 +1,6 @@
 "use client";
 
 import { saveImagesOnFirebase } from "@/app/actions/save-images-firebase";
-import { Header } from "@/app/components/header";
 import { CameraIcon } from "@/app/components/icons";
 import { compressFiles } from "@/app/lib/utils";
 import Link from "next/link";
@@ -65,7 +64,6 @@ export default function UploadArquivos() {
 
   return (
     <div className="max-w-7xl mx-auto h-screen flex flex-col">
-      <Header />
       <div className="w-[500px] mx-auto h-full flex flex-col gap-4 items-center justify-center">
         <h1 className="text-2xl font-bold">
           Banco de Dados + Upload de Imagens

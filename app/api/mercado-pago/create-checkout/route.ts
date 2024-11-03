@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { Preference } from "mercadopago";
 import mpClient from "@/app/lib/mercado-pago";
 
+import { Payment, MercadoPagoConfig } from 'mercadopago';
+
 export async function POST(req: NextRequest) {
   const { testeId, userEmail } = await req.json();
 
@@ -36,23 +38,24 @@ export async function POST(req: NextRequest) {
         ],
         payment_methods: {
           // Descomente para desativar métodos de pagamento
-          //   excluded_payment_methods: [
-          //     {
-          //       id: "bolbradesco",
-          //     },
-          //     {
-          //       id: "pec",
-          //     },
-          //   ],
-          //   excluded_payment_types: [
-          //     {
-          //       id: "debit_card",
-          //     },
-          //     {
-          //       id: "credit_card",
-          //     },
-          //   ],
-          installments: 12, // Número máximo de parcelas permitidas
+          // excluded_payment_methods: [
+          //   {
+          //     id: "bolbradesco",
+          //   },
+          //   {
+          //     id: "pec",
+          //   },
+          // ],
+          // excluded_payment_types: [
+          //   {  
+          //     id: "debit_card",
+          //   },
+          //   {
+          //     id: "credit_card",
+          //   },
+          // ],
+          installments: 2, // Número máximo de parcelas permitidas
+          default_payment_method_id: "pix",
         },
         auto_return: "approved",
         back_urls: {
