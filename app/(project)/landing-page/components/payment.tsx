@@ -1,23 +1,25 @@
 import { loadStripe } from "@stripe/stripe-js";
 import Image from "next/image";
 import { useState } from "react";
+import { FormInputs } from "./sub-hero";
+
 
 interface PaymentModalProps {
     isOpen: boolean;
     onClose: () => void;
-    formData: FormData | null;
+    formData: FormInputs | null;
     selectedPlan: string;
+    handleUploadImages: (data: FormInputs) => void
 }
 
-export default function PaymentModal({ isOpen, onClose, formData, selectedPlan, }: PaymentModalProps) {
+export default function PaymentModal({ isOpen, onClose, formData, selectedPlan, handleUploadImages }: PaymentModalProps) {
     const [payment, setPayment] = useState<'pix' | 'cartão'>('pix')
 
-    console.log(selectedPlan)
-    console.log(formData)
-
     const handleStripeCheckout = async () => {
-        console.log('entrou')
+        console.log('Iniciando o processo de checkout com Stripe...');
         try {
+            // const coupleHash = await storeDataInFirebase(formData, selectedPlan);
+
             const response = await fetch("/api/stripe/create-pay-checkout", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -26,11 +28,25 @@ export default function PaymentModal({ isOpen, onClose, formData, selectedPlan, 
                     selectedPlan
                 }),
             });
+
             const { sessionId } = await response.json();
             const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUB_KEY!);
             await stripe!.redirectToCheckout({ sessionId });
+
+            // return coupleHash;
         } catch (error) {
             console.error("Erro ao iniciar o checkout do Stripe", error);
+        }
+    };
+
+    const handlePayment = async () => {
+        await handleUploadImages(formData as FormInputs);
+
+        if (payment === 'cartão') {
+            await handleStripeCheckout();
+        } else if (payment === 'pix') {
+            //Chamo o endpoint do mercado pago
+            onClose();
         }
     };
 
@@ -134,13 +150,13 @@ export default function PaymentModal({ isOpen, onClose, formData, selectedPlan, 
                         Cancelar
                     </button>
                     <button
-                        onClick={() => payment === 'cartão' && handleStripeCheckout()}
+                        onClick={handlePayment}
                         className="bg-[#EF5DA8] text-white rounded-full px-6 py-2 text-xs font-bold hover:bg-[#e94d96]">
                         Continuar
                     </button>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 

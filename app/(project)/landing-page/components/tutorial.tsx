@@ -35,7 +35,7 @@ export default function TutorialModal({ isOpen, onClose }: PaymentModalProps) {
                     ✕
                 </button>
 
-                <div className="absolute top-0 left-0 right-0 h-16  rounded-t-xl flex items-center justify-center">
+                <div className="absolute top-0 left-0 right-0 h-16 rounded-t-xl flex items-center justify-center">
                     <h1 className="text-white text-lg font-semibold tracking-widest z-50 text">TUTORIAL</h1>
                 </div>
 

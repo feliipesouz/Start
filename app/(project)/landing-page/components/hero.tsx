@@ -49,7 +49,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                     onClick={() => handleSelectPlan("basic")}
                   >
                     {selectedPlan === "basic" && (
-                      <div className="absolute bottom-[12px] right-12 z-[-10]">
+                      <div className="absolute bottom-[12px] right-2 z-[-10]">
                         <Image src="/landing-page/before.png" alt="Background circle" width={31} height={31} />
                       </div>
                     )}
@@ -73,7 +73,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                     onClick={() => handleSelectPlan("medium")}
                   >
                     {selectedPlan === "medium" && (
-                      <div className="absolute bottom-[12px] right-5 z-[-10]">
+                      <div className="absolute bottom-[12px] right-2 z-[-10]">
                         <Image src="/landing-page/before.png" alt="Background circle" width={31} height={31} />
                       </div>
                     )}
@@ -97,10 +97,14 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                     onClick={() => handleSelectPlan("lifetime")}
                   >
                     {selectedPlan === "lifetime" && (
-                      <div className="absolute bottom-[12px] right-5 z-[-10]">
+                      <div className="absolute bottom-[12px] right-2 z-[-10]">
                         <Image src="/landing-page/before.png" alt="Background circle" width={31} height={31} />
                       </div>
                     )}
+                    <div className="absolute -top-2 right-0 bg-black text-white text-[8px] font-bold px-2 py-1 rounded-full z-50">
+                      Mais Escolhido
+                    </div>
+
                     <h3 className="text-xs font-medium text-[#223645] mb-4 text-center">Acesso Vitalício</h3>
                     <p className="font-bold mb-1 text-xs text-[#1C1C1C] text-center">R$ 39,90</p>
                     <p className="text-[#6F6F6F] text-[9px] text-center mb-3">Acesso vitalício com música</p>
@@ -128,7 +132,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                   )}
                   <h3 className="text-base font-medium text-[#223645] mb-5">Acesso Básico</h3>
                   <p className="font-bold mb-[7px] text-base text-[#1C1C1C]">R$ 19,90</p>
-                  <p className="text-[#6F6F6F] text-sm text-center mb-5">Acesso por 30 dias sem música</p>
+                  <p className="text-[#6F6F6F] text-sm text-center mb-5">Acesso por 30 dias + 3 fotos SEM música</p>
                   <button
                     className={`px-4 py-2 rounded-full text-xs ${selectedPlan === "basic" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"}`}
                   >
@@ -146,8 +150,8 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                     </div>
                   )}
                   <h3 className="text-base font-medium text-[#223645] mb-5">Acesso Médio</h3>
-                  <p className="font-bold mb-[7px] text-base text-[#1C1C1C]">R$ 29,90</p>
-                  <p className="text-[#6F6F6F] text-sm text-center mb-5">Acesso por 60 dias sem música</p>
+                  <p className="font-bold mb-[7px] text-base text-[#1C1C1C]">R$ 28,90</p>
+                  <p className="text-[#6F6F6F] text-sm text-center mb-5">Acesso por 60 dias + 5 fotos + música</p>
                   <button
                     className={`px-4 py-2 rounded-full text-xs ${selectedPlan === "pro" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"}`}
                   >
@@ -164,9 +168,12 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                       <Image src="/landing-page/before.png" alt="Background circle" width={50} height={50} />
                     </div>
                   )}
+                  <div className="absolute right-0 -top-3 bg-black text-white text-xs font-bold px-4 py-1 rounded-full z-50">
+                    Mais Escolhido
+                  </div>
                   <h3 className="text-base font-medium text-[#223645] mb-5">Acesso Vitalício</h3>
-                  <p className="font-bold mb-[7px] text-base text-[#1C1C1C]">R$ 39,90</p>
-                  <p className="text-[#6F6F6F] text-sm text-center mb-5">Acesso vitalício com música</p>
+                  <p className="font-bold mb-[7px] text-base text-[#1C1C1C]">R$ 33,90</p>
+                  <p className="text-[#6F6F6F] text-sm text-center mb-5">Acesso para sempre + 7 fotos + música</p>
                   <button
                     className={`px-4 py-2 rounded-full text-xs ${selectedPlan === "lifetime" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"}`}
                   >
@@ -178,7 +185,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
             </div>
           </div>
 
-          <div className="flex justify-end mx-auto md:left-auto absolute md:relative top-[378px] md:top-0">
+          <div className="flex justify-end mx-auto md:left-auto absolute md:relative top-[410px] md:top-0">
             <Image
               src="/landing-page/layer.png"
               layout="intrinsic"

@@ -17,8 +17,6 @@ export default function LandingPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalTutorialOpen, setIsModalTutorialOpen] = useState(false)
 
-  console.log(isModalTutorialOpen)
-
   const handlePlanSelect = (plan: string) => {
     setSelectedPlan(plan);
   };

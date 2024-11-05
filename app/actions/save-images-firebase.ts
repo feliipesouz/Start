@@ -16,9 +16,16 @@ export async function saveImagesOnFirebase(formData: FormData) {
         files.push(file);
       }
     });
-    const name = formData.get("name") as string;
+    const nome = formData.get("nome") as string;
+    const email = formData.get("email") as string;
+    const destinatario = formData.get("destinatario") as string;
+    const data = formData.get("data") as string;
+    const proximidade = formData.get("proximidade") as string;
+    const mensagem = formData.get("mensagem") as string;
+    const videoLink = formData.get("videoLink") as string;
+    const plano = formData.get("plano") as string;
 
-    const generatedId = uuidv4();
+    const generatedId = `${nome.toLowerCase().replace(' ', '').trim()}&${destinatario.toLowerCase().replace(' ', '').trim()}${uuidv4()}`;
 
     const uploadPromises = files.map(async (file, index) => {
       const storageRef = storage.file(`saved-images/${generatedId}/${index}`);
@@ -32,8 +39,15 @@ export async function saveImagesOnFirebase(formData: FormData) {
 
     const documentToSave = {
       id: generatedId,
-      uploadPaths,
-      name,
+      nome,
+      email,
+      destinatario,
+      data,
+      proximidade,
+      mensagem,
+      videoLink,
+      plano,
+      uploadPaths, // Caminhos das imagens
     };
 
     const docRef = db.collection("saved-images").doc(documentToSave.id); // Use collection and doc in Admin SDK
