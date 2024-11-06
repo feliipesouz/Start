@@ -3,10 +3,7 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 
 import { AiOutlineGift } from "react-icons/ai";
-
-
 import React, { useEffect, useState } from 'react';
-import 'react-quill/dist/quill.snow.css';
 import { LuUser2 } from "react-icons/lu";
 import PaymentModal from "./payment";
 import { MdKeyboardArrowRight } from "react-icons/md";
@@ -54,15 +51,11 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, formD
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [showErrorModal, setShowErrorModal] = useState(false);
 
-
   const nome = watch('nome');
   const destinatario = watch('destinatario');
   const data = watch('data');
   const email = watch('email');
   const proximidade = watch('proximidade');
-
-  console.log(fieldsComplete)
-  console.log(videoLink)
 
   const validateInputs = () => {
     const numImages = images.length;
@@ -155,8 +148,6 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, formD
 
     const compressedFiles = await compressFiles(Array.from(imagesInput.files));
     const formData = createFormData(compressedFiles, data);
-
-    console.log(formData)
 
     const documentId = await saveImagesOnFirebase(formData);
     handleUploadResponse(documentId);
@@ -542,6 +533,7 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, formD
                       formData={completeData}
                       selectedPlan={selectedPlan}
                       handleUploadImages={handleUploadImages}
+                      images={images[0]}
                     />
                   </div>
                 </div>

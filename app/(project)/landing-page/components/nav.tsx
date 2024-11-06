@@ -1,5 +1,4 @@
 import Image from "next/image";
-import NavMobile from "./nav-mobile";
 import Link from "next/link";
 import TutorialModal from "./tutorial";
 
@@ -14,7 +13,7 @@ export default function Nav({ isModalTutorialOpen, setIsModalTutorialOpen, onClo
     <nav className="relative w-full z-10 md:mt-0 py-4 md:py-5 bg-white">
       <div className="flex items-center justify-center text-[#223645] gap-3 md:gap-9 mx-4 md:mx-[10vw]">
         <div className="relative">
-          <Link href={"/landing-page"} className="flex items-center gap-2">
+          <Link href={"/"} className="flex items-center gap-2">
             <div className="relative size-7 md:size-9">
               <Image
                 src="/landing-page/logo.png"
@@ -30,7 +29,7 @@ export default function Nav({ isModalTutorialOpen, setIsModalTutorialOpen, onClo
           </Link>
         </div>
         <div className="ml-auto hidden md:block">
-          <Link href={"/landing-page"} passHref>
+          <Link href={"/"} passHref>
             <button className="flex gap-2 items-center">
               <div className="relative w-5 h-5">
                 <Image

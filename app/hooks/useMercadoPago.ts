@@ -11,6 +11,7 @@ const useMercadoPago = () => {
   }, []);
 
   async function createMercadoPagoCheckout(checkoutData: any) {
+    console.log(checkoutData)
     try {
       const response = await fetch("/api/mercado-pago/create-checkout", {
         method: "POST",

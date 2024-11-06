@@ -46,7 +46,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                   <div
                     className={`relative max-w-[136px] justify-center bg-white p-4 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "basic" ? "border-2 border-pink-400 scale-110" : "scale-100"
                       }`}
-                    onClick={() => handleSelectPlan("basic")}
+                    onClick={() => handleSelectPlan("basico")}
                   >
                     {selectedPlan === "basic" && (
                       <div className="absolute bottom-[12px] right-2 z-[-10]">
@@ -78,7 +78,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                       </div>
                     )}
                     <h3 className="text-xs font-medium text-[#223645] mb-4 text-center">Acesso Médio</h3>
-                    <p className="font-bold mb-1 text-xs text-[#1C1C1C] text-center">R$ 29,90</p>
+                    <p className="font-bold mb-1 text-xs text-[#1C1C1C] text-center">R$ 28,90</p>
                     <p className="text-[#6F6F6F] text-[9px] text-center mb-3">Acesso por 60 dias sem música</p>
                     <div className="w-full flex justify-center">
                       <button

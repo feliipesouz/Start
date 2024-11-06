@@ -4,29 +4,32 @@ import useStripe from "../hooks/useStripe";
 
 export default function StripeButton({
   isSubscription,
-  testeId,
+  email,
+  selectedPlan,
   children,
+  payment,
+  confirmCard,
   ...props
 }: {
   isSubscription: boolean;
-  testeId: string;
+  email: string | undefined;
+  selectedPlan: string;
+  payment: string;
+  confirmCard: boolean;
   children: React.ReactNode;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>) {
   const { createPaymentStripeCheckout, createSubscriptionStripeCheckout } =
     useStripe();
 
-  function handleClick() {
+  function handleCheckout() {
     if (isSubscription) {
-      return createSubscriptionStripeCheckout({ testeId });
+      return createSubscriptionStripeCheckout({ email });
     }
-    return createPaymentStripeCheckout({ testeId });
+    return createPaymentStripeCheckout({ email, selectedPlan });
   }
+
   return (
-    <button
-      onClick={handleClick}
-      className="bg-black hover:bg-slate-900 text-white font-bold border rounded-md py-2 w-96 disabled:opacity-50 disabled:border-red-400 disabled:cursor-not-allowed"
-      {...props}
-    >
+    <button {...props}>
       {children}
     </button>
   );

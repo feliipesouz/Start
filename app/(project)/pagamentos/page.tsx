@@ -9,20 +9,29 @@ export default function Pagamentos() {
         <MercadoPagoButton
           testeId="123"
           disabled={!process.env.MERCADO_PAGO_ACCESS_TOKEN}
+          email={undefined} payment={""}
+          confirmaPix={false}
         >
           Mercado Pago - Pagamento único
         </MercadoPagoButton>
         <StripeButton
           isSubscription={false}
-          testeId="123"
-          disabled={!process.env.STRIPE_PRODUCT_PRICE_ID}
+          disabled={false}
+          email={""}
+          selectedPlan={""}
+          payment={""}
+          confirmCard={false}
+        // disabled={!process.env.STRIPE_PRODUCT_PRICE_ID}
         >
           Stripe - Pagamento único
         </StripeButton>
         <StripeButton
           isSubscription={true}
-          testeId="123"
           disabled={!process.env.STRIPE_SUBSCRIPTION_PRICE_ID}
+          email={""}
+          selectedPlan={""}
+          payment={""}
+          confirmCard={false}
         >
           Stripe - Assinatura
         </StripeButton>

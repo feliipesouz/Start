@@ -8,30 +8,28 @@ type SavedImagesType = {
   name: string;
 };
 
-export async function getDocumentsData() {
-  const docs = db.collection("saved-images");
+export async function getDocumentsData(link: string) {
+  console.log('link: ', link);
+  const docs = db.collection("saved-images").doc(link);
 
-  const docsSnapshot = await docs.get();
+  const docSnapshot = await docs.get();
+  console.log('docSnapshot: ', docSnapshot);
 
-  if (docsSnapshot.empty) {
-    // Changed from exists to empty
+  if (!docSnapshot.exists) {
+    // Se não encontrar o documento com o link informado
+    console.error('Documento não encontrado');
     return undefined;
   }
 
-  const allData = await Promise.all(
-    docsSnapshot.docs.map(async (doc) => {
-      // Collecting data for all documents
-      const data = doc.data() as SavedImagesType;
-      const uploadUrls = await Promise.all(
-        data.uploadPaths.map(async (path) => {
-          // Transforma o path em url que pode ser lida pelo browser
-          const url = await getDownloadURLFromPath(path);
-          return url;
-        })
-      );
-      return { ...data, uploadUrls }; // Returning data with URLs for each document
+  const data = docSnapshot.data() as SavedImagesType;
+  console.log(data);
+
+  const uploadUrls = await Promise.all(
+    data.uploadPaths.map(async (path) => {
+      const url = await getDownloadURLFromPath(path);
+      return url;
     })
   );
 
-  return allData; // Returning an array of all documents' data
+  return { ...data, uploadUrls }; // Retornando os dados do documento com as URLs
 }

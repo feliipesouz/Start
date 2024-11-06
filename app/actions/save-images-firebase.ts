@@ -6,6 +6,10 @@ import { v4 as uuidv4 } from "uuid";
 // Import your Firebase Admin SDK initialized in another module
 import { db, storage } from "../lib/firebase";
 
+function removeAccents(str: string) {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); // Remove acentos
+}
+
 export async function saveImagesOnFirebase(formData: FormData) {
   try {
     let files: File[] = [];
@@ -25,7 +29,9 @@ export async function saveImagesOnFirebase(formData: FormData) {
     const videoLink = formData.get("videoLink") as string;
     const plano = formData.get("plano") as string;
 
-    const generatedId = `${nome.toLowerCase().replace(' ', '').trim()}&${destinatario.toLowerCase().replace(' ', '').trim()}${uuidv4()}`;
+
+    const generatedId = `${removeAccents(nome.toLowerCase().replace(' ', '').trim())}&${removeAccents(destinatario.toLowerCase().replace(' ', '').trim())}${uuidv4()}`;
+
 
     const uploadPromises = files.map(async (file, index) => {
       const storageRef = storage.file(`saved-images/${generatedId}/${index}`);
