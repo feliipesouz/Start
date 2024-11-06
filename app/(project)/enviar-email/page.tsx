@@ -12,6 +12,7 @@ export default function EnviarEmail() {
     e.preventDefault();
     setSending(true);
     const result = await sendEmail(email);
+    console.log(result)
     setSending(false);
     setSuccess(result !== false);
     setTimeout(() => {

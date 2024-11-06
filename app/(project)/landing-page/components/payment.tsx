@@ -2,8 +2,6 @@ import { loadStripe } from "@stripe/stripe-js";
 import Image from "next/image";
 import { useState } from "react";
 import { FormInputs } from "./sub-hero";
-import StripeButton from "@/app/components/stripe-button";
-import MercadoPagoButton from "@/app/components/marcado-pago-button";
 import useMercadoPago from "@/app/hooks/useMercadoPago";
 import useStripe from "@/app/hooks/useStripe";
 
@@ -25,22 +23,17 @@ export default function PaymentModal({
     handleUploadImages,
 }: PaymentModalProps) {
     const [payment, setPayment] = useState<"pix" | "cartão">("pix");
-    const [confirmCard, setConfirmCard] = useState(false);
-    const [confirmaPix, setConfirmaPix] = useState(false);
 
     const { createMercadoPagoCheckout } = useMercadoPago();
-
     const { createPaymentStripeCheckout } = useStripe();
 
 
     const handlePayment = async () => {
-        // await handleUploadImages(formData as FormInputs); 
+        await handleUploadImages(formData as FormInputs);
 
         if (payment === "cartão") {
-            setConfirmCard(true);
             return createPaymentStripeCheckout({ email: formData?.email, selectedPlan });
         } else if (payment === "pix") {
-            setConfirmaPix(true);
             await createMercadoPagoCheckout({
                 testeId: '123',
                 email: formData?.email,
@@ -68,82 +61,66 @@ export default function PaymentModal({
                 <h3 className="mb-4 text-sx text-[#111729]">Método de Pagamento</h3>
 
                 <div className="flex justify-around mt-6 mb-8 gap-4">
-                    <MercadoPagoButton
-                        testeId="123"
-                        email={formData?.email}
-                        disabled={!process.env.MERCADO_PAGO_ACCESS_TOKEN}
-                        payment={payment}
-                        confirmaPix={confirmaPix}
+
+                    <label
+                        onClick={() => setPayment("pix")}
+                        className={`flex items-center justify-center w-1/2 ${payment === "pix"
+                            ? "border-2 border-pink-400 bg-pink-100"
+                            : "border border-gray-300"
+                            } justify-between rounded-lg p-3 cursor-pointer hover:shadow-lg transition-all`}
                     >
-                        <label
-                            onClick={() => setPayment("pix")}
-                            className={`flex items-center justify-center w-[154px] ${payment === "pix"
-                                ? "border-2 border-pink-400 bg-pink-100"
-                                : "border border-gray-300"
-                                } justify-between rounded-lg p-3 cursor-pointer hover:shadow-lg transition-all`}
-                        >
-                            <input
-                                type="radio"
-                                name="payment"
-                                value="pix"
-                                className="hidden"
-                                checked={payment === "pix"}
-                            />
-                            <div className="flex items-center gap-2 text-xs">
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="pix"
+                            className="hidden"
+                            checked={payment === "pix"}
+                        />
+                        <div className="flex items-center gap-2 text-xs">
+                            <span
+                                className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${payment === "pix" ? "border-pink-500" : "border-gray-300"
+                                    }`}
+                            >
+                                {payment === "pix" && (
+                                    <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
+                                )}
+                            </span>
+                            <span>PIX</span>
+                        </div>
+                        <Image src="/landing-page/pix.png" alt="Pix" width={22} height={22} />
+                    </label>
+                    <label
+                        onClick={() => setPayment("cartão")}
+                        className={`flex items-center justify-center w-1/2 ${payment === "cartão"
+                            ? "border-2 border-pink-400 bg-pink-100"
+                            : "border border-gray-300"
+                            } justify-between rounded-lg p-[12px] cursor-pointer hover:shadow-lg transition-all`}
+                    >
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="cartão"
+                            className="hidden"
+                            checked={payment === "cartão"}
+                        />
+                        <div className="flex items-center w-full justify-between">
+                            <div className="flex gap-1 items-center text-xs">
                                 <span
-                                    className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${payment === "pix" ? "border-pink-500" : "border-gray-300"
+                                    className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${payment === "cartão"
+                                        ? "border-pink-500"
+                                        : "border-gray-300"
                                         }`}
                                 >
-                                    {payment === "pix" && (
+                                    {payment === "cartão" && (
                                         <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
                                     )}
                                 </span>
-                                <span>PIX</span>
+                                <span className="whitespace-nowrap">Cartão de Crédito</span>
                             </div>
-                            <Image src="/landing-page/pix.png" alt="Pix" width={22} height={22} />
-                        </label>
-                    </MercadoPagoButton>
+                            <Image src="/landing-page/cartao.png" alt="Cartão" width={20} height={20} />
+                        </div>
+                    </label>
 
-                    <StripeButton
-                        isSubscription={false}
-                        email={formData?.email}
-                        selectedPlan={selectedPlan}
-                        payment={payment}
-                        disabled={false}
-                        confirmCard={confirmCard}
-                    >
-                        <label
-                            onClick={() => setPayment("cartão")}
-                            className={`flex items-center justify-center w-full ${payment === "cartão"
-                                ? "border-2 border-pink-400 bg-pink-100"
-                                : "border border-gray-300"
-                                } justify-between rounded-lg p-[12px] cursor-pointer hover:shadow-lg transition-all`}
-                        >
-                            <input
-                                type="radio"
-                                name="payment"
-                                value="cartão"
-                                className="hidden"
-                                checked={payment === "cartão"}
-                            />
-                            <div className="flex items-center gap-1">
-                                <div className="flex gap-1 items-center text-xs">
-                                    <span
-                                        className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${payment === "cartão"
-                                            ? "border-pink-500"
-                                            : "border-gray-300"
-                                            }`}
-                                    >
-                                        {payment === "cartão" && (
-                                            <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
-                                        )}
-                                    </span>
-                                    <span className="whitespace-nowrap">Cartão de Crédito</span>
-                                </div>
-                                <Image src="/landing-page/cartao.png" alt="Cartão" width={20} height={20} />
-                            </div>
-                        </label>
-                    </StripeButton>
                 </div>
 
                 <hr className="w-full my-6" />

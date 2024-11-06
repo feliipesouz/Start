@@ -22,12 +22,8 @@ export async function POST(req: Request) {
       case "checkout.session.completed":
         const metadata = event.data.object.metadata;
         // A Stripe não faz distinção de produtos no webhook
-        // Então recomendo lidar com os eventos de pagamento único e assinatura separadamente
         if (metadata?.price === process.env.STRIPE_PRODUCT_PRICE_ID) {
           await handleStripePayment(event);
-        }
-        if (metadata?.price === process.env.STRIPE_SUBSCRIPTION_PRICE_ID) {
-          await handleStripeSubscription(event);
         }
         break;
 
@@ -53,11 +49,6 @@ export async function POST(req: Request) {
           const testeId = event.data.object.metadata?.testeId;
           console.log("pagamento boleto falhou", testeId);
         }
-        break;
-
-      case "customer.subscription.deleted":
-        // O cliente cancelou o plano :(
-        await handleStripeCancelSubscription(event);
         break;
     }
 

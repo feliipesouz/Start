@@ -213,10 +213,10 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, formD
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} style={{ width: '100%' }}>
-            <div className="flex flex-col md:flex-row justify-between items-start md:max-w-[1200px] p-6 md:p-10 mb:mb-0">
+            <div className="flex flex-col md:flex-row justify-around items-start md:w-full p-6 md:p-10 mb:mb-0">
               <Image src={'/landing-page/girl.png'} width={281} height={345} className="w-auto h-auto hidden md:block" alt={'Moça em pé apoiada na frente do notebook'} />
 
-              <div>
+              <div className="md:w-3/5">
                 <div className="flex flex-col md:flex-row mb-12 md:mb-[69px] gap-3 md:gap-8 items-center">
                   <label className="text-[#223645] text-xs text-left w-full md:w-auto font-bold whitespace-nowrap mb-[8px] md:mb-0">
                     Escolha o grau de proximidade:
@@ -368,7 +368,7 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, formD
 
                 <div className="z-1000">
                   <label className="block text-[#223645] text-xs md:text-base font-bold mb-2">
-                    Escreva o que você está sentindo em dizer... <span className="text-[#EF5DA8]">*</span>
+                    {'O que faz ele(a) ser tão especial?'} <span className="text-[#EF5DA8]">*</span>
                   </label>
                   <textarea
                     {...register("mensagem", { required: "Mensagem é obrigatória" })}
