@@ -1,6 +1,5 @@
 module.exports = {
-  // OBRIGATÓRIO: adicione o seu domínio aqui
-  siteUrl: "https://seudominio.com",
+  siteUrl: "https://voceeespecial.com.br",
   generateRobotsTxt: true,
   exclude: ["/twitter-image.*", "/opengraph-image.*", "/icon.*"],
 };

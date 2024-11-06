@@ -1,7 +1,5 @@
 import stripe from "@/app/lib/stripe";
-import { handleStripeCancelSubscription } from "@/app/server/stripe/handle-cancel";
 import { handleStripePayment } from "@/app/server/stripe/handle-payment";
-import { handleStripeSubscription } from "@/app/server/stripe/handle-subscription";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
