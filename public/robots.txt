@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://seudominio.com
+Host: https://voceeespecial.com.br
 
 # Sitemaps
-Sitemap: https://seudominio.com/sitemap.xml
+Sitemap: https://voceeespecial.com.br/sitemap.xml
