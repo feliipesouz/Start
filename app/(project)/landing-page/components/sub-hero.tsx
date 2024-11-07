@@ -200,7 +200,7 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, formD
 
       <div
         id="vantagens"
-        className="mx-auto mt-[260px] md:mt-10 md:pt-0"
+        className="mx-auto mt-[130px] md:mt-10 md:pt-0"
       >
         <div className="w-full flex flex-col items-center">
           <div className="relative text-center w-full mb-6 md:mb-20 px-9 md:px-0">
