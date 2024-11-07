@@ -9,7 +9,7 @@ import Footer from "./landing-page/components/footer";
 
 export default function LandingPage() {
 
-  const [selectedPlan, setSelectedPlan] = useState("basic");
+  const [selectedPlan, setSelectedPlan] = useState("lifetime");
   const [formData, setFormData] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalTutorialOpen, setIsModalTutorialOpen] = useState(false)
