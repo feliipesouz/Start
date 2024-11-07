@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
 
   if (!price)
     throw new Error(
-      "No STRIPE_PRODUCT_PRO_PRICE_ID or STRIPE_PRODUCT_BASIC_PRICE_ID"
+      "No STRIPE_PRODUCT_PRICE_ID_BASIC or STRIPE_PRODUCT_PRICE_ID_PRO or STRIPE_PRODUCT_PRICE_ID_PREMIUM"
     );
 
   const metadata = {

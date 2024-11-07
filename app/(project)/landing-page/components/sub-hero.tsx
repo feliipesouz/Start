@@ -43,7 +43,6 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, formD
 
   const [value, setValue] = useState('')
   const [videoLink, setVideoLink] = useState("");
-  const [fileName, setFileName] = useState("");
   const [images, setImages] = useState<string[]>([]);
   const [savingImages, setSavingImages] = useState(false);
   const [completeData, setCompleteData] = useState<FormInputs | null>(null);

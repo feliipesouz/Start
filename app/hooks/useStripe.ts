@@ -20,9 +20,6 @@ const useStripe = () => {
     if (!stripe) {
       throw new Error("Stripe instance not loaded");
     }
-
-    console.log('checkoutData')
-    console.log(checkoutData)
     try {
       const response = await fetch("/api/stripe/create-pay-checkout", {
         method: "POST",

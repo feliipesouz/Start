@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FiTwitter, FiInstagram, FiFacebook, FiGlobe } from "react-icons/fi";
 
 export default function Footer() {
@@ -76,19 +77,15 @@ export default function Footer() {
             <h3 className="font-bold text-xs text-white mb-4">Company</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-[#B3B3B3] text-[10px] hover:text-white">
-                  About
-                </a>
+                <Link href="/terms-of-use" className="text-[#B3B3B3] text-[10px] hover:text-white" target="_blank">
+                  Termos de uso
+                </Link>
+
               </li>
               <li>
-                <a href="#" className="text-[#B3B3B3] text-[10px] hover:text-white">
-                  Terms
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-[#B3B3B3] text-[10px] hover:text-white">
+                <Link href="/privacy-policy" className="text-[#B3B3B3] text-[10px] hover:text-white" target="_blank">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#" className="text-[#B3B3B3] text-[10px] hover:text-white">
@@ -100,16 +97,17 @@ export default function Footer() {
 
           <div className="flex flex-col">
             <h3 className="font-bold text-xs text-white mb-4">Contact</h3>
-            <p className="text-[#B3B3B3] text-[10px] mb-3">
+            {/* <p className="text-[#B3B3B3] text-[10px] mb-3">
               <strong className="text-white">Call:</strong> +00 0000000000
-            </p>
+            </p> */}
             <p className="text-[#B3B3B3] text-[10px] mb-3">
-              <strong className="text-white">Email:</strong> semnomeail@gmail.com
+              <strong className="text-white">Email:</strong> contato@voceeespecial.com.br
+
             </p>
-            <p className="text-[#B3B3B3] text-[10px]">
+            {/* <p className="text-[#B3B3B3] text-[10px]">
               <strong className="text-white">Address:</strong> LoveSafe, Lorem Ipsum, Lorem lorem, 252, Lorem -
               cidade
-            </p>
+            </p> */}
           </div>
         </div>
 
