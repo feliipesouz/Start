@@ -48,9 +48,9 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                   <div
                     className={`relative max-w-[136px] justify-center bg-white p-4 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "basico" ? "border-2 border-pink-400 scale-110" : "scale-100"
                       }`}
-                    onClick={() => handleSelectPlan("basico")}
+                    onClick={() => handleSelectPlan("basic")}
                   >
-                    {selectedPlan === "basico" && (
+                    {selectedPlan === "basic" && (
                       <div className="absolute bottom-[12px] right-2 z-[-10]">
                         <Image src="/landing-page/before.png" alt="Background circle" width={31} height={31} />
                       </div>
@@ -60,10 +60,10 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                     <p className="text-[#6F6F6F] text-[9px] text-center mb-3">Acesso por 30 dias sem música</p>
                     <div className="w-full flex justify-center">
                       <button
-                        className={`px-4 py-[6px] rounded-full text-[8px] ${selectedPlan === "basico" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"
+                        className={`px-4 py-[6px] rounded-full text-[8px] ${selectedPlan === "basic" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"
                           }`}
                       >
-                        {selectedPlan === "basico" ? "Escolhido!" : "Escolher"}
+                        {selectedPlan === "basic" ? "Escolhido!" : "Escolher"}
                       </button>
                     </div>
                   </div>
@@ -72,9 +72,9 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                   <div
                     className={`relative max-w-[136px] bg-white p-4 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "medium" ? "border-2 border-pink-400 scale-110" : "scale-100"
                       }`}
-                    onClick={() => handleSelectPlan("medium")}
+                    onClick={() => handleSelectPlan("pro")}
                   >
-                    {selectedPlan === "medium" && (
+                    {selectedPlan === "pro" && (
                       <div className="absolute bottom-[12px] right-2 z-[-10]">
                         <Image src="/landing-page/before.png" alt="Background circle" width={31} height={31} />
                       </div>
@@ -84,10 +84,10 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                     <p className="text-[#6F6F6F] text-[9px] text-center mb-3">Acesso por 60 dias sem música</p>
                     <div className="w-full flex justify-center">
                       <button
-                        className={`px-4 py-[6px] rounded-full text-[8px] ${selectedPlan === "medium" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"
+                        className={`px-4 py-[6px] rounded-full text-[8px] ${selectedPlan === "pro" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"
                           }`}
                       >
-                        {selectedPlan === "medium" ? "Escolhido!" : "Escolher"}
+                        {selectedPlan === "pro" ? "Escolhido!" : "Escolher"}
                       </button>
                     </div>
                   </div>

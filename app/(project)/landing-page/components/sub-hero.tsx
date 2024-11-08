@@ -11,9 +11,11 @@ import { FiLink, FiUpload } from "react-icons/fi";
 import { compressFiles } from "@/app/lib/utils";
 import toast from "react-hot-toast";
 import { saveImagesOnFirebase } from "@/app/actions/save-images-firebase";
+import { v4 as uuidv4 } from "uuid";
 
 
 export interface FormInputs {
+  id?: string;
   email: string;
   nome: string;
   destinatario: string;
@@ -33,7 +35,8 @@ interface SubHeroProps {
   setIsModalOpen: (isOpen: boolean) => void
 }
 
-export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, formData, selectedPlan, setIsModalOpen }: SubHeroProps) {
+export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selectedPlan, setIsModalOpen }: SubHeroProps) {
+  console.log(selectedPlan)
   const {
     register,
     handleSubmit,
@@ -100,6 +103,9 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, formD
     updateFieldsComplete(); // Valida sempre que os campos mudam ou o plano é alterado
   }, [images, videoLink, selectedPlan, nome, destinatario, data, email, proximidade, value]);
 
+  function removeAccents(str: string) {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); // Remove acentos
+  }
 
   const onSubmit = (data: FormInputs) => {
     const isValid = validateInputs();
@@ -113,12 +119,12 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, formD
       ...data,
       plano: selectedPlan,
       mensagem: value,
-      videoLink: videoLink
+      videoLink: videoLink,
+      id: `${removeAccents(nome.toLowerCase().replace(' ', '').trim())}&${removeAccents(destinatario.toLowerCase().replace(' ', '').trim())}${uuidv4()}`
     }
     setCompleteData(completeData);
     onSubmitForm(completeData)
   };
-
 
 
   // Simula o clique no input de arquivos de imagem.
@@ -148,7 +154,7 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, formD
     const compressedFiles = await compressFiles(Array.from(imagesInput.files));
     const formData = createFormData(compressedFiles, data);
 
-    const documentId = await saveImagesOnFirebase(formData);
+    const documentId = await saveImagesOnFirebase(formData, data.id!);
     handleUploadResponse(documentId);
     setSavingImages(false);
   }
@@ -544,3 +550,4 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, formD
     </>
   );
 }
+

@@ -1,4 +1,5 @@
 import stripe from "@/app/lib/stripe";
+import { deleteUserData } from "@/app/server/stripe/delete-user-data";
 import { handleStripePayment } from "@/app/server/stripe/handle-payment";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
@@ -15,13 +16,16 @@ export async function POST(req: Request) {
     }
 
     const event = stripe.webhooks.constructEvent(body, signature, secret);
-    console.log('event: ', event)
+    // console.log('event: ', event)
 
     switch (event.type) {
       case "checkout.session.completed":
         const metadata = event.data.object.metadata;
-        // A Stripe não faz distinção de produtos no webhook
-        if (metadata?.price === process.env.STRIPE_PRODUCT_PRICE_ID) {
+        if (
+          metadata?.price === process.env.STRIPE_PRODUCT_PRICE_ID_BASIC ||
+          metadata?.price === process.env.STRIPE_PRODUCT_PRICE_ID_PRO ||
+          metadata?.price === process.env.STRIPE_PRODUCT_PRICE_ID_PREMIUM
+        ) {
           await handleStripePayment(event);
         }
         break;
@@ -29,24 +33,36 @@ export async function POST(req: Request) {
       case "checkout.session.expired":
         if (event.data.object.payment_status === "unpaid") {
           // O cliente saiu do checkout e expirou :(
-          const testeId = event.data.object.metadata?.testeId;
-          console.log("checkout expirado", testeId);
+          const id = event.data.object.metadata?.id;
+          console.log("checkout expirado", id);
+          await deleteUserData(id as string);
         }
         break;
 
       case "checkout.session.async_payment_succeeded":
         if (event.data.object.payment_status === "paid") {
           // O cliente pagou o boleto e o pagamento foi confirmado
-          const testeId = event.data.object.metadata?.testeId;
-          console.log("pagamento boleto confirmado", testeId);
+          const id = event.data.object.metadata?.id;
+          console.log("pagamento boleto confirmado", id);
+          // if (userEmail) {
+          //   await sendEmailTo({
+          //     userEmail,
+          //     emailSubject: "Compra com sucesso!",
+          //     emailBody: `<html><body>
+          //       <p>Parabéns, bro.</p>
+          //       <p>Segue o link: ${id}</p>
+          //     </body></html>`,
+          //   });
+          // }
         }
         break;
 
       case "checkout.session.async_payment_failed":
         if (event.data.object.payment_status === "unpaid") {
           // O cliente não pagou o boleto e ele venceu :(
-          const testeId = event.data.object.metadata?.testeId;
-          console.log("pagamento boleto falhou", testeId);
+          const id = event.data.object.metadata?.id;
+          console.log("pagamento boleto falhou", id);
+          await deleteUserData(id as string);
         }
         break;
     }

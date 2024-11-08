@@ -1,4 +1,3 @@
-import { loadStripe } from "@stripe/stripe-js";
 import Image from "next/image";
 import { useState } from "react";
 import { FormInputs } from "./sub-hero";
@@ -32,7 +31,7 @@ export default function PaymentModal({
         await handleUploadImages(formData as FormInputs);
 
         if (payment === "cartão") {
-            return createPaymentStripeCheckout({ email: formData?.email, selectedPlan });
+            return createPaymentStripeCheckout({ id: formData?.id, userEmail: formData?.email, selectedPlan });
         } else if (payment === "pix") {
             await createMercadoPagoCheckout({
                 testeId: '123',

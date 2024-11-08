@@ -2,9 +2,11 @@ import stripe from "@/app/lib/stripe";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
-  const { testeId, userEmail, selectedPlan } = await req.json();
+  const { id, userEmail, selectedPlan } = await req.json();
 
-  console.log(selectedPlan)
+  console.log('id, userEmail, selectedPlan')
+  console.log(id, userEmail, selectedPlan)
+  console.log('id, userEmail, selectedPlan')
 
   const price =
     selectedPlan === "basic" ? process.env.STRIPE_PRODUCT_PRICE_ID_BASIC :
@@ -20,7 +22,7 @@ export async function POST(req: NextRequest) {
     );
 
   const metadata = {
-    testeId,
+    id,
     price,
     userEmail,
   };

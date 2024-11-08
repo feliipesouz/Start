@@ -1,16 +1,14 @@
 "use server";
 
 import { Buffer } from "buffer"; // Import Buffer to handle ArrayBuffer
-import { v4 as uuidv4 } from "uuid";
 
 // Import your Firebase Admin SDK initialized in another module
 import { db, storage } from "../lib/firebase";
 
-function removeAccents(str: string) {
-  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); // Remove acentos
-}
+export async function saveImagesOnFirebase(formData: FormData, id: string) {
 
-export async function saveImagesOnFirebase(formData: FormData) {
+  console.log('formData: ', formData)
+  console.log('id: ', id)
   try {
     let files: File[] = [];
 
@@ -28,13 +26,10 @@ export async function saveImagesOnFirebase(formData: FormData) {
     const mensagem = formData.get("mensagem") as string;
     const videoLink = formData.get("videoLink") as string;
     const plano = formData.get("plano") as string;
-
-
-    const generatedId = `${removeAccents(nome.toLowerCase().replace(' ', '').trim())}&${removeAccents(destinatario.toLowerCase().replace(' ', '').trim())}${uuidv4()}`;
-
+    
 
     const uploadPromises = files.map(async (file, index) => {
-      const storageRef = storage.file(`saved-images/${generatedId}/${index}`);
+      const storageRef = storage.file(`saved-images/${id}/${index}`);
       const arrayBuffer = await file.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer); // Convert ArrayBuffer to Buffer
       await storageRef.save(buffer);
@@ -44,7 +39,7 @@ export async function saveImagesOnFirebase(formData: FormData) {
     const uploadPaths = await Promise.all(uploadPromises);
 
     const documentToSave = {
-      id: generatedId,
+      id: id,
       nome,
       email,
       destinatario,

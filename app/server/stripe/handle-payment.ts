@@ -10,7 +10,7 @@ export async function handleStripePayment(
 ) {
   if (event.data.object.payment_status === "paid") {
     // pagagamento por cartão com sucesso
-    const testeId = event.data.object.metadata?.testeId;
+    const id = event.data.object.metadata?.id;
     const userEmail = event.data.object.customer_details?.email;
 
     if (userEmail) {
@@ -19,6 +19,7 @@ export async function handleStripePayment(
         emailSubject: "Compra com sucesso!",
         emailBody: `<html><body>
           <p>Parabéns, bro.</p>
+          <p>Segue o link: ${id}</p>
         </body></html>`,
       });
     }
@@ -36,7 +37,7 @@ export async function handleStripePayment(
     const hostedVoucherUrl =
       paymentIntent.next_action?.boleto_display_details?.hosted_voucher_url;
 
-    if (hostedVoucherUrl) {
+    if (hostedVoucherUrl) { 
       // O cliente gerou um boleto, manda um email pra ele
       const userEmail = event.data.object.customer_details?.email;
 
