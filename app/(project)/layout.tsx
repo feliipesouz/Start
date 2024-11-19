@@ -18,10 +18,10 @@ export const viewport: Viewport = {
 // Isso adiciona tags SEO padrão a todas as páginas do nosso app.
 // Você pode substituí-las em cada página passando parâmetros para a função getSEOTags().
 export const metadata = getSEOTags({
-  appName: "Template SaaS",
-  appDescription: "Template SaaS by André Dev",
-  keywords: ["Template SaaS", "André Dev"],
-  appDomain: "https://template.andreelias.dev",
+  appName: "Você é Especial",
+  appDescription: "Crie presentes personalizados e surpreenda quem você ama!",
+  keywords: ["presente personalizado", "surpresa", "amor", "voceeespecial", "contador de relacionamento"],
+  appDomain: "https://voceeespecial.com",
   locale: "pt_BR",
   canonicalUrlRelative: "/",
 });

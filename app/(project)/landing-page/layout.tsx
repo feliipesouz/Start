@@ -10,10 +10,17 @@ export const viewport: Viewport = {
 // Isso adiciona tags SEO padrão a todas as páginas do nosso app.
 // Você pode substituí-las em cada página passando parâmetros para a função getSEOTags().
 export const metadata = getSEOTags({
-  appName: "Sua Landing Page",
-  appDescription: "Sua Landing Page muito legal e com descrição!",
-  keywords: ["Landing Page", "Sua Landing Page", "Legal", "Com descrição"],
-  appDomain: "https://template.andreelias.dev/landing-page",
+  appName: "Você é Especial - Landing Page",
+  appDescription: "Surpreenda quem você ama com presentes personalizados.",
+  keywords: [
+    "Contador de relacionamento",
+    "Contador de tempo",
+    "Você é Especial",
+    "Presentes personalizados",
+    "Surpresas",
+    "Amor",
+  ],
+  appDomain: "https://voceeespecial.com/",
   locale: "pt_BR",
   canonicalUrlRelative: "/landing-page",
 });

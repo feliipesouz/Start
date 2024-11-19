@@ -101,7 +101,7 @@ function GiftPage() {
 // Usando Suspense para lidar com o estado de carregamento
 export default function GiftPageWrapper() {
   return (
-    <Suspense fallback={<div>Carregando...</div>}>
+    <Suspense fallback={<div>Magica em 3, 2, 1...</div>}>
       <GiftPage />
     </Suspense>
   );

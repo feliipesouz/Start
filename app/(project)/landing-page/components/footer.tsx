@@ -70,11 +70,6 @@ export default function Footer() {
                   Privacy Policy
                 </Link>
               </li>
-              <li>
-                <a href="#" className="text-[#B3B3B3] text-[10px] hover:text-white">
-                  Refund Policy
-                </a>
-              </li>
             </ul>
           </div>
 
