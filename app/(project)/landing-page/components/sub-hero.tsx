@@ -36,7 +36,6 @@ interface SubHeroProps {
 }
 
 export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selectedPlan, setIsModalOpen }: SubHeroProps) {
-  console.log(selectedPlan)
   const {
     register,
     handleSubmit,

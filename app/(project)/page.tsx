@@ -20,7 +20,6 @@ export default function LandingPage() {
   };
 
   const handleFormSubmit = (data: any) => {
-    console.log(data)
     setFormData(data);
     setIsModalOpen(true);
   };

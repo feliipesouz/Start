@@ -6,7 +6,6 @@ import { Payment, MercadoPagoConfig } from 'mercadopago';
 
 export async function POST(req: NextRequest) {
   const { testeId, userEmail } = await req.json();
-console.log('oi')
   try {
     const preference = new Preference(mpClient);
 

@@ -42,8 +42,6 @@ function GiftPage() {
     return <div>Presente não encontrado</div>; // Exibe caso não encontre os dados
   }
 
-  console.log(giftData)
-
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
       <div className="relative bg-gray-800 rounded-xl p-8 max-w-lg w-full text-white">

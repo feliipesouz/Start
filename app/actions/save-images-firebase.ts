@@ -7,8 +7,6 @@ import { db, storage } from "../lib/firebase";
 
 export async function saveImagesOnFirebase(formData: FormData, id: string) {
 
-  console.log('formData: ', formData)
-  console.log('id: ', id)
   try {
     let files: File[] = [];
 

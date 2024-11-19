@@ -34,7 +34,6 @@ export async function POST(req: Request) {
         if (event.data.object.payment_status === "unpaid") {
           // O cliente saiu do checkout e expirou :(
           const id = event.data.object.metadata?.id;
-          console.log("checkout expirado", id);
           await deleteUserData(id as string);
         }
         break;
@@ -43,7 +42,6 @@ export async function POST(req: Request) {
         if (event.data.object.payment_status === "paid") {
           // O cliente pagou o boleto e o pagamento foi confirmado
           const id = event.data.object.metadata?.id;
-          console.log("pagamento boleto confirmado", id);
           // if (userEmail) {
           //   await sendEmailTo({
           //     userEmail,
@@ -61,7 +59,6 @@ export async function POST(req: Request) {
         if (event.data.object.payment_status === "unpaid") {
           // O cliente não pagou o boleto e ele venceu :(
           const id = event.data.object.metadata?.id;
-          console.log("pagamento boleto falhou", id);
           await deleteUserData(id as string);
         }
         break;

@@ -4,17 +4,11 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   const { id, userEmail, selectedPlan } = await req.json();
 
-  console.log('id, userEmail, selectedPlan')
-  console.log(id, userEmail, selectedPlan)
-  console.log('id, userEmail, selectedPlan')
-
   const price =
     selectedPlan === "basic" ? process.env.STRIPE_PRODUCT_PRICE_ID_BASIC :
       selectedPlan === "pro" ? process.env.STRIPE_PRODUCT_PRICE_ID_PRO :
         selectedPlan === "lifetime" ? process.env.STRIPE_PRODUCT_PRICE_ID_PREMIUM :
           null;
-
-  console.log(price)
 
   if (!price)
     throw new Error(

@@ -55,7 +55,6 @@ export async function POST(req: NextRequest) {
       throw new Error(`HTTP error! status: ${response}`);
     }
     const data = await response.json();
-    console.log({ data });
     return NextResponse.json({
       message: "Notas fiscais geradas com sucesso",
     });

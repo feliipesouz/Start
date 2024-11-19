@@ -60,7 +60,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                     <p className="text-[#6F6F6F] text-[9px] text-center mb-3">Acesso por 30 dias sem música</p>
                     <div className="w-full flex justify-center">
                       <button
-                        className={`px-4 py-[6px] rounded-full text-[8px] ${selectedPlan === "basic" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"
+                        className={`px-4 py-[6px] rounded-full text-[8px] ${selectedPlan === "basico" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"
                           }`}
                       >
                         {selectedPlan === "basic" ? "Escolhido!" : "Escolher"}
