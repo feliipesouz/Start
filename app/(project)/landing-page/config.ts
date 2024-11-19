@@ -1,27 +1,27 @@
 export const faqQuestions = [
   {
-    question: "Quais informações conseguirei visualizar?",
-    answer:
-      "De forma dinâmica e focada em insights, disponibilizamos informações que ajudarão quando o assunto é vantagem competitiva. Seus novos clientes estão crescendo? Seus clientes recorrentes estão diminuindo? Aumentando? Quais cidades possui maior força comercial? Além de várias outras informações que trarão mais assertividade para suas estratégias.",
+    question: "O que é a voceeespecial?",
+    answer: "Voceeespecial é uma plataforma única para criar páginas personalizadas que celebram relações especiais, seja de namoro, amizade, família ou qualquer vínculo onde haja um sentimento verdadeiro. Com ela, você pode adicionar fotos, mensagens especiais e até um contador que mostra há quanto tempo esse sentimento está vivo.",
   },
   {
-    question: "Qual segurança tenho dos meus dados?",
-    answer:
-      "Além de uma equipe jurídica especializada em compliance que garante o funcionamento do Template seguindo todas as normas da LGPD, enviamos um contrato de Confidencialidade de Dados para resguardar juridicamente você e sua empresa de qualquer vazamento de informações. Esse contrato é parte de todo processo de compliance que temos para garantir que os dados da sua empresa aparecerão de forma única e exclusiva para você.",
+    question: "Posso editar minha página depois de criá-la?",
+    answer: "Sim! Assim que você receber o link da sua página, ele incluirá uma seção de edição onde você poderá fazer todas as alterações que desejar.",
   },
   {
-    question: "Tem alguma multa ao cancelar?",
-    answer:
-      "Não! Você pode cancelar quando quiser, sem nenhuma multa ou carência. O objetivo é trazer inteligência de dados enquanto faz sentido para sua empresa. Cancele quando quiser sem nenhum custo por isso.",
+    question: "Quais são as formas de pagamento?",
+    answer: "Atualmente, aceitamos pagamentos via Pix pelo Mercado Pago e cartão de crédito pela Stripe.",
   },
   {
-    question: "É fácil a integração?",
+    question: "A página personalizada tem validade?",
     answer:
-      "Com toda certeza! Você precisa apenas fornecer um token de integração do Bling e nós já conseguiremos buscar automaticamente os dados. Com poucos cliques você já tem um dashboard 100% funcional e que atualiza de maneira automática.",
+      "No preço básico e médio sim, 30 dias e 60 dias respectivamente. No plano vitalício, a página personalizada estará disponível para você pra sempre.",
   },
   {
-    question: "O template pode ser usado em qualquer empresa?",
-    answer:
-      "Conseguimos fazer integração com uma conta Bling de qualquer empresa. Pode ficar despreocupado(a)!",
+    question: "Como recebo minha página personalizada após o pagamento?",
+    answer: "Após o pagamento, você receberá um QR code para compartilhar com seu parceiro(a) e um link direto por e-mail para acessar sua página personalizada.",
   },
+  {
+    question: "Quanto tempo demora para receber o QR Code no e-mail?",
+    answer: "Pagamentos com cartão de crédito são processados imediatamente. Já pagamentos via Pix podem levar até 10 minutos para que o QR Code chegue no e-mail.",
+  }
 ];

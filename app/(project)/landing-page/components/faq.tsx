@@ -11,29 +11,22 @@ export default function FAQ() {
   );
 
   return (
-    <div id="faq" className="bg-[#F5F5F5] py-[50px] md:py-[100px]">
+    <div id="faq" className="bg-white py-[50px] md:py-[100px]">
       <div className="flex flex-col md:flex-row max-w-[90%] md:max-w-[1200px] mx-auto">
         <div className="w-full md:px-8 text-center md:text-left">
+          <h5 className="text-2xl md:text-4xl font-bold mb-8 md:mb-2">
+            Dúvidas sobre como funciona a <br />
+            <span className={"text-[#EF5DA8]"}> voceeespecial?</span>
+          </h5>
           <div className="hidden md:block relative w-[180px] h-[180px]">
             <Image
-              src="/landing-page/img-question.svg"
-              fill
-              alt="Documento com ponto de interrogação"
-              className="object-cover object-center"
+              src="/landing-page/logo.png"
+              width={100}
+              height={100}
+              alt="Logo"
+              className="object-cover object-center w-auto h-auto"
             />
           </div>
-          <h5 className="text-2xl md:text-4xl font-bold mb-2">
-            Não fique com dúvidas <br />
-            sobre o Template
-          </h5>
-          <p className="hidden md:block">
-            Nosso propósito é ajudar pessoas como você a alcançar e vender para
-            mais e mais pessoas. Portanto, não fique com dúvidas, venha ver como
-            é simples adotar o Template no seu negócio.
-          </p>
-          <p className="block md:hidden">
-            Venha ver como é simples adotar o Template no seu negócio.
-          </p>
         </div>
         <div className="w-full flex h-[520px] md:h-[350px] flex-col gap-4 mt-4 md:mt-0">
           <Accordion.Root

@@ -59,6 +59,8 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
   const email = watch('email');
   const proximidade = watch('proximidade');
 
+  console
+
   const validateInputs = () => {
     const numImages = images.length;
     const hasMusic = !!videoLink; // True se houver um link de música
@@ -69,20 +71,20 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
       return false;
     }
 
-    if (selectedPlan === 'basic' && numImages > 3) {
-      setErrorMessage('No plano Basic, você pode enviar no máximo 3 imagens.');
+    if (selectedPlan === 'basico' && numImages > 3) {
+      setErrorMessage('No plano Basico, você pode enviar no máximo 3 imagens.');
       return false;
     }
     if (selectedPlan === 'pro' && numImages > 5) {
-      setErrorMessage('No plano Pro, você pode enviar no máximo 5 imagens.');
+      setErrorMessage('No plano Médio, você pode enviar no máximo 5 imagens.');
       return false;
     }
     if (selectedPlan === 'lifetime' && numImages > 8) {
-      setErrorMessage('No plano vitalício, você pode enviar no máximo 8 imagens.');
+      setErrorMessage('No plano Vitalício, você pode enviar no máximo 8 imagens.');
       return false;
     }
     if ((selectedPlan === 'pro' || selectedPlan === 'lifetime') && !hasMusic) {
-      setErrorMessage('Nos planos Pro e lifetime, é necessário adicionar uma música.\n Insira o link do youtube da musica que deseja.');
+      setErrorMessage('Nos planos Médio e Vitalício, é necessário adicionar uma música.\n Insira o link do youtube da musica que deseja.');
       return false;
     }
     if (numImages === 0) {
@@ -477,7 +479,7 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
                     </div>
                   </div>
 
-                  {selectedPlan !== 'basic' && (
+                  {selectedPlan !== 'basico' && (
                     <div className="w-full flex flex-col md:flex-row md:gap-6 md:mb-24">
                       <label className="block text-[#223645] text-xs font-bold mb-4 md:mb-2 whitespace-nowrap">
                         Selecione a trilha

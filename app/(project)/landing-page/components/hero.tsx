@@ -48,9 +48,9 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                   <div
                     className={`relative max-w-[136px] justify-center bg-white p-4 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "basico" ? "border-2 border-pink-400 scale-110" : "scale-100"
                       }`}
-                    onClick={() => handleSelectPlan("basic")}
+                    onClick={() => handleSelectPlan("basico")}
                   >
-                    {selectedPlan === "basic" && (
+                    {selectedPlan === "basico" && (
                       <div className="absolute bottom-[12px] right-2 z-[-10]">
                         <Image src="/landing-page/before.png" alt="Background circle" width={31} height={31} />
                       </div>
@@ -70,7 +70,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
 
                   {/* Acesso Médio */}
                   <div
-                    className={`relative max-w-[136px] bg-white p-4 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "medium" ? "border-2 border-pink-400 scale-110" : "scale-100"
+                    className={`relative max-w-[136px] bg-white p-4 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "pro" ? "border-2 border-pink-400 scale-110" : "scale-100"
                       }`}
                     onClick={() => handleSelectPlan("pro")}
                   >
@@ -201,7 +201,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
           </div>
         </div>
       </div>
-      <div className="relative z-10 w-full opacity-100 h-[30px] bottom-3 md:bottom-2 rotate-180 hidden md:block">
+      <div className="relative w-full opacity-100 h-[30px] bottom-3 md:bottom-2 rotate-180 hidden md:block">
         <Image
           src="/landing-page/divisor.png"
           alt="Divisor de topo"

@@ -5,6 +5,7 @@ import Nav from "./landing-page/components/nav";
 import Hero from "./landing-page/components/hero";
 import SubHero from "./landing-page/components/sub-hero";
 import Footer from "./landing-page/components/footer";
+import FAQ from "./landing-page/components/faq";
 
 
 export default function LandingPage() {
@@ -41,6 +42,7 @@ export default function LandingPage() {
       <main>
         <Hero onSelectPlan={handlePlanSelect} selectedPlan={selectedPlan} />
         <SubHero onSubmitForm={handleFormSubmit} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} onCloseModal={closeModal} formData={formData} selectedPlan={selectedPlan} />
+        <FAQ />
       </main>
       <footer>
         <Footer />

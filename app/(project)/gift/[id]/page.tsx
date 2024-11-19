@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState, Suspense } from 'react';
-import { useRouter } from 'next/navigation'; 
+import { useRouter } from 'next/navigation';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
 
@@ -9,6 +9,7 @@ function GiftPage() {
   const { id } = useParams();
   const [giftData, setGiftData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [edit, setEdit] = useState(false)
 
   // Função para buscar os dados
   const fetchData = async () => {
@@ -41,6 +42,8 @@ function GiftPage() {
     return <div>Presente não encontrado</div>; // Exibe caso não encontre os dados
   }
 
+  console.log(giftData)
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
       <div className="relative bg-gray-800 rounded-xl p-8 max-w-lg w-full text-white">
@@ -51,21 +54,21 @@ function GiftPage() {
           X
         </button>
 
-        <div className="flex items-center mb-4">
+        <div className="flex flex-col items-center mb-4">
+          <div className="ml-3">
+            <h2 className="text-lg font-semibold">{`${giftData?.nome} & ${giftData.destinatario}`}</h2>
+            <p className="text-sm text-gray-400">{giftData?.tipoPresente}</p>
+          </div>
           {giftData?.uploadUrls.map((url: string, index: number) => (
             <Image
               key={index}
               src={url}
               alt={`Imagem ${index + 1}`}
-              width={40}
-              height={40}
-              className="rounded-full"
+              width={140}
+              height={140}
+              className="w-auto h-auto"
             />
           ))}
-          <div className="ml-3">
-            <h2 className="text-lg font-semibold">{giftData?.nome}</h2>
-            <p className="text-sm text-gray-400">{giftData?.tipoPresente}</p>
-          </div>
         </div>
 
         <p className="mb-6 text-gray-400">{giftData?.mensagem}</p>
@@ -83,9 +86,11 @@ function GiftPage() {
           />
         </div>
 
-        <button className="w-full bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition duration-300">
-          Editar
-        </button>
+        {edit &&
+          <button className="w-full bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+            Editar
+          </button>
+        }
 
         <p className="text-xs text-gray-500 text-center mt-4">Feito por: Você é Especial.com</p>
       </div>
