@@ -12,6 +12,8 @@ import { compressFiles } from "@/app/lib/utils";
 import toast from "react-hot-toast";
 import { saveImagesOnFirebase } from "@/app/actions/save-images-firebase";
 import { v4 as uuidv4 } from "uuid";
+import ProductDisplay from "../../gift/components/ProductDisplay";
+
 
 
 export interface FormInputs {
@@ -51,6 +53,8 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
   const [fieldsComplete, setFieldsComplete] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [showErrorModal, setShowErrorModal] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
+
 
   const nome = watch('nome');
   const destinatario = watch('destinatario');
@@ -58,7 +62,7 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
   const email = watch('email');
   const proximidade = watch('proximidade');
 
-  console
+  console.log(completeData)
 
   const validateInputs = () => {
     const numImages = images.length;
@@ -185,6 +189,30 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
     }
   };
 
+  const handlePreview = () => {
+    const isValid = validateInputs();
+    if (isValid) {
+      const previewData: FormInputs = {
+        id: `${removeAccents(nome?.toLowerCase()?.replace(" ", "").trim())}&${removeAccents(
+          destinatario?.toLowerCase()?.replace(" ", "").trim()
+        )}${uuidv4()}`,
+        email: email || "",
+        nome: nome || "",
+        destinatario: destinatario || "",
+        data: data || "",
+        proximidade: proximidade || "",
+        mensagem: value || "",
+        videoLink: videoLink || "",
+        plano: selectedPlan,
+      };
+
+      setCompleteData(previewData);
+      setShowPreview(true);
+    }
+  };
+
+
+
   return (
     <>
       {showErrorModal && (
@@ -204,6 +232,17 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
           </div>
         </div>
       )}
+
+      {showPreview && (
+        <ProductDisplay
+          data={completeData}
+          images={images}
+          onClose={() => setShowPreview(false)}
+          isModal={true}
+        />
+
+      )}
+
 
       <div
         id="vantagens"
@@ -500,7 +539,7 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
                 </div>
 
                 <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 md:mt-8">
-                  <button className="flex items-center text-xs text-[#EF5DA8] border border-[#EF5DA8] px-6 py-3 rounded-full md:font-medium hover:bg-[#f8e6ef] transition">
+                  <button type="button" onClick={handlePreview} className="flex items-center text-xs text-[#EF5DA8] border border-[#EF5DA8] px-6 py-3 rounded-full md:font-medium hover:bg-[#f8e6ef] transition">
                     Ver como ficou
                     <span className="ml-2">
                       <MdKeyboardArrowRight />
