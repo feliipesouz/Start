@@ -77,7 +77,7 @@ export default function ProductDisplay({
 
         <HeartEffect />
 
-        <div className="flex flex-col items-center justify-center gap-4 mb-36 md:mb-12 ">
+        <div className="flex flex-col items-center justify-center gap-4 ">
           <div className="w-[90%] overflow-hidden">
             <h2 className="text-xs text-center font-semibold">{`${data.nome} & ${data.destinatario}`}</h2>
           </div>
@@ -103,7 +103,7 @@ export default function ProductDisplay({
           <p className="text-gray-400 text-center">{data?.mensagem}</p>
 
           {isValidLink && (
-            <div className="fixed bottom-0 left-0 right-0">
+            <div className="bottom-0 left-0 right-0">
               <AudioPlayer audioUrl={data.videoLink} />
             </div>
           )}

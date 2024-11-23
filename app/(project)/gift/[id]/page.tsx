@@ -2,15 +2,13 @@
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import ProductDisplay from "../components/ProductDisplay";
+import { ClipLoader } from "react-spinners";
 
 export default function ProductPage() {
   const { id } = useParams() || {};
-  console.log('ID do Produto:', id);
 
   const [productData, setProductData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-
-  console.log(productData)
 
   useEffect(() => {
     if (!id) return;
@@ -18,7 +16,7 @@ export default function ProductPage() {
       try {
         const res = await fetch(`/api/get-gift-data/${id}`);
         const data = await res.json();
-        console.log(data)
+
         if (!data.error) {
           setProductData(data);
         }
@@ -34,12 +32,16 @@ export default function ProductPage() {
   }, [id]);
 
   if (loading || !id) {
-    return <div>Carregando...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <ClipLoader color="#ffffff" size={50} />
+      </div>
+    );
   }
 
 
   if (!productData) {
-    return <div>Produto não encontrado</div>;
+    return <div className="flex items-center justify-center">Produto não encontrado</div>;
   }
 
   return <ProductDisplay data={productData} />;

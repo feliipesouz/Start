@@ -10,10 +10,10 @@ export default function AudioPlayer({ audioUrl }: AudioPlayerProps) {
         <div className="w-full max-w-md mx-auto rounded-lg shadow-md">
             <ReactPlayer
                 url={audioUrl}
-                playing
+                playing={true}
                 controls
                 width="100%"
-                height="50px"
+                height="80px"
                 config={{
                     youtube: {
                         playerVars: { showinfo: 0, controls: 1 },

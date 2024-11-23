@@ -6,7 +6,7 @@ const HeartEffect: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setHearts((prevHearts) => [...prevHearts, Math.random()]);
-    }, 300); // Adiciona um novo coração a cada 300ms
+    }, 3000); // Adiciona um novo coração a cada 300ms
 
     return () => clearInterval(interval); // Limpa o intervalo ao desmontar
   }, []);
