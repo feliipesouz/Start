@@ -60,8 +60,6 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
   const email = watch('email');
   const proximidade = watch('proximidade');
 
-  console.log(completeData)
-
   const validateInputs = () => {
     const numImages = images.length;
     const hasMusic = !!videoLink; // True se houver um link de música
@@ -107,7 +105,7 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
   }, [images, videoLink, selectedPlan, nome, destinatario, data, email, proximidade, value]);
 
   function removeAccents(str: string) {
-    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); 
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
   }
 
   const onSubmit = (data: FormInputs) => {
@@ -308,10 +306,20 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
                       <input
                         {...register("proximidade", { required: true })}
                         type="radio"
-                        value="outros"
+                        value="pet"
                         className="form-radio"
                       />
                       <span>Pet</span>
+                    </label>
+
+                    <label className="inline-flex items-center gap-1">
+                      <input
+                        {...register("proximidade", { required: true })}
+                        type="radio"
+                        value="Jesus Cristo"
+                        className="form-radio"
+                      />
+                      <span>Jesus Cristo</span>
                     </label>
                   </div>
                   {errors.proximidade && (
@@ -415,10 +423,10 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
                   </label>
                   <textarea
                     {...register("mensagem", { required: "Mensagem é obrigatória" })}
-                    value={value} // Vínculo ao estado 'value'
-                    onChange={(e) => setValue(e.target.value)} // Atualiza o estado 'value' com o valor digitado
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
                     placeholder="Use esse campo para expressar tudo que quiser!"
-                    className="w-full p-2 border border-[#0000008C] rounded"
+                    className="w-full p-2 border text-[10px] md:text-xs border-[#0000008C] rounded"
                     style={{ height: "160px" }}
                   />
                   {errors.mensagem && (

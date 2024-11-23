@@ -14,8 +14,6 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
     onSelectPlan(plan);
   };
 
-  console.log(selectedPlan)
-
   const settings = {
     dots: false,
     infinite: false,
