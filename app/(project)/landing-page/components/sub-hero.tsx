@@ -14,8 +14,6 @@ import { saveImagesOnFirebase } from "@/app/actions/save-images-firebase";
 import { v4 as uuidv4 } from "uuid";
 import ProductDisplay from "../../gift/components/ProductDisplay";
 
-
-
 export interface FormInputs {
   id?: string;
   email: string;
@@ -109,7 +107,7 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
   }, [images, videoLink, selectedPlan, nome, destinatario, data, email, proximidade, value]);
 
   function removeAccents(str: string) {
-    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); // Remove acentos
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); 
   }
 
   const onSubmit = (data: FormInputs) => {
@@ -125,7 +123,7 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
       plano: selectedPlan,
       mensagem: value,
       videoLink: videoLink,
-      id: `${removeAccents(nome.toLowerCase().replace(' ', '').trim())}&${removeAccents(destinatario.toLowerCase().replace(' ', '').trim())}${uuidv4()}`
+      id: `${removeAccents(nome.toLowerCase().replace(' ', '').trim())}-e-${removeAccents(destinatario.toLowerCase().replace(' ', '').trim())}${uuidv4()}`
     }
     setCompleteData(completeData);
     onSubmitForm(completeData)

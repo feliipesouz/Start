@@ -126,10 +126,21 @@ input[type="radio"]:checked::before {
   }
 }
 
+.heart-effect-container {
+  position: absolute; /* Fixado em toda a tela */
+  top: 0;
+  left: 0;
+  width: 100%; /* Ocupa toda a largura da tela */
+  height: 100%; /* Ocupa toda a altura da tela */
+  pointer-events: none; /* Impede interações com os corações */
+  overflow: hidden; /* Garante que os corações que ultrapassem os limites não criem scrollbars */
+  z-index: 2; /* Coloca acima do conteúdo principal */
+}
+
 .heart {
   position: absolute;
-  top: 0; /* Começa no topo */
-  left: 50%;
+  top: -10%; /* Começa um pouco acima da tela */
+  left: 50%; /* Posição inicial horizontal */
   transform: translateX(-50%);
   width: 30px;
   height: 30px;

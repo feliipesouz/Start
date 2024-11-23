@@ -4,6 +4,13 @@ import { db, getDownloadURLFromPath } from '@/app/lib/firebase';
 export async function GET(request: Request, { params }: { params: { id: string } }) {
   const { id } = params;
 
+  if (!id) {
+    console.log('sem id')
+    return NextResponse.json({ error: 'ID não fornecido' }, { status: 400 });
+  }
+  console.log('tem id')
+  console.log(id)
+
   // Buscar o documento no Firebase Firestore usando o id da URL
   const docRef = db.collection('saved-images').doc(id);
   const docSnapshot = await docRef.get();
@@ -13,6 +20,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
   }
 
   const data = docSnapshot.data();
+  console.log(data)
 
   if (!data) {
     return NextResponse.json({ error: 'Sem dados disponíveis' }, { status: 404 });
