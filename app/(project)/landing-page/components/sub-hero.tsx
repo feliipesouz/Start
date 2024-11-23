@@ -383,7 +383,7 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
                     </label>
                     <input
                       {...register("data", { required: "Data de quando vocês se conheceram" })}
-                      type="date"
+                      type="datetime-local"
                       className="w-full text-xs py-2 md:py-[10px] px-4 md:px-[21px] border border-[#0000008C] rounded-full"
                     />
                     {errors.data && (
