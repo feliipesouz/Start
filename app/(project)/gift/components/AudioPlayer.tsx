@@ -7,7 +7,7 @@ interface AudioPlayerProps {
 
 export default function AudioPlayer({ audioUrl }: AudioPlayerProps) {
     return (
-        <div className="w-full max-w-md mx-auto rounded-lg shadow-md fixed bottom-0 left-0">
+        <div className="w-full max-w-md mx-auto rounded-lg shadow-md">
             <ReactPlayer
                 url={audioUrl}
                 playing

@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import RelationshipCounter from "./RelationshipCounter";
 import AudioPlayer from "./AudioPlayer";
+import HeartEffect from "./HeartEffect";
 
 interface ProductDisplayProps {
     data: FormInputs | null | any;
@@ -21,7 +22,7 @@ export default function ProductDisplay({
 }: ProductDisplayProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    console.log(data)
+    console.log(data);
 
     useEffect(() => {
         // Cria um intervalo para mudar a imagem atual
@@ -41,15 +42,25 @@ export default function ProductDisplay({
         return <div>Dados do produto não disponíveis</div>;
     }
 
+    useEffect(() => {
+        // Impede que a página de fundo role enquanto o modal está aberto
+        if (isModal) {
+            document.body.classList.add("overflow-hidden");
+        }
+        return () => {
+            document.body.classList.remove("overflow-hidden");
+        };
+    }, [isModal]);
+
     const isValidLink = ReactPlayer.canPlay(data.videoLink || "");
 
     return (
         <div
-            className={`flex items-center justify-center ${isModal ? "bg-black/70 fixed inset-0 z-50" : "bg-gray-900 min-h-screen"
-                }`}
+            className={`fixed inset-0 z-50 bg-gray-900 flex items-center justify-center`}
+            style={{ overflowY: "auto", backgroundColor: "#1A202C" }} // Cor azul escuro e scroll no modal
         >
             <div
-                className={`relative bg-gray-800 rounded-xl p-8 md:max-w-xl h-screen md:h-auto text-white ${isModal ? "shadow-lg" : ""}`}
+                className={`relative bg-gray-800 rounded-xl p-6 md:max-w-xl w-full max-h-screen overflow-y-auto text-white shadow-lg`}
             >
                 {isModal && (
                     <button
@@ -59,10 +70,15 @@ export default function ProductDisplay({
                         X
                     </button>
                 )}
-
-                <div className="flex flex-col items-center gap-4">
+                <div className="w-[95%] max-h-[80vh]">
+                    <HeartEffect />
+                </div>
+                <div className="flex flex-col items-center justify-center gap-4 mb-36 md:mb-12 ">
                     <div className="bg-slate-500 rounded-md w-[90%] overflow-hidden">
-                        <h2 className="text-xs font-semibold">{`voceeespecial.com.br/${data.nome.replace(' ', '')}&${data.destinatario.replace(' ', '')}`}</h2>
+                        <h2 className="text-xs font-semibold">{`voceeespecial.com.br/${data.nome.replace(
+                            " ",
+                            ""
+                        )}&${data.destinatario.replace(" ", "")}`}</h2>
                     </div>
 
                     <div className="w-[90%] h-[340px] mx-auto overflow-hidden rounded-md flex items-center justify-center">
@@ -75,20 +91,18 @@ export default function ProductDisplay({
                         />
                     </div>
 
-
-
                     <RelationshipCounter startDate={data.data} />
 
                     <div className="border w-40 mx-auto opacity-20 mt-1 flex-shrink-0" />
 
-                    <p className="mb-6 text-gray-400">{data?.mensagem}</p>
+                    <p className="text-gray-400 text-center">{data?.mensagem}</p>
 
+                    {isValidLink && (
+                        <div className="fixed bottom-0 left-0 right-0">
+                            <AudioPlayer audioUrl={data.videoLink} />
+                        </div>
+                    )}
                 </div>
-
-
-                {isValidLink && (
-                    <AudioPlayer audioUrl={data.videoLink} />
-                )}
             </div>
         </div>
     );
