@@ -1,4 +1,6 @@
+import { sendEmailTo } from "@/app/lib/ses";
 import stripe from "@/app/lib/stripe";
+import { generateEmailHTML, generateQRCodeBuffer } from "@/app/lib/utils";
 import { deleteUserData } from "@/app/server/stripe/delete-user-data";
 import { handleStripePayment } from "@/app/server/stripe/handle-payment";
 import { headers } from "next/headers";
@@ -41,17 +43,26 @@ export async function POST(req: Request) {
       case "checkout.session.async_payment_succeeded":
         if (event.data.object.payment_status === "paid") {
           // O cliente pagou o boleto e o pagamento foi confirmado
-          const id = event.data.object.metadata?.id;
-          // if (userEmail) {
-          //   await sendEmailTo({
-          //     userEmail,
-          //     emailSubject: "Compra com sucesso!",
-          //     emailBody: `<html><body>
-          //       <p>Parabéns, bro.</p>
-          //       <p>Segue o link: ${id}</p>
-          //     </body></html>`,
-          //   });
-          // }
+          const metadata = event.data.object.metadata;
+          const id = metadata?.id;
+          const userEmail = event.data.object.customer_details?.email;
+
+          const productName = "Contador de tempo";
+
+          if (userEmail) {
+            const qrCodeValue = `https://voceeespecial.com.br/gift/${id}`;
+            const emailBody = await generateEmailHTML(id as string, productName, qrCodeValue);
+
+            const qrCodeBuffer = await generateQRCodeBuffer(qrCodeValue);
+
+            await sendEmailTo({
+              userEmail,
+              emailSubject: "Compra com sucesso!",
+              emailBody,
+              attachmentContent: qrCodeBuffer,
+            });
+          }
+
         }
         break;
 
@@ -76,3 +87,4 @@ export async function POST(req: Request) {
     );
   }
 }
+

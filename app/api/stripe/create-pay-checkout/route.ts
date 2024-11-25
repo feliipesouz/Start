@@ -35,6 +35,7 @@ export async function POST(req: NextRequest) {
       cancel_url: `${req.headers.get("origin")}/`,
       metadata: metadata,
       ...(userEmail && { customer_email: userEmail }),
+      expires_at: Math.floor(Date.now() / 1000) + 60 * 30, 
     });
 
     if (!session.url) {

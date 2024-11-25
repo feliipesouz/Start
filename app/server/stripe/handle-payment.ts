@@ -4,23 +4,31 @@ import { sendEmailTo } from "@/app/lib/ses";
 import stripe from "@/app/lib/stripe";
 
 import Stripe from "stripe";
+import { generateEmailHTML, generateEmailWithBoletoHTML, generateQRCodeBuffer } from "@/app/lib/utils";
 
 export async function handleStripePayment(
   event: Stripe.CheckoutSessionCompletedEvent
 ) {
   if (event.data.object.payment_status === "paid") {
     // pagagamento por cartão com sucesso
-    const id = event.data.object.metadata?.id;
+    console.log("pagagamento por cartão com sucesso")
+    const metadata = event.data.object.metadata;
+    const id = metadata?.id;
     const userEmail = event.data.object.customer_details?.email;
 
+    const productName = "Contador de tempo";
+
     if (userEmail) {
+      const qrCodeValue = `https://voceeespecial.com.br/gift/${id}`;
+      const emailBody = await generateEmailHTML(id as string, productName, qrCodeValue);
+
+      const qrCodeBuffer = await generateQRCodeBuffer(qrCodeValue);
+
       await sendEmailTo({
         userEmail,
         emailSubject: "Compra com sucesso!",
-        emailBody: `<html><body>
-          <p>Parabéns, bro.</p>
-          <p>Segue o link: ${id}</p>
-        </body></html>`,
+        emailBody,
+        attachmentContent: qrCodeBuffer,
       });
     }
   }
@@ -37,17 +45,17 @@ export async function handleStripePayment(
     const hostedVoucherUrl =
       paymentIntent.next_action?.boleto_display_details?.hosted_voucher_url;
 
-    if (hostedVoucherUrl) { 
+    if (hostedVoucherUrl) {
       // O cliente gerou um boleto, manda um email pra ele
       const userEmail = event.data.object.customer_details?.email;
 
       if (userEmail) {
+        const emailBody = await generateEmailWithBoletoHTML(hostedVoucherUrl);
+
         await sendEmailTo({
           userEmail,
-          emailSubject: "Pague seu boleto!",
-          emailBody: `<html><body>
-            <p>Aqui está o link para pagar: ${hostedVoucherUrl}</p>
-          </body></html>`,
+          emailSubject: "Seu boleto está pronto para pagamento!",
+          emailBody,
         });
       }
     }

@@ -29,7 +29,6 @@ export default function PaymentModal({
 
     const handlePayment = async () => {
         await handleUploadImages(formData as FormInputs);
-
         if (payment === "cartão") {
             return createPaymentStripeCheckout({ id: formData?.id, userEmail: formData?.email, selectedPlan });
         } else if (payment === "pix") {
@@ -68,22 +67,15 @@ export default function PaymentModal({
                             : "border border-gray-300"
                             } justify-between rounded-lg p-3 cursor-pointer hover:shadow-lg transition-all`}
                     >
-                        <input
-                            type="radio"
-                            name="payment"
-                            value="pix"
-                            className="hidden"
-                            checked={payment === "pix"}
-                        />
                         <div className="flex items-center gap-2 text-xs">
-                            <span
-                                className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${payment === "pix" ? "border-pink-500" : "border-gray-300"
-                                    }`}
-                            >
-                                {payment === "pix" && (
-                                    <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
-                                )}
-                            </span>
+                            <input
+                                type="radio"
+                                name="payment"
+                                value="pix"
+                                className="hidden"
+                                checked={payment === "pix"}
+                            />
+
                             <span>PIX</span>
                         </div>
                         <Image src="/landing-page/pix.png" alt="Pix" width={22} height={22} />
@@ -95,29 +87,17 @@ export default function PaymentModal({
                             : "border border-gray-300"
                             } justify-between rounded-lg p-[12px] cursor-pointer hover:shadow-lg transition-all`}
                     >
-                        <input
-                            type="radio"
-                            name="payment"
-                            value="cartão"
-                            className="hidden"
-                            checked={payment === "cartão"}
-                        />
-                        <div className="flex items-center w-full justify-between">
-                            <div className="flex gap-1 items-center text-xs">
-                                <span
-                                    className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${payment === "cartão"
-                                        ? "border-pink-500"
-                                        : "border-gray-300"
-                                        }`}
-                                >
-                                    {payment === "cartão" && (
-                                        <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
-                                    )}
-                                </span>
-                                <span className="whitespace-nowrap">Cartão de Crédito</span>
-                            </div>
-                            <Image src="/landing-page/cartao.png" alt="Cartão" width={20} height={20} />
+                        <div className="flex items-center gap-2 text-xs">
+                            <input
+                                type="radio"
+                                name="payment"
+                                value="cartão"
+                                className="hidden"
+                                checked={payment === "cartão"}
+                            />
+                            <span className="whitespace-nowrap">Cartão de Crédito</span>
                         </div>
+                        <Image src="/landing-page/cartao.png" alt="Cartão" width={20} height={20} />
                     </label>
 
                 </div>

@@ -12,7 +12,7 @@ export async function handleMercadoPagoPayment(paymentData: PaymentResponse) {
     userEmail,
     emailSubject: "Compra com sucesso!",
     emailBody: `<html><body>
-      <p>Parabéns, bro.</p>
+      <p>Parabéns, bro. Mercado pago</p>
     </body></html>`,
   });
 

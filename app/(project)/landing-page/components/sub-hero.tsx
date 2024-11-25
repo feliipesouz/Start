@@ -545,7 +545,7 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
                 </div>
 
                 <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 md:mt-8">
-                  <button type="button" onClick={handlePreview} className="flex items-center text-xs text-[#EF5DA8] border border-[#EF5DA8] px-6 py-3 rounded-full md:font-medium hover:bg-[#f8e6ef] transition">
+                  <button type="button" onClick={handleSubmit(handlePreview)} className="flex items-center text-xs text-[#EF5DA8] border border-[#EF5DA8] px-6 py-3 rounded-full md:font-medium hover:bg-[#f8e6ef] transition">
                     Ver como ficou
                     <span className="ml-2">
                       <MdKeyboardArrowRight />
