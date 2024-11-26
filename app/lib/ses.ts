@@ -124,7 +124,7 @@ export const ses = new SES({
     accessKeyId: process.env.SES_ACCESS_KEY!,
     secretAccessKey: process.env.SES_SECRET_KEY!,
   },
-  region: "us-east-2",
+  region: "us-east-1",
 });
 
 export async function sendEmailTo({
