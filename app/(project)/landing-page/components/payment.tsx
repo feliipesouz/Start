@@ -32,10 +32,7 @@ export default function PaymentModal({
         if (payment === "cartão") {
             return createPaymentStripeCheckout({ id: formData?.id, userEmail: formData?.email, selectedPlan });
         } else if (payment === "pix") {
-            await createMercadoPagoCheckout({
-                testeId: '123',
-                email: formData?.email,
-            });
+            await createMercadoPagoCheckout({ id: formData?.id, userEmail: formData?.email, selectedPlan });
             onClose();
         }
     };

@@ -7,7 +7,7 @@ import { deleteUserData } from "@/app/server/stripe/delete-user-data";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { type, data } = body;
+    const { type, data } = body;    
 
     console.log(data)
 
@@ -16,7 +16,8 @@ export async function POST(request: Request) {
       const paymentData = await payment.get({ id: data.id });
 
       const metadata = paymentData.metadata;
-      const userId = metadata?.teste_id; // O ID salvo no Firebase
+      console.log(metadata)
+      const userId = metadata?.id; // O ID salvo no Firebase
 
       if (paymentData.status === "approved") {
         // Processar pagamentos aprovados (PIX ou cartão)
