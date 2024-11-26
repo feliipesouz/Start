@@ -105,8 +105,23 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                       Mais Escolhido
                     </div>
 
-                    <h3 className="text-xs font-medium text-[#223645] mb-4 text-center">Acesso Vitalício</h3>
-                    <p className="font-bold mb-1 text-xs text-[#1C1C1C] text-center">R$ 39,90</p>
+                    <h3 className="text-xs font-medium text-[#223645] text-center">Acesso Vitalício</h3>
+
+                    <div className="relative mb-1 text-center">
+                      <p className="text-[9px] text-[#6F6F6F] relative inline-block">
+                        De R$ 39,90
+                        <span
+                          className="absolute inset-0 transform -rotate-12 border-t border-[#FF0000]"
+                          style={{
+                            width: "100%",
+                            top: "50%",
+                            left: "0",
+                          }}
+                        ></span>
+                      </p>
+                      <p className="font-bold text-xs text-[#1C1C1C]">R$ 33,90</p>
+                    </div>
+
                     <p className="text-[#6F6F6F] text-[9px] text-center mb-3">Acesso vitalício com música</p>
                     <div className="w-full flex justify-center">
                       <button
@@ -117,6 +132,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                       </button>
                     </div>
                   </div>
+
                 </Slider>
               </div>
 
@@ -126,7 +142,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                   onClick={() => handleSelectPlan("basic")}
                 >
                   {selectedPlan === "basic" && (
-                    <div className="absolute bottom-[5px] right-5 z-[-10]">
+                    <div className="absolute bottom-[25px] right-5 z-[-10]">
                       <Image src="/landing-page/before.png" alt="Background circle" width={50} height={50} />
                     </div>
                   )}
@@ -145,7 +161,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                   onClick={() => handleSelectPlan("pro")}
                 >
                   {selectedPlan === "pro" && (
-                    <div className="absolute bottom-[5px] right-5 z-[-10]">
+                    <div className="absolute bottom-[25px] right-5 z-[-10]">
                       <Image src="/landing-page/before.png" alt="Background circle" width={50} height={50} />
                     </div>
                   )}
@@ -160,7 +176,8 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                 </div>
 
                 <div
-                  className={`relative max-w-[168px] bg-white p-4 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "lifetime" ? "border-2 border-pink-400 scale-110" : "scale-100"}`}
+                  className={`relative max-w-[168px] bg-white p-4 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "lifetime" ? "border-2 border-pink-400 scale-110" : "scale-100"
+                    }`}
                   onClick={() => handleSelectPlan("lifetime")}
                 >
                   {selectedPlan === "lifetime" && (
@@ -172,14 +189,33 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                     Mais Escolhido
                   </div>
                   <h3 className="text-base font-medium text-[#223645] mb-5">Acesso Vitalício</h3>
-                  <p className="font-bold mb-[7px] text-base text-[#1C1C1C]">R$ 33,90</p>
+
+                  {/* Preço Promocional */}
+                  <div className="flex flex-col items-center mb-[7px]">
+                    <p className="text-sm text-[#6F6F6F] relative">
+                      De R$ 38,90
+                      {/* Traço diagonal */}
+                      <span
+                        className="absolute inset-0 transform -rotate-12 border-t border-[#FF0000]"
+                        style={{
+                          width: "100%",
+                          top: "50%",
+                          left: "0",
+                        }}
+                      ></span>
+                    </p>
+                    <p className="font-bold text-base text-[#1C1C1C]">Por R$ 33,90</p> {/* Preço promocional */}
+                  </div>
+
                   <p className="text-[#6F6F6F] text-sm text-center mb-5">Acesso para sempre + 7 fotos + música</p>
                   <button
-                    className={`px-4 py-2 rounded-full text-xs ${selectedPlan === "lifetime" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"}`}
+                    className={`px-4 py-2 rounded-full text-xs ${selectedPlan === "lifetime" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"
+                      }`}
                   >
                     {selectedPlan === "lifetime" ? "Escolhido!" : "Escolher"}
                   </button>
                 </div>
+
               </div>
 
             </div>
