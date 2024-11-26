@@ -9,6 +9,9 @@ export async function POST(req: NextRequest) {
   try {
     const preference = new Preference(mpClient);
 
+    const expirationDate = new Date();
+    expirationDate.setMinutes(expirationDate.getMinutes() + 20);
+
     const createdPreference = await preference.create({
       body: {
         external_reference: id, // IMPORTANTE: Isso aumenta a pontuação da sua integração com o Mercado Pago - É o id da compra no nosso sistema
@@ -62,6 +65,7 @@ export async function POST(req: NextRequest) {
           failure: `${req.headers.get("origin")}/?status=falha`,
           pending: `${req.headers.get("origin")}/api/mercado-pago/pending`, // Criamos uma rota para lidar com pagamentos pendentes
         },
+        date_of_expiration: expirationDate.toISOString(),
       },
     });
 
