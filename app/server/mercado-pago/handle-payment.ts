@@ -18,6 +18,8 @@ export async function handleMercadoPagoPayment(paymentData: PaymentResponse) {
 
   const qrCodeBuffer = await generateQRCodeBuffer(qrCodeValue);
 
+  console.log('pronto para envio do email')
+
   await sendEmailTo({
     userEmail,
     emailSubject: "Pagamento Aprovado - Seu Produto Está Pronto!",
