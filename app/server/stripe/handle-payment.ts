@@ -16,9 +16,9 @@ export async function handleStripePayment(
     const id = metadata?.id;
     const userEmail = event.data.object.customer_details?.email;
 
-    const productName = "Contador de tempo";
-
     if (userEmail) {
+
+      const productName = "Contador de tempo";
       const qrCodeValue = `https://voceeespecial.com.br/gift/${id}`;
       const emailBody = await generateEmailHTML(id as string, productName, qrCodeValue);
 

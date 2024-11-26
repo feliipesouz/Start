@@ -5,17 +5,17 @@ import mpClient from "@/app/lib/mercado-pago";
 import { Payment, MercadoPagoConfig } from 'mercadopago';
 
 export async function POST(req: NextRequest) {
-  const { testeId, userEmail } = await req.json();
+  const { id, userEmail, selectedPlan } = await req.json();
   try {
     const preference = new Preference(mpClient);
 
     const createdPreference = await preference.create({
       body: {
-        external_reference: testeId, // IMPORTANTE: Isso aumenta a pontuação da sua integração com o Mercado Pago - É o id da compra no nosso sistema
+        external_reference: id, // IMPORTANTE: Isso aumenta a pontuação da sua integração com o Mercado Pago - É o id da compra no nosso sistema
         metadata: {
-          testeId, // O Mercado Pago converte para snake_case, ou seja, testeId vai virar teste_id
-          // userEmail: userEmail,
-          // plan: '123'
+          id, // O Mercado Pago converte para snake_case, ou seja, id vai virar teste_id
+          userEmail: userEmail,
+          plan: selectedPlan
           //etc
         },
         ...(userEmail && {
@@ -26,33 +26,33 @@ export async function POST(req: NextRequest) {
 
         items: [
           {
-            id: "id-do-seu-produto",
-            description: "Descrição do produto",
-            title: "Nome do produto",
+            id: id,//"id-do-seu-produto",
+            description: "Sua página personalizada que celebra uma relação especial, seja de namoro, amizade, família ou qualquer vínculo onde haja um sentimento verdadeiro.",
+            title: "Contador de relacionamento",
             quantity: 1,
-            unit_price: 9.99,
+            unit_price: 1,
             currency_id: "BRL",
             category_id: "category", // Recomendado inserir, mesmo que não tenha categoria - Aumenta a pontuação da sua integração com o Mercado Pago
           },
         ],
         payment_methods: {
           // Descomente para desativar métodos de pagamento
-          // excluded_payment_methods: [
-          //   {
-          //     id: "bolbradesco",
-          //   },
-          //   {
-          //     id: "pec",
-          //   },
-          // ],
-          // excluded_payment_types: [
-          //   {  
-          //     id: "debit_card",
-          //   },
-          //   {
-          //     id: "credit_card",
-          //   },
-          // ],
+          excluded_payment_methods: [
+            {
+              id: "bolbradesco",
+            },
+            {
+              id: "pec",
+            },
+          ],
+          excluded_payment_types: [
+            {
+              id: "debit_card",
+            },
+            {
+              id: "credit_card",
+            },
+          ],
           installments: 2, // Número máximo de parcelas permitidas
           default_payment_method_id: "pix",
         },
