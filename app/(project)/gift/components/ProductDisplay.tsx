@@ -62,10 +62,10 @@ export default function ProductDisplay({
     return (
         <div
             className={`fixed inset-0 z-50 bg-gray-900 flex items-center justify-center`}
-            style={{ overflowY: "auto", backgroundColor: "#1A202C" }} // Cor azul escuro e scroll no modal
+            style={{ overflowY: "auto", backgroundColor: "#1A202C", }}
         >
             <div
-                className={`relative bg-gray-800 rounded-xl p-6 md:max-w-xl w-full max-h-screen overflow-y-auto text-white shadow-lg`}
+                className={`relativ p-6 md:max-w-xl w-full max-h-screen overflow-y-auto text-white `}
             >
                 {isModal && (
                     <button
@@ -89,7 +89,8 @@ export default function ProductDisplay({
                                 src={imageSources[currentIndex]}
                                 alt={`Imagem ${currentIndex + 1}`}
                                 width={260}
-                                height={300} // Altura fixa
+                                height={300} 
+                                priority={true}
                                 className="object-cover h-full w-auto"
                             />
                         ) : (

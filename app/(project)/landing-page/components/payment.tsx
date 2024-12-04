@@ -22,20 +22,39 @@ export default function PaymentModal({
     handleUploadImages,
 }: PaymentModalProps) {
     const [payment, setPayment] = useState<"pix" | "cartão">("pix");
+    const [isLoading, setIsLoading] = useState(false);
+
 
     const { createMercadoPagoCheckout } = useMercadoPago();
     const { createPaymentStripeCheckout } = useStripe();
 
 
     const handlePayment = async () => {
-        await handleUploadImages(formData as FormInputs);
-        if (payment === "cartão") {
-            return createPaymentStripeCheckout({ id: formData?.id, userEmail: formData?.email, selectedPlan });
-        } else if (payment === "pix") {
-            await createMercadoPagoCheckout({ id: formData?.id, userEmail: formData?.email, selectedPlan });
-            onClose();
+        if (isLoading) return; // Evitar que o botão seja clicado múltiplas vezes
+        setIsLoading(true); // Inicia o estado de carregamento
+
+        try {
+            await handleUploadImages(formData as FormInputs);
+            if (payment === "cartão") {
+                return await createPaymentStripeCheckout({
+                    id: formData?.id,
+                    userEmail: formData?.email,
+                    selectedPlan,
+                });
+            } else if (payment === "pix") {
+                return await createMercadoPagoCheckout({
+                    id: formData?.id,
+                    userEmail: formData?.email,
+                    selectedPlan,
+                });
+            }
+        } catch (error) {
+            console.error("Erro no pagamento:", error);
+        } finally {
+            setIsLoading(false); // Finaliza o estado de carregamento
         }
     };
+
 
     if (!isOpen) return null;
 
@@ -135,9 +154,11 @@ export default function PaymentModal({
                     </button>
                     <button
                         onClick={handlePayment}
-                        className="bg-[#EF5DA8] text-white rounded-full px-6 py-2 text-xs font-bold hover:bg-[#e94d96]"
+                        disabled={isLoading}
+                        className={`bg-[#EF5DA8] flex gap-1 items-center text-white rounded-full px-6 py-2 text-xs font-bold hover:bg-[#e94d96] ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
                     >
-                        Continuar
+                        {isLoading && <div className="spinner"></div>}
+                        {isLoading ? "Processando..." : "Continuar"}
                     </button>
                 </div>
             </div>

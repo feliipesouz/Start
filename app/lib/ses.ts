@@ -131,7 +131,7 @@ export async function sendEmailTo({
   userEmail,
   emailSubject,
   emailBody,
-  attachmentName,
+  attachmentName = "qrcode.png", // Nome padrão para o anexo
   attachmentContent,
 }: {
   userEmail: string;
@@ -180,11 +180,9 @@ export async function sendEmailTo({
     );
   }
 
-  const rawEmail = rawEmailParts.join("\n");
+  const rawEmail = rawEmailParts.join("\r\n"); // Use CRLF para maior compatibilidade
 
   // Envie o email com SES
-  console.log('Envie o email com SES')
-  console.log(rawEmail)
   try {
     const command = new SendRawEmailCommand({
       RawMessage: {
@@ -192,8 +190,6 @@ export async function sendEmailTo({
       },
     });
     const emailSent = await ses.send(command);
-    console.log('emailSent')
-    console.log(emailSent)
     return emailSent.MessageId;
   } catch (error) {
     console.error("Erro ao enviar email:", error);

@@ -44,9 +44,9 @@ const RelationshipCounter: React.FC<CounterProps> = ({ startDate }) => {
     }, [startDate]);
 
     return (
-        <div className="text-center text-white mt-4 text-base gap-4">
-            <p className="mb-2">Juntos há:</p>
-            <p>{timeElapsed}</p>
+        <div className="text-center text-white mt-4 text-base gap-4 px-4">
+            <p className="mb-2" style={{ fontFamily: "'Great Vibes', cursive" }}>Juntos há</p>
+            <p style={{ fontFamily: "'Great Vibes', cursive" }}>{timeElapsed}</p>
         </div>
     );
 };
