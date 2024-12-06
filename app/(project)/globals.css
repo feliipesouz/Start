@@ -145,6 +145,7 @@ input[type="radio"]:checked::before {
   }
 }
 
+/*Efeitos de emoticos na página do produto */
 .heart-effect-container {
   position: absolute; /* Fixado em toda a tela */
   top: 0;
@@ -169,27 +170,37 @@ input[type="radio"]:checked::before {
 }
 
 .heart:nth-child(1) {
-  animation-duration: 10s; /* Tempo da animação aumentado */
+  animation-duration: 10s; 
   animation-delay: 0s;
 }
 
 .heart:nth-child(2) {
-  animation-duration: 12s; /* Tempo da animação aumentado */
+  animation-duration: 12s; 
   animation-delay: 2s;
 }
 
 .heart:nth-child(3) {
-  animation-duration: 14s; /* Tempo da animação aumentado */
+  animation-duration: 14s; 
   animation-delay: 4s;
 }
 
 .heart:nth-child(4) {
-  animation-duration: 16s; /* Tempo da animação aumentado */
+  animation-duration: 16s; 
   animation-delay: 6s;
 }
 
 .heart:nth-child(5) {
-  animation-duration: 18s; /* Tempo da animação aumentado */
+  animation-duration: 18s; 
   animation-delay: 8s;
 }
 
+
+
+/*Esconder a barra de rolagem, mas permitir o scroll */
+::-webkit-scrollbar {
+  display: none; 
+}
+body {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;     
+}
