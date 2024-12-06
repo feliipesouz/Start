@@ -3,6 +3,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import ProductDisplay from "../components/ProductDisplay";
 import { ClipLoader } from "react-spinners";
+import * as gtag from "@/app/lib/gtag";
 
 export default function ProductPage() {
   const { id } = useParams() || {};
@@ -27,6 +28,13 @@ export default function ProductPage() {
         setLoading(false);
       }
     };
+
+    gtag.event({
+      action: "open_product_link",
+      category: "Product Access",
+      label: `Produto ID: ${id}`,
+      value: 1,
+    });
 
     fetchData();
   }, [id]);
