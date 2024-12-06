@@ -34,6 +34,8 @@ export default function PaymentModal({
         setIsLoading(true); // Inicia o estado de carregamento
 
         try {
+
+            console.log(formData)
             await handleUploadImages(formData as FormInputs);
             if (payment === "cartão") {
                 return await createPaymentStripeCheckout({

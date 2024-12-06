@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { loadStripe, Stripe } from "@stripe/stripe-js";
-import toast from "react-hot-toast";
 
 const useStripe = () => {
   const [stripe, setStripe] = useState<Stripe | null>(null);
@@ -35,7 +34,7 @@ const useStripe = () => {
         sessionId: data.sessionId,
       });
     } catch (error) {
-      toast.error(`Error creating payment checkout`);
+      console.error(`Error creating payment checkout`);
       console.log(error);
     }
   }

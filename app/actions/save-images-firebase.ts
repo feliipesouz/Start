@@ -24,6 +24,7 @@ export async function saveImagesOnFirebase(formData: FormData, id: string) {
     const mensagem = formData.get("mensagem") as string;
     const videoLink = formData.get("videoLink") as string;
     const plano = formData.get("plano") as string;
+    const created_at = new Date().toISOString();
     
 
     const uploadPromises = files.map(async (file, index) => {
@@ -46,6 +47,7 @@ export async function saveImagesOnFirebase(formData: FormData, id: string) {
       mensagem,
       videoLink,
       plano,
+      created_at,
       uploadPaths, // Caminhos das imagens
     };
 

@@ -173,7 +173,6 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
     formData.append("mensagem", data.mensagem);
     formData.append("videoLink", data.videoLink);
     formData.append("plano", data.plano);
-    formData.append("created_at", new Date().toISOString());
 
     return formData;
   };
