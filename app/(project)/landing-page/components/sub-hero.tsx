@@ -156,7 +156,7 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
     const formData = createFormData(compressedFiles, data);
 
     const documentId = await saveImagesOnFirebase(formData, data.id!);
-    handleUploadResponse(documentId);
+    // handleUploadResponse(documentId);
     setSavingImages(false);
   }
 
@@ -177,16 +177,20 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
     return formData;
   };
 
-  const handleUploadResponse = (documentId: string | null) => {
-    if (documentId) {
-      toast.success(`Documento criado com sucesso!`);
-    } else {
-      toast.error("Erro ao criar o documento");
-    }
-  };
+  // const handleUploadResponse = (documentId: string | null) => {
+  //   if (documentId) {
+  //     toast.success(`Documento criado com sucesso!`);
+  //   } else {
+  //     toast.error("Erro ao criar o documento");
+  //   }
+  // };
 
   const handlePreview = () => {
     const isValid = validateInputs();
+    if (!isValid) {
+      setShowErrorModal(true)
+      return
+    }
     if (isValid) {
       const previewData: FormInputs = {
         id: `${removeAccents(nome?.toLowerCase()?.replace(" ", "").trim())}&${removeAccents(
@@ -206,6 +210,12 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
       setShowPreview(true);
     }
   };
+
+
+  const handleRemoveImage = (imageUrl: string) => {
+    setImages((prevImages) => prevImages.filter((image) => image !== imageUrl));
+  };
+
 
 
 
@@ -496,12 +506,19 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
                           </>
                         ) : (
                           images.map((image) => (
-                            <img
-                              key={image}
-                              src={image}
-                              alt="image"
-                              className="w-16 object-cover"
-                            />
+                            <div key={image} className="relative">
+                              <img
+                                src={image}
+                                alt="image"
+                                className="w-16 object-cover rounded"
+                              />
+                              <button
+                                onClick={() => handleRemoveImage(image)}
+                                className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-[2px] text-xs"
+                              >
+                                ✕
+                              </button>
+                            </div>
                           ))
                         )}
                       </div>
@@ -545,7 +562,7 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
                 </div>
 
                 <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 md:mt-8">
-                  <button type="button" onClick={handleSubmit(handlePreview)} className="flex items-center text-xs text-[#EF5DA8] border border-[#EF5DA8] px-6 py-3 rounded-full md:font-medium hover:bg-[#f8e6ef] transition">
+                  <button type="button" onClick={handlePreview} className="flex items-center text-xs text-[#EF5DA8] border border-[#EF5DA8] px-6 py-3 rounded-full md:font-medium hover:bg-[#f8e6ef] transition">
                     Ver como ficou
                     <span className="ml-2">
                       <MdKeyboardArrowRight />
