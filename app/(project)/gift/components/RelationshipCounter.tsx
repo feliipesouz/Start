@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { intervalToDuration } from "date-fns";
+import { toZonedTime } from "date-fns-tz"; // Para ajustar para o fuso horário de Brasília
 
 interface CounterProps {
     startDate: string;
@@ -9,24 +11,29 @@ const RelationshipCounter: React.FC<CounterProps> = ({ startDate }) => {
 
     useEffect(() => {
         const calculateTimeElapsed = (startDate: string) => {
-            const start = new Date(startDate);
-            const now = new Date();
+            const timeZone = "America/Sao_Paulo"; // Fuso horário de Brasília
+            const start = toZonedTime(new Date(startDate), timeZone); // Ajusta a data inicial para o fuso horário
+            const now = toZonedTime(new Date(), timeZone); // Ajusta a data atual para o fuso horário
 
-            const totalSeconds = Math.floor((now.getTime() - start.getTime()) / 1000);
-
-            const years = Math.floor(totalSeconds / (365 * 24 * 3600));
-            const months = Math.floor((totalSeconds % (365 * 24 * 3600)) / (30 * 24 * 3600));
-            const days = Math.floor((totalSeconds % (30 * 24 * 3600)) / (24 * 3600));
-            const hours = Math.floor((totalSeconds % (24 * 3600)) / 3600);
-            const minutes = Math.floor((totalSeconds % 3600) / 60);
-            const seconds = totalSeconds % 60;
+            const duration = intervalToDuration({ start, end: now });
 
             // Função para retornar singular ou plural
             const pluralize = (value: number, singular: string, plural: string) => {
                 return value === 1 ? `${value} ${singular}` : `${value} ${plural}`;
             };
 
-            return `${pluralize(years, "ano", "anos")}, ${pluralize(months, "mês", "meses")}, ${pluralize(days, "dia", "dias")}, ${pluralize(hours, "hora", "horas")}, ${pluralize(minutes, "minuto", "minutos")} e ${pluralize(seconds, "segundo", "segundos")}`;
+            return `${pluralize(duration.years || 0, "ano", "anos")}, ${pluralize(
+                duration.months || 0,
+                "mês",
+                "meses"
+            )}, ${pluralize(duration.days || 0, "dia", "dias")}, ${pluralize(
+                duration.hours || 0,
+                "hora",
+                "horas"
+            )}, ${pluralize(duration.minutes || 0, "minuto", "minutos")} e ${pluralize(
+                duration.seconds || 0,
+                "segundo",
+                "segundos")}`;
         };
 
         const updateCounter = () => {
@@ -45,7 +52,7 @@ const RelationshipCounter: React.FC<CounterProps> = ({ startDate }) => {
 
     return (
         <div className="text-center text-white mt-4 text-base gap-4 px-4">
-            <p className="mb-2" style={{ fontFamily: "'Great Vibes', cursive" }}>Juntos há</p>
+            <p className="mb-2" style={{ fontFamily: "'Great Vibes', cursive" }}>Colecionando momentos há</p>
             <p style={{ fontFamily: "'Great Vibes', cursive" }}>{timeElapsed}</p>
         </div>
     );

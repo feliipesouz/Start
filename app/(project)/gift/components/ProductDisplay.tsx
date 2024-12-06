@@ -65,7 +65,7 @@ export default function ProductDisplay({
             style={{ overflowY: "auto", backgroundColor: "#1A202C", }}
         >
             <div
-                className={`relativ p-6 md:max-w-xl w-full max-h-screen overflow-y-auto text-white `}
+                className={`relativ px-6 py-10 md:max-w-xl w-full max-h-screen overflow-y-auto text-white `}
             >
                 {isModal && (
                     <button
@@ -102,7 +102,7 @@ export default function ProductDisplay({
 
                     <div className="border w-40 mx-auto opacity-20 mt-1 flex-shrink-0" />
 
-                    <p className="text-gray-400 text-center">{data?.mensagem}</p>
+                    <p className="text-gray-400 text-center pb-4">{data?.mensagem}</p>
 
                     {isValidLink && (
                         <div className="bottom-0 left-0 right-0">
