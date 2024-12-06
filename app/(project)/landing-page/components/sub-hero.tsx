@@ -9,7 +9,6 @@ import PaymentModal from "./payment";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { FiLink, FiUpload } from "react-icons/fi";
 import { compressFiles } from "@/app/lib/utils";
-import toast from "react-hot-toast";
 import { saveImagesOnFirebase } from "@/app/actions/save-images-firebase";
 import { v4 as uuidv4 } from "uuid";
 import ProductDisplay from "../../gift/components/ProductDisplay";
@@ -174,16 +173,10 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
     formData.append("mensagem", data.mensagem);
     formData.append("videoLink", data.videoLink);
     formData.append("plano", data.plano);
+    formData.append("created_at", new Date().toISOString());
+
     return formData;
   };
-
-  // const handleUploadResponse = (documentId: string | null) => {
-  //   if (documentId) {
-  //     toast.success(`Documento criado com sucesso!`);
-  //   } else {
-  //     toast.error("Erro ao criar o documento");
-  //   }
-  // };
 
   const handlePreview = () => {
     const isValid = validateInputs();
