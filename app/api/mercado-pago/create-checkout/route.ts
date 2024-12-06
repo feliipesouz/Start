@@ -10,10 +10,10 @@ export async function POST(req: NextRequest) {
   console.log(selectedPlan)
 
   const price =
-    selectedPlan === "basic" ? "19.90" :
-      selectedPlan === "pro" ? "28.90" :
-        selectedPlan === "lifetime" ? "33.90" :
-          "33.90";
+    selectedPlan === "basic" ? 19.9 :
+      selectedPlan === "pro" ? 28.9 :
+        selectedPlan === "lifetime" ? 33.9 :
+          33.9; // Valor padrão para casos inesperados
 
 
   try {
