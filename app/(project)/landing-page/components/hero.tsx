@@ -55,7 +55,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                     )}
                     <h3 className="text-xs font-medium text-[#223645] mb-4 text-center">Acesso Básico</h3>
                     <p className="font-bold mb-1 text-xs text-[#1C1C1C] text-center">R$ 19,90</p>
-                    <p className="text-[#6F6F6F] text-[9px] text-center mb-3">Acesso por 30 dias sem música</p>
+                    <p className="text-[#6F6F6F] text-[9px] text-center mb-3">Acesso por 30 dias + 3 fotos SEM música</p>
                     <div className="w-full flex justify-center">
                       <button
                         className={`px-4 py-[6px] rounded-full text-[8px] ${selectedPlan === "basico" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"
@@ -79,7 +79,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                     )}
                     <h3 className="text-xs font-medium text-[#223645] mb-4 text-center">Acesso Médio</h3>
                     <p className="font-bold mb-1 text-xs text-[#1C1C1C] text-center">R$ 28,90</p>
-                    <p className="text-[#6F6F6F] text-[9px] text-center mb-3">Acesso por 60 dias sem música</p>
+                    <p className="text-[#6F6F6F] text-[9px] text-center mb-3">Acesso por 60 dias + 5 fotos + música</p>
                     <div className="w-full flex justify-center">
                       <button
                         className={`px-4 py-[6px] rounded-full text-[8px] ${selectedPlan === "pro" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"
@@ -122,7 +122,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                       <p className="font-bold text-xs text-[#1C1C1C]">R$ 33,90</p>
                     </div>
 
-                    <p className="text-[#6F6F6F] text-[9px] text-center mb-3">Acesso vitalício com música</p>
+                    <p className="text-[#6F6F6F] text-[9px] text-center mb-3">Acesso para sempre + 7 fotos + música</p>
                     <div className="w-full flex justify-center">
                       <button
                         className={`px-4 py-[6px] rounded-full text-[8px] ${selectedPlan === "lifetime" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"
