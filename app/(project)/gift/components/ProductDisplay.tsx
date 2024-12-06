@@ -65,7 +65,7 @@ export default function ProductDisplay({
             style={{ overflowY: "auto", backgroundColor: "#1A202C", }}
         >
             <div
-                className={`relativ px-6 py-10 md:max-w-xl w-full max-h-screen overflow-y-auto text-white `}
+                className={`relativ px-6 py-14 md:max-w-xl w-full max-h-screen overflow-y-auto text-white `}
             >
                 {isModal && (
                     <button

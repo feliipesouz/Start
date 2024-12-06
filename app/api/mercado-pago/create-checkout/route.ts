@@ -7,11 +7,13 @@ import { Payment, MercadoPagoConfig } from 'mercadopago';
 export async function POST(req: NextRequest) {
   const { id, userEmail, selectedPlan } = await req.json();
 
+  console.log(selectedPlan)
+
   const price =
-    selectedPlan === "basic" ? "19,90" :
-      selectedPlan === "pro" ? "28,90" :
-        selectedPlan === "lifetime" ? "33,90" :
-          "33,90";
+    selectedPlan === "basic" ? "19.90" :
+      selectedPlan === "pro" ? "28.90" :
+        selectedPlan === "lifetime" ? "33.90" :
+          "33.90";
 
 
   try {
