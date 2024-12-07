@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { FiTwitter, FiInstagram, FiFacebook, FiGlobe } from "react-icons/fi";
+import { FiInstagram } from "react-icons/fi";
+import { FaTiktok } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -17,32 +18,25 @@ export default function Footer() {
               Eternize os momentos ao lado de quem você ama com um contador de tempo especial que celebra cada instante compartilhado. Celebre cada momento com quem é importante para você — seja amigos, avós, pais, namorado(a) ou até mesmo seu pet — criando um registro único que simboliza seu carinho e conexão.
             </p>
 
-            {/* <div className="flex space-x-4">
+            <div className="flex space-x-4">
               <a
-                href="#"
-                className="p-2 bg-[#29282d] rounded-full hover:bg-[#EF5DA8] transition"
-              >
-                <FiGlobe className="text-xl" />
-              </a>
-              <a
-                href="#"
-                className="p-2 bg-[#29282d] rounded-full hover:bg-[#EF5DA8] transition"
-              >
-                <FiTwitter className="text-xl" />
-              </a>
-              <a
-                href="#"
+                href="https://www.instagram.com/voceeespecial.br"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2 bg-[#29282d] rounded-full hover:bg-[#EF5DA8] transition"
               >
                 <FiInstagram className="text-xl" />
               </a>
+
               <a
-                href="#"
+                href="https://www.tiktok.com/@voceeespeciaal"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2 bg-[#29282d] rounded-full hover:bg-[#EF5DA8] transition"
               >
-                <FiFacebook className="text-xl" />
+                <FaTiktok className="text-xl" />
               </a>
-            </div> */}
+            </div>
           </div>
 
           <div className="flex flex-col">

@@ -6,6 +6,7 @@ import Hero from "./landing-page/components/hero";
 import SubHero from "./landing-page/components/sub-hero";
 import Footer from "./landing-page/components/footer";
 import FAQ from "./landing-page/components/faq";
+import OfertaIrresistivel from "./landing-page/components/offer";
 
 
 export default function LandingPage() {
@@ -39,6 +40,7 @@ export default function LandingPage() {
         <Nav setIsModalTutorialOpen={setIsModalTutorialOpen} isModalTutorialOpen={isModalTutorialOpen} onCloseModal={closeTutorialModal} />
       </header>
       <main>
+        <OfertaIrresistivel />
         <Hero onSelectPlan={handlePlanSelect} selectedPlan={selectedPlan} />
         <SubHero onSubmitForm={handleFormSubmit} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} onCloseModal={closeModal} formData={formData} selectedPlan={selectedPlan} />
         <FAQ />

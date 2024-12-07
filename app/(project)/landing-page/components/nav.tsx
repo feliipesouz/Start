@@ -14,9 +14,9 @@ export default function Nav({ isModalTutorialOpen, setIsModalTutorialOpen, onClo
       <div className="flex items-center justify-center text-[#223645] gap-3 md:gap-9 mx-4 md:mx-[10vw]">
         <div className="relative">
           <Link href={"/"} className="flex items-center gap-2">
-            <div className="relative size-7 md:size-9">
+            <div className="relative size-12 md:size-16">
               <Image
-                src="/landing-page/logo.png"
+                src="/landing-page/logo-clara.png"
                 fill
                 alt="Template Logo"
                 className="object-fit object-center"
