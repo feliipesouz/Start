@@ -16,7 +16,7 @@ export default function Nav({ isModalTutorialOpen, setIsModalTutorialOpen, onClo
           <Link href={"/"} className="flex items-center gap-2">
             <div className="relative size-12 md:size-16">
               <Image
-                src="/landing-page/logo-clara.png"
+                src="/landing-page/logo.png"
                 fill
                 alt="Template Logo"
                 className="object-fit object-center"

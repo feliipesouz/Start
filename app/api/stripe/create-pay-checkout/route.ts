@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   const { id, userEmail, selectedPlan } = await req.json();
+  console.log(selectedPlan)
 
   const price =
     selectedPlan === "basic" ? process.env.STRIPE_PRODUCT_PRICE_ID_BASIC :
