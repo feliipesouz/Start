@@ -5,7 +5,7 @@ export const faqQuestions = [
   },
   {
     question: "Posso editar minha página depois de criá-la?",
-    answer: "Sim! Assim que você receber o link da sua página, ele incluirá uma seção de edição onde você poderá fazer todas as alterações que desejar.",
+    answer: "Não! Uma vez feito o produto, não é possível modifica-lo; porém antes de confirmar o produto, você pode ver como ele ficou clicando no botão 'ver como ficou'.",
   },
   {
     question: "Quais são as formas de pagamento?",
