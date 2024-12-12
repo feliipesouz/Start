@@ -166,7 +166,7 @@ export async function generateEmailHTML(
       <div class="container">
         <!-- Header -->
         <div class="header">
-          <h1>Seu produto chegou!!!</h1>
+          <h1>SEU PEDIDO ESPECIAL CHEGOUU!!!</h1>
         </div>
 
         <!-- Content -->
@@ -201,7 +201,11 @@ export async function generateEmailHTML(
       <!-- Footer -->
       <div class="footer">
         <p>Obrigado por comprar conosco!</p>
-        <p>VOCÊ É ESPECIAL - Todos os direitos reservados</p>
+         <p>
+            <a href="https://voceeespecial.com.br" target="_blank" style="color: #ff007a; text-decoration: none;">
+              Visite nosso site: VOCÊ É ESPECIAL
+            </a>
+          </p>
       </div>
     </div>
   </body>
