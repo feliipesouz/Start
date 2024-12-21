@@ -1,14 +1,12 @@
 import imageCompression from "browser-image-compression";
 
-
-
 export const compressImage = (file: File): Promise<File> =>
   new Promise((resolve, reject) => {
     const options = {
-      maxSizeMB: 0.2, // Set max size in MB
-      maxWidthOrHeight: 900, // Max width/height
-      useWebWorker: true, // Use web worker for compression
-      fileType: "image/jpeg", // Convert to WebP format
+      maxSizeMB: 0.2, 
+      maxWidthOrHeight: 900, 
+      useWebWorker: true, 
+      fileType: "image/jpeg", 
     };
 
     imageCompression(file, options)

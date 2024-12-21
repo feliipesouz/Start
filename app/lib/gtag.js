@@ -1,4 +1,4 @@
-export const GA_TRACKING_ID = "G-LB9WMNE0WD"; // Substitua pelo seu ID do Google Analytics
+export const GA_TRACKING_ID = "G-LB9WMNE0WD";
 
 // Envia um evento de página visualizada
 export const pageview = (url) => {

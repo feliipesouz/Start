@@ -20,19 +20,13 @@ export async function deleteUserData(userId: string) {
         await docRef.delete();
         console.log(`Documento com ID ${userId} deletado do Firestore.`);
 
-        // Define o prefixo da pasta no Storage
         const prefix = `saved-images/${userId}/`;
-
-        // Lista todos os arquivos na pasta do usuário
         const [files] = await storage.getFiles({ prefix });
 
-        // Exclui cada arquivo individualmente
         for (const file of files) {
             await file.delete();
             console.log(`Arquivo ${file.name} deletado do Storage.`);
         }
-
-        console.log(`Todos os arquivos da pasta ${prefix} foram deletados.`);
 
     } catch (error) {
         console.error("Erro ao deletar dados do usuário:", error);
