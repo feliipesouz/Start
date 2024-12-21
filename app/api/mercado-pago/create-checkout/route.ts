@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
             description: "Sua página personalizada que celebra uma relação especial, seja de namoro, amizade, família ou qualquer vínculo onde haja um sentimento verdadeiro.",
             title: "Contador de relacionamento",
             quantity: 1,
-            unit_price: 1,//price,
+            unit_price: price,
             currency_id: "BRL",
             category_id: "category", // Recomendado inserir, mesmo que não tenha categoria - Aumenta a pontuação da sua integração com o Mercado Pago
           },
