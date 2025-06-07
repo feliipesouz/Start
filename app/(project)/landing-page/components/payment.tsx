@@ -30,12 +30,11 @@ export default function PaymentModal({
 
 
     const handlePayment = async () => {
-        if (isLoading) return; // Evitar que o botão seja clicado múltiplas vezes
-        setIsLoading(true); // Inicia o estado de carregamento
+        if (isLoading) return;
+        setIsLoading(true);
 
         try {
 
-            console.log(formData)
             await handleUploadImages(formData as FormInputs);
             if (payment === "cartão") {
                 return await createPaymentStripeCheckout({
@@ -53,7 +52,7 @@ export default function PaymentModal({
         } catch (error) {
             console.error("Erro no pagamento:", error);
         } finally {
-            setIsLoading(false); // Finaliza o estado de carregamento
+            setIsLoading(false);
         }
     };
 
@@ -138,15 +137,13 @@ export default function PaymentModal({
 
                 <hr className="w-full mt-8 mb-5" />
 
-                {/* Price Breakdown */}
                 <div className="text-[#223645] mb-8">
                     <div className="flex text-xs justify-between text-[#EF5DA8] mt-4">
                         <span>Total:</span>
-                        <span>R$ {formData?.plano === 'lifetime' ? '33,90' : formData?.plano === 'basic' ? '19,90' : '28,90'}</span>
+                        <span>R$ {formData?.plano === 'lifetime' ? '15,90' : formData?.plano === 'basic' ? '10,90' : '14,90'}</span>
                     </div>
                 </div>
 
-                {/* Action Buttons */}
                 <div className="flex justify-center gap-3">
                     <button
                         onClick={onClose}

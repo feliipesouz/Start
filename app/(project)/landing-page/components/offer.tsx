@@ -18,17 +18,16 @@ function calculateTimeLeft() {
 
 export default function PromoBanner() {
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-    const [unitsLeft, setUnitsLeft] = useState(1000); // Total inicial de unidades
+    const [unitsLeft, setUnitsLeft] = useState(1000);
 
     useEffect(() => {
-        const totalSecondsInDay = 24 * 60 * 60; // Total de segundos no dia
+        const totalSecondsInDay = 24 * 60 * 60;
         const timer = setInterval(() => {
             const updatedTimeLeft = calculateTimeLeft();
 
-            // Atualize o número de unidades restantes proporcionalmente ao tempo
             const unitsRemaining = Math.max(
                 Math.floor((updatedTimeLeft.totalSeconds / totalSecondsInDay) * 1000),
-                0 // Garante que o valor não seja negativo
+                0
             );
 
             setTimeLeft(updatedTimeLeft);
@@ -41,19 +40,15 @@ export default function PromoBanner() {
     return (
         <div className="bg-gradient-to-r bg-black text-white py-6 px-4 rounded-lg shadow-lg mx-auto">
             <div className="text-center space-y-3">
-                {/* Título */}
                 <h2 className="text-lg md:text-xl font-bold flex items-center justify-center gap-2">
-                    🎉 Promoção Exclusiva de Lançamento
+                    Promoção Exclusiva de Dia dos Namorados
                 </h2>
-                {/* Oferta */}
                 <p className="text-sm md:text-base">
-                    <span className="font-semibold">Somente hoje:</span> Acesso Vitalício por <span className="font-bold text-yellow-300">R$ 33,90</span>!
+                    <span className="font-semibold">Somente Até o dia 14/06:</span> Acesso Vitalício por <span className="font-bold text-yellow-300">R$ 15,90</span>!
                 </p>
-                {/* Escassez */}
                 <p className="text-sm md:text-base font-bold flex items-center justify-center gap-2">
                     ⏳ Apenas <span className="text-yellow-300">{unitsLeft} unidades</span> disponíveis!
                 </p>
-                {/* Contador */}
                 <div className="flex justify-center items-center gap-4 text-lg font-bold mt-4">
                     <div className="flex flex-col items-center">
                         <span>{String(timeLeft.hours).padStart(2, "0")}</span>

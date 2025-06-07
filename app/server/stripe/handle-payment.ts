@@ -11,7 +11,6 @@ export async function handleStripePayment(
 ) {
   if (event.data.object.payment_status === "paid") {
     // pagagamento por cartão com sucesso
-    console.log("pagagamento por cartão com sucesso")
     const metadata = event.data.object.metadata;
     const id = metadata?.id;
     const userEmail = event.data.object.customer_details?.email;

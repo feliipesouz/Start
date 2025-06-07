@@ -20,7 +20,7 @@ export default function TutorialModal({ isOpen, onClose }: PaymentModalProps) {
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: false,
-        beforeChange: (current: number, next: number) => setSlideIndex(next), // Atualiza o estado do slide atual
+        beforeChange: (current: number, next: number) => setSlideIndex(next),
     };
 
     return (
@@ -46,7 +46,7 @@ export default function TutorialModal({ isOpen, onClose }: PaymentModalProps) {
                             "As pessoas vão esquecer o que você disse, vão esquecer o que você fez mas não esquecerão o que você as fez sentir"
                         </h2>
                         <button
-                            onClick={() => setShowCarousel(true)} // Muda o estado para mostrar o carrossel
+                            onClick={() => setShowCarousel(true)}
                             className="bg-transparent text-sm md:text-base border border-white text-white rounded-full px-8 py-2 mt-6"
                         >
                             Iniciar

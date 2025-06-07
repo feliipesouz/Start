@@ -61,7 +61,7 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
 
   const validateInputs = () => {
     const numImages = images.length;
-    const hasMusic = !!videoLink; // True se houver um link de música
+    const hasMusic = !!videoLink;
     const areRequiredFieldsFilled = nome && destinatario && data && email && proximidade && value;
 
     if (!areRequiredFieldsFilled) {
@@ -90,7 +90,6 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
       return false;
     }
 
-    // Se todos os checks passarem, limpa a mensagem de erro
     setErrorMessage(null);
     return true;
   };
@@ -100,7 +99,7 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
   };
 
   useEffect(() => {
-    updateFieldsComplete(); // Valida sempre que os campos mudam ou o plano é alterado
+    updateFieldsComplete();
   }, [images, videoLink, selectedPlan, nome, destinatario, data, email, proximidade, value]);
 
   function removeAccents(str: string) {
@@ -127,19 +126,16 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
   };
 
 
-  // Simula o clique no input de arquivos de imagem.
   function triggerImageInput() {
     document.getElementById("imagesInput")?.click();
   }
 
-  // Manipula a seleção das imagens e armazena as URLs temporárias localmente (usando URL.createObjectURL).
   const handleImageInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
     const imageUrls = files.map((file) => URL.createObjectURL(file));
     setImages(imageUrls);
   };
 
-  // Comprime as imagens e as envia para o Firebase, junto com o nome do usuário.
   async function handleUploadImages(data: FormInputs) {
     setSavingImages(true);
     const imagesInput = document.getElementById(
@@ -155,7 +151,6 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
     const formData = createFormData(compressedFiles, data);
 
     const documentId = await saveImagesOnFirebase(formData, data.id!);
-    // handleUploadResponse(documentId);
     setSavingImages(false);
   }
 
@@ -303,26 +298,6 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
                       />
                       <span>Amigo(a)</span>
                     </label>
-
-                    <label className="inline-flex items-center gap-1">
-                      <input
-                        {...register("proximidade", { required: true })}
-                        type="radio"
-                        value="pet"
-                        className="form-radio"
-                      />
-                      <span>Pet</span>
-                    </label>
-
-                    <label className="inline-flex items-center gap-1">
-                      <input
-                        {...register("proximidade", { required: true })}
-                        type="radio"
-                        value="Jesus Cristo"
-                        className="form-radio"
-                      />
-                      <span>Jesus Cristo</span>
-                    </label>
                   </div>
                   {errors.proximidade && (
                     <p className="text-red-500 text-sm mt-1">
@@ -371,9 +346,7 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
                       </input>
                       <div className="flex">
                         <LuUser2 />
-
                         <AiOutlineGift />
-
                       </div>
                     </div>
                     {errors.destinatario && (

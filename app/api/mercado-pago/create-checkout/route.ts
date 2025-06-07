@@ -2,18 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { Preference } from "mercadopago";
 import mpClient from "@/app/lib/mercado-pago";
 
-import { Payment, MercadoPagoConfig } from 'mercadopago';
-
 export async function POST(req: NextRequest) {
   const { id, userEmail, selectedPlan } = await req.json();
 
-  console.log(selectedPlan)
 
   const price =
-    selectedPlan === "basic" ? 19.9 :
-      selectedPlan === "pro" ? 28.9 :
-        selectedPlan === "lifetime" ? 33.9 :
-          33.9; // Valor padrão para casos inesperados
+    selectedPlan === "basic" ? 10.9 :
+      selectedPlan === "pro" ? 14.9 :
+        selectedPlan === "lifetime" ? 15.9 :
+          15.9;
 
 
   try {
@@ -29,7 +26,6 @@ export async function POST(req: NextRequest) {
           id, // O Mercado Pago converte para snake_case, ou seja, id vai virar teste_id
           userEmail: userEmail,
           plan: selectedPlan
-          //etc
         },
         ...(userEmail && {
           payer: {
@@ -39,17 +35,16 @@ export async function POST(req: NextRequest) {
 
         items: [
           {
-            id: id,//"id-do-seu-produto",
+            id: id,
             description: "Sua página personalizada que celebra uma relação especial, seja de namoro, amizade, família ou qualquer vínculo onde haja um sentimento verdadeiro.",
             title: "Contador de relacionamento",
             quantity: 1,
             unit_price: price,
             currency_id: "BRL",
-            category_id: "category", // Recomendado inserir, mesmo que não tenha categoria - Aumenta a pontuação da sua integração com o Mercado Pago
+            category_id: "category",
           },
         ],
         payment_methods: {
-          // Descomente para desativar métodos de pagamento
           excluded_payment_methods: [
             {
               id: "bolbradesco",
@@ -66,7 +61,7 @@ export async function POST(req: NextRequest) {
               id: "credit_card",
             },
           ],
-          installments: 2, // Número máximo de parcelas permitidas
+          installments: 1,
           default_payment_method_id: "pix",
         },
         auto_return: "approved",

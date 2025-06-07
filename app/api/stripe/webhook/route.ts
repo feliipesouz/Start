@@ -18,7 +18,6 @@ export async function POST(req: Request) {
     }
 
     const event = stripe.webhooks.constructEvent(body, signature, secret);
-    // console.log('event: ', event)
 
     switch (event.type) {
       case "checkout.session.completed":

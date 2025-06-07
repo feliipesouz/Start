@@ -1,8 +1,7 @@
 "use server";
 
-import { Buffer } from "buffer"; // Import Buffer to handle ArrayBuffer
+import { Buffer } from "buffer";
 
-// Import your Firebase Admin SDK initialized in another module
 import { db, storage } from "../lib/firebase";
 
 export async function saveImagesOnFirebase(formData: FormData, id: string) {
@@ -25,14 +24,14 @@ export async function saveImagesOnFirebase(formData: FormData, id: string) {
     const videoLink = formData.get("videoLink") as string;
     const plano = formData.get("plano") as string;
     const created_at = new Date().toISOString();
-    
+
 
     const uploadPromises = files.map(async (file, index) => {
       const storageRef = storage.file(`saved-images/${id}/${index}`);
       const arrayBuffer = await file.arrayBuffer();
-      const buffer = Buffer.from(arrayBuffer); // Convert ArrayBuffer to Buffer
+      const buffer = Buffer.from(arrayBuffer);
       await storageRef.save(buffer);
-      return storageRef.name; // Return the file path for storage
+      return storageRef.name;
     });
 
     const uploadPaths = await Promise.all(uploadPromises);
@@ -48,15 +47,15 @@ export async function saveImagesOnFirebase(formData: FormData, id: string) {
       videoLink,
       plano,
       created_at,
-      uploadPaths, // Caminhos das imagens
+      uploadPaths,
     };
 
-    const docRef = db.collection("saved-images").doc(documentToSave.id); // Use collection and doc in Admin SDK
+    const docRef = db.collection("saved-images").doc(documentToSave.id);
     await docRef.set(documentToSave);
 
     return documentToSave.id;
   } catch (error) {
     console.error("Error saving images:", error);
-    throw error; // Rethrow the error to handle it in the calling function
+    throw error;
   }
 }

@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   const { id, userEmail, selectedPlan } = await req.json();
-  console.log(selectedPlan)
 
   const price =
     selectedPlan === "basic" ? process.env.STRIPE_PRODUCT_PRICE_ID_BASIC :
@@ -36,7 +35,7 @@ export async function POST(req: NextRequest) {
       cancel_url: `${req.headers.get("origin")}/`,
       metadata: metadata,
       ...(userEmail && { customer_email: userEmail }),
-      expires_at: Math.floor(Date.now() / 1000) + 60 * 30, 
+      expires_at: Math.floor(Date.now() / 1000) + 60 * 30,
     });
 
     if (!session.url) {

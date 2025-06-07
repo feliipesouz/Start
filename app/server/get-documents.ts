@@ -9,11 +9,9 @@ type SavedImagesType = {
 };
 
 export async function getDocumentsData(link: string) {
-  console.log('link: ', link);
   const docs = db.collection("saved-images").doc(link);
 
   const docSnapshot = await docs.get();
-  console.log('docSnapshot: ', docSnapshot);
 
   if (!docSnapshot.exists) {
     // Se não encontrar o documento com o link informado
@@ -22,7 +20,6 @@ export async function getDocumentsData(link: string) {
   }
 
   const data = docSnapshot.data() as SavedImagesType;
-  console.log(data);
 
   const uploadUrls = await Promise.all(
     data.uploadPaths.map(async (path) => {

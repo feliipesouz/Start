@@ -42,7 +42,6 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
             <div className="px-5 md:px-0 pb-14 md:mb-0">
               <div className="block md:hidden h-48 items-center">
                 <Slider {...settings} className="flex flex-col">
-                  {/* Acesso Básico */}
                   <div
                     className={`relative max-w-[136px] justify-center bg-white p-4 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "basico" ? "border-2 border-pink-400 scale-110" : "scale-100"
                       }`}
@@ -54,7 +53,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                       </div>
                     )}
                     <h3 className="text-xs font-medium text-[#223645] mb-4 text-center">Acesso Básico</h3>
-                    <p className="font-bold mb-1 text-xs text-[#1C1C1C] text-center">R$ 19,90</p>
+                    <p className="font-bold mb-1 text-xs text-[#1C1C1C] text-center">R$ 10,90</p>
                     <p className="text-[#6F6F6F] text-[9px] text-center mb-3">Acesso por 30 dias + 3 fotos SEM música</p>
                     <div className="w-full flex justify-center">
                       <button
@@ -66,7 +65,6 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                     </div>
                   </div>
 
-                  {/* Acesso Médio */}
                   <div
                     className={`relative max-w-[136px] bg-white p-4 rounded-xl shadow-lg flex flex-col items-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "pro" ? "border-2 border-pink-400 scale-110" : "scale-100"
                       }`}
@@ -78,7 +76,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                       </div>
                     )}
                     <h3 className="text-xs font-medium text-[#223645] mb-4 text-center">Acesso Médio</h3>
-                    <p className="font-bold mb-1 text-xs text-[#1C1C1C] text-center">R$ 28,90</p>
+                    <p className="font-bold mb-1 text-xs text-[#1C1C1C] text-center">R$ 14,90</p>
                     <p className="text-[#6F6F6F] text-[9px] text-center mb-3">Acesso por 60 dias + 5 fotos + música</p>
                     <div className="w-full flex justify-center">
                       <button
@@ -90,7 +88,6 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                     </div>
                   </div>
 
-                  {/* Acesso Vitalício */}
                   <div
                     className={`relative max-w-[136px] bg-white p-4 rounded-xl shadow-lg flex flex-col items-center justify-center transition-transform duration-300 ease-in-out transform ${selectedPlan === "lifetime" ? "border-2 border-pink-400 scale-110" : "scale-100"
                       }`}
@@ -109,7 +106,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
 
                     <div className="relative mb-1 text-center">
                       <p className="text-[9px] text-[#6F6F6F] relative inline-block">
-                        De R$ 39,90
+                        De R$ 25,90
                         <span
                           className="absolute inset-0 transform -rotate-12 border-t border-[#FF0000]"
                           style={{
@@ -119,7 +116,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                           }}
                         ></span>
                       </p>
-                      <p className="font-bold text-xs text-[#1C1C1C]">R$ 33,90</p>
+                      <p className="font-bold text-xs text-[#1C1C1C]">R$ 15,90</p>
                     </div>
 
                     <p className="text-[#6F6F6F] text-[9px] text-center mb-3">Acesso para sempre + 7 fotos + música</p>
@@ -147,7 +144,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                     </div>
                   )}
                   <h3 className="text-base font-medium text-[#223645] mb-5">Acesso Básico</h3>
-                  <p className="font-bold mb-[7px] text-base text-[#1C1C1C]">R$ 19,90</p>
+                  <p className="font-bold mb-[7px] text-base text-[#1C1C1C]">R$ 10,90</p>
                   <p className="text-[#6F6F6F] text-sm text-center mb-5">Acesso por 30 dias + 3 fotos SEM música</p>
                   <button
                     className={`px-4 py-2 rounded-full text-xs ${selectedPlan === "basic" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"}`}
@@ -166,7 +163,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                     </div>
                   )}
                   <h3 className="text-base font-medium text-[#223645] mb-5">Acesso Médio</h3>
-                  <p className="font-bold mb-[7px] text-base text-[#1C1C1C]">R$ 28,90</p>
+                  <p className="font-bold mb-[7px] text-base text-[#1C1C1C]">R$ 14,90</p>
                   <p className="text-[#6F6F6F] text-sm text-center mb-5">Acesso por 60 dias + 5 fotos + música</p>
                   <button
                     className={`px-4 py-2 rounded-full text-xs ${selectedPlan === "pro" ? "bg-[#EF5DA8] text-white font-bold" : "bg-[#FFFF] text-[#EF5DA8] border border-[#EF5DA8]"}`}
@@ -190,11 +187,9 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                   </div>
                   <h3 className="text-base font-medium text-[#223645] mb-5">Acesso Vitalício</h3>
 
-                  {/* Preço Promocional */}
                   <div className="flex flex-col items-center mb-[7px]">
                     <p className="text-sm text-[#6F6F6F] relative">
-                      De R$ 38,90
-                      {/* Traço diagonal */}
+                      De R$ 25,90
                       <span
                         className="absolute inset-0 transform -rotate-12 border-t border-[#FF0000]"
                         style={{
@@ -204,7 +199,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
                         }}
                       ></span>
                     </p>
-                    <p className="font-bold text-base text-[#1C1C1C]">Por R$ 33,90</p> {/* Preço promocional */}
+                    <p className="font-bold text-base text-[#1C1C1C]">Por R$ 15,90</p>
                   </div>
 
                   <p className="text-[#6F6F6F] text-sm text-center mb-5">Acesso para sempre + 7 fotos + música</p>

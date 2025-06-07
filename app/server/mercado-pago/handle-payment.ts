@@ -6,19 +6,15 @@ import { generateEmailHTML, generateQRCodeBuffer } from "@/app/lib/utils";
 
 export async function handleMercadoPagoPayment(paymentData: PaymentResponse) {
 
-  console.log("Detalhes do pagamento2:", JSON.stringify(paymentData, null, 2));
-
   const metadata = paymentData.metadata;
   const userEmail = metadata.user_email; // Lembrar que os metadados do Mercado Pago são convertidos para snake_case
-  const id = metadata.id; 
+  const id = metadata.id;
 
   const productName = "Contador de relacionamento";
   const qrCodeValue = `https://voceeespecial.com.br/gift/${id}`;
   const emailBody = await generateEmailHTML(id, productName, qrCodeValue);
 
   const qrCodeBuffer = await generateQRCodeBuffer(qrCodeValue);
-
-  console.log('pronto para envio do email')
 
   await sendEmailTo({
     userEmail,

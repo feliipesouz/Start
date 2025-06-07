@@ -8,21 +8,13 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    console.log("Webhook payload:", JSON.stringify(body, null, 2));
-
-
-    const { type, data } = body;    
-
-    console.log(data)
+    const { type, data } = body;
 
     if (type === "payment") {
       const payment = new Payment(mpClient);
       const paymentData = await payment.get({ id: data.id });
 
-      console.log("Detalhes do pagamento:", JSON.stringify(paymentData, null, 2));
-
       const metadata = paymentData.metadata;
-      console.log(metadata)
       const userId = metadata?.id; // O ID salvo no Firebase
 
       if (paymentData.status === "approved") {
