@@ -251,8 +251,8 @@ export default function SubHero({ onSubmitForm, isModalOpen, onCloseModal, selec
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} style={{ width: '100%' }}>
-            <div className="flex flex-col md:flex-row justify-around items-start md:w-full p-6 md:p-10 mb:mb-0">
-              <Image src={'/landing-page/girl.png'} width={281} height={345} className="w-auto h-auto hidden md:block" alt={'Moça em pé apoiada na frente do notebook'} />
+            <div className="flex flex-col md:flex-row justify-around items-center md:items-start md:w-full p-6 md:p-10 mb:mb-0">
+              <Image src={'/landing-page/infinito.png'} width={281} height={345} className="w-auto h-auto hidden md:block" alt={'Moça em pé apoiada na frente do notebook'} />
 
               <div className="md:w-3/5">
                 <div className="flex flex-col md:flex-row mb-12 md:mb-[69px] gap-3 md:gap-8 items-center">

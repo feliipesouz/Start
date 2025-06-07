@@ -31,7 +31,7 @@ export default function Hero({ onSelectPlan, selectedPlan }: HeroProps) {
           <div className="flex flex-col justify-start w-full md:w-1/2">
             <h1 className="text-lg md:text-5xl text-[#223645] font-bold mb-9 md:mb-[85px] px-12 md:px-0 text-center md:text-left">
               Surpreenda aquela <span className={"text-[#EF5DA8]"}>pessoa</span> que é
-              <br className="hidden md:block" />
+              <br className="md:hidden block" />
               <span className={"text-[#EF5DA8]"}> especial para você!</span>
             </h1>
             <p className="text-[#223645] text-xs mb-0 md:mb-8 px-8 md:px-0 w-[265px] md:w-full">
