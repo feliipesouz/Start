@@ -42,7 +42,6 @@ export default function EmailPreview() {
                 <h1 style={{ margin: 0, fontSize: "26px", fontWeight: "bold" }}>Seu produto chegou!!!</h1>
             </div>
 
-            {/* Content */}
             <div
                 style={{
                     backgroundColor: "#FFFFFF",
@@ -104,7 +103,6 @@ export default function EmailPreview() {
             </div>
 
 
-            {/* Footer */}
             <div
                 style={{
                     textAlign: "center",
