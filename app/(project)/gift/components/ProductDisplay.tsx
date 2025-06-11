@@ -121,6 +121,7 @@ export default function ProductDisplay({
                             <AudioPlayer
                                 audioUrl={data.videoLink}
                                 playing={isPlaying}
+                                autoUnmute={!isModal}
                             />
                         </div>
                     )}
