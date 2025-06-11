@@ -40,7 +40,7 @@ export default function AudioPlayer({
                 muted={muted}
                 controls
                 width="100%"
-                height="80px"
+                height="200px"
                 config={{
                     youtube: {
                         playerVars: {
