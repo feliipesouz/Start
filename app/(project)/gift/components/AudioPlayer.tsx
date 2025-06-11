@@ -16,15 +16,16 @@ export default function AudioPlayer({
 }: AudioPlayerProps) {
     const playerRef = useRef<ReactPlayer | null>(null)
 
-    // Inicializa o estado com base no `autoUnmute`
     const [muted, setMuted] = useState(!autoUnmute)
 
     useEffect(() => {
-        if (playing && !autoUnmute) {
-            // Se não estiver no preview, aguarda interação e desmuta com delay
+        if (playing && autoUnmute) {
+            setMuted(false)
+        } else if (playing && !autoUnmute) {
+            setMuted(true)
             const timeout = setTimeout(() => {
                 setMuted(false)
-            }, 1000)
+            }, 500)
             return () => clearTimeout(timeout)
         }
     }, [playing, autoUnmute])

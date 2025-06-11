@@ -122,6 +122,7 @@ export default function ProductDisplay({
                                 audioUrl={data.videoLink}
                                 playing={isPlaying}
                                 autoUnmute={!isModal}
+                                key={isUnwrapped ? 'unwrapped' : 'wrapped'}
                             />
                         </div>
                     )}
