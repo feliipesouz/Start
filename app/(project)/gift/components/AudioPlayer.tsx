@@ -32,6 +32,7 @@ export default function AudioPlayer({
     return (
         <div className="w-full flex justify-center">
             <ReactPlayer
+                key={playing.toString()}
                 ref={playerRef}
                 url={audioUrl}
                 playing={playing}
