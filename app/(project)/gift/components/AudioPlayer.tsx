@@ -43,6 +43,15 @@ export default function AudioPlayer({
                 controls
                 width="100%"
                 height="200px"
+                onReady={() => {
+                    if (playing) {
+                        try {
+                            playerRef?.current?.getInternalPlayer()?.playVideo?.()
+                        } catch (err) {
+                            console.warn("Erro ao tentar dar play após onReady", err)
+                        }
+                    }
+                }}
                 config={{
                     youtube: {
                         playerVars: {
