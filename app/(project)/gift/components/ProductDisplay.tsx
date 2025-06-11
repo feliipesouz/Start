@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { FormInputs } from "../../landing-page/components/sub-hero";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactPlayer from "react-player";
 import RelationshipCounter from "./RelationshipCounter";
 import AudioPlayer from "./AudioPlayer";
@@ -56,10 +56,26 @@ export default function ProductDisplay({
         };
     }, [isModal]);
 
+    const playerRef = useRef<ReactPlayer | null>(null)
+
     const handleUnwrap = () => {
-        setIsUnwrapped(true);
-        setIsPlaying(true);
-    };
+        setIsUnwrapped(true)
+        setIsPlaying(true)
+
+        // Aguarda renderização do player e tenta dar play manual
+        setTimeout(() => {
+            const internalPlayer = playerRef.current?.getInternalPlayer()
+            try {
+                // API do player do YouTube
+                if (internalPlayer?.playVideo) {
+                    internalPlayer.playVideo()
+                }
+            } catch (err) {
+                console.warn("Erro ao tentar dar play manual:", err)
+            }
+        }, 1000) // aguarde 1s para garantir que o player foi montado
+    }
+
 
     if (!data) {
         return <div>Dados do produto não disponíveis</div>;
@@ -123,6 +139,7 @@ export default function ProductDisplay({
                                 playing={isPlaying}
                                 autoUnmute={!isModal}
                                 key={isUnwrapped ? 'unwrapped' : 'wrapped'}
+                                playerRef={playerRef}
                             />
                         </div>
                     )}

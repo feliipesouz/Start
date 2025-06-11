@@ -7,14 +7,17 @@ interface AudioPlayerProps {
     audioUrl: string
     playing?: boolean
     autoUnmute?: boolean
+    playerRef?: React.RefObject<ReactPlayer>
 }
 
 export default function AudioPlayer({
     audioUrl,
     playing = false,
     autoUnmute = false,
+    playerRef,
 }: AudioPlayerProps) {
-    const playerRef = useRef<ReactPlayer | null>(null)
+    const internalRef = useRef<ReactPlayer | null>(null)
+    const effectiveRef = playerRef || internalRef
 
     const [muted, setMuted] = useState(!autoUnmute)
 
@@ -33,8 +36,7 @@ export default function AudioPlayer({
     return (
         <div className="w-full flex justify-center">
             <ReactPlayer
-                key={playing.toString()}
-                ref={playerRef}
+                ref={effectiveRef}
                 url={audioUrl}
                 playing={playing}
                 muted={muted}

@@ -8,7 +8,7 @@ interface GiftUnwrapProps {
 export default function GiftUnwrap({ onUnwrap }: GiftUnwrapProps) {
     return (
         <div className="fixed inset-0 z-50 bg-gray-900 flex items-center justify-center">
-            <div className="text-center">
+            <div className="px-3 md:px-0 text-center">
                 <h2 className="text-2xl text-white mb-8 animate-pulse">Clique aqui para abrir seu presente</h2>
                 <button
                     onClick={onUnwrap}
