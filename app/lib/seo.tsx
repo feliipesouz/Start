@@ -45,7 +45,7 @@ export const getSEOTags = ({
       title: appName,
       description: appDescription,
       card: "summary_large_image",
-      creator: "@andreeliasdev",
+      creator: "@voceeespecial",
     },
     alternates: {
       canonical: canonicalUrlRelative,

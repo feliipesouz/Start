@@ -7,6 +7,7 @@ import RelationshipCounter from "./RelationshipCounter";
 import AudioPlayer from "./AudioPlayer";
 import HeartEffect from "./HeartEffect";
 import { ClipLoader } from "react-spinners";
+import GiftUnwrap from "./GiftUnwrap";
 
 interface ProductDisplayProps {
     data: FormInputs | null | any;
@@ -23,6 +24,8 @@ export default function ProductDisplay({
 }: ProductDisplayProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [imageSources, setImageSources] = useState<string[]>([]);
+    const [isUnwrapped, setIsUnwrapped] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(false);
 
     useEffect(() => {
         // Se existem URLs de upload, use-as; caso contrário, use o array de imagens padrão
@@ -43,10 +46,6 @@ export default function ProductDisplay({
         return () => clearInterval(timer);
     }, [imageSources]);
 
-    if (!data) {
-        return <div>Dados do produto não disponíveis</div>;
-    }
-
     useEffect(() => {
         // Impede que a página de fundo role enquanto o modal está aberto
         if (isModal) {
@@ -56,6 +55,19 @@ export default function ProductDisplay({
             document.body.classList.remove("overflow-hidden");
         };
     }, [isModal]);
+
+    const handleUnwrap = () => {
+        setIsUnwrapped(true);
+        setIsPlaying(true);
+    };
+
+    if (!data) {
+        return <div>Dados do produto não disponíveis</div>;
+    }
+
+    if (!isUnwrapped) {
+        return <GiftUnwrap onUnwrap={handleUnwrap} />;
+    }
 
     const isValidLink = ReactPlayer.canPlay(data.videoLink || "");
 
@@ -106,7 +118,10 @@ export default function ProductDisplay({
 
                     {isValidLink && (
                         <div className="bottom-0 left-0 right-0">
-                            <AudioPlayer audioUrl={data.videoLink} />
+                            <AudioPlayer
+                                audioUrl={data.videoLink}
+                                playing={isPlaying}
+                            />
                         </div>
                     )}
                 </div>
