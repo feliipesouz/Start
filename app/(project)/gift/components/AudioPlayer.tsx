@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useRef, useEffect, useState } from 'react'
 import ReactPlayer from 'react-player'
 
@@ -18,7 +17,6 @@ export default function AudioPlayer({
 }: AudioPlayerProps) {
     const internalRef = useRef<ReactPlayer | null>(null)
     const effectiveRef = playerRef || internalRef
-
     const [muted, setMuted] = useState(!autoUnmute)
 
     useEffect(() => {
@@ -26,9 +24,7 @@ export default function AudioPlayer({
             setMuted(false)
         } else if (playing && !autoUnmute) {
             setMuted(true)
-            const timeout = setTimeout(() => {
-                setMuted(false)
-            }, 500)
+            const timeout = setTimeout(() => setMuted(false), 500)
             return () => clearTimeout(timeout)
         }
     }, [playing, autoUnmute])
@@ -43,15 +39,6 @@ export default function AudioPlayer({
                 controls
                 width="100%"
                 height="200px"
-                onReady={() => {
-                    if (playing) {
-                        try {
-                            playerRef?.current?.getInternalPlayer()?.playVideo?.()
-                        } catch (err) {
-                            console.warn("Erro ao tentar dar play após onReady", err)
-                        }
-                    }
-                }}
                 config={{
                     youtube: {
                         playerVars: {
