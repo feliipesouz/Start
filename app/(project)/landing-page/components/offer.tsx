@@ -1,8 +1,10 @@
+'use client';
+
 import React, { useEffect, useState } from "react";
 
 function calculateTimeLeft() {
     const now = new Date();
-    const deadline = new Date("2025-06-14T23:59:59");
+    const deadline = new Date("2025-06-13T23:59:59");
     const difference = deadline.getTime() - now.getTime();
 
     if (difference > 0) {
@@ -25,23 +27,29 @@ function calculateTimeLeft() {
 }
 
 export default function PromoBanner() {
-    const deadline = new Date("2025-06-14T23:59:59");
+    const deadline = new Date("2025-06-13T23:59:59");
     const initialTotalSeconds = Math.floor((deadline.getTime() - new Date().getTime()) / 1000);
 
-    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-    const [unitsLeft, setUnitsLeft] = useState(1000);
+    const initialTimeLeft = calculateTimeLeft();
+    const initialUnits = Math.max(
+        Math.floor((initialTimeLeft.totalSeconds / initialTotalSeconds) * 51),
+        0
+    );
+
+    const [timeLeft, setTimeLeft] = useState(initialTimeLeft);
+    const [unitsLeft, setUnitsLeft] = useState(initialUnits);
 
     useEffect(() => {
         const timer = setInterval(() => {
             const updatedTimeLeft = calculateTimeLeft();
 
-            const unitsRemaining = Math.max(
-                Math.floor((updatedTimeLeft.totalSeconds / initialTotalSeconds) * 1000),
+            const updatedUnits = Math.max(
+                Math.floor((updatedTimeLeft.totalSeconds / initialTotalSeconds) * 51),
                 0
             );
 
             setTimeLeft(updatedTimeLeft);
-            setUnitsLeft(unitsRemaining);
+            setUnitsLeft(updatedUnits);
         }, 1000);
 
         return () => clearInterval(timer);
@@ -55,7 +63,7 @@ export default function PromoBanner() {
                 </h2>
 
                 <p className="text-sm sm:text-base leading-snug">
-                    <span className="font-semibold">Até 14 de Junho:</span> Eternize o seu sentimento com o{" "}
+                    <span className="font-semibold">Até 13 de Junho:</span> Eternize o seu sentimento com o{" "}
                     <span className="font-bold text-[#ec4899]">Acesso Vitalício por R$ 15,90</span>.
                 </p>
 
